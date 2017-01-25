@@ -64,7 +64,9 @@ const CarClassMirror = const ClassMirror(constructors: const {
     'id': const DeclarationMirror(type: int),
     'engine': const DeclarationMirror(type: String)
   }, call: _Car__Constructor)
-}, fields: const {
+}, annotations: const [
+  myOtherAnnotation
+], fields: const {
   'id': $$Car_fields_id,
   'engine': $$Car_fields_engine
 }, getters: const [

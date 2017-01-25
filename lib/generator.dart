@@ -37,7 +37,8 @@ const ${className}ClassMirror = const ClassMirror(
       ${constructors.map((c) => "'${c.name}': const FunctionMirror("
           "parameters: const {${c.parameters.map(_renderDeclarations).join(',')}},"
           "call: _${className}_${c.name}_Constructor)").join(',')}
-    }''',
+    }'''
+    '${_renderMetadata(element.metadata)}',
     fields.isNotEmpty || stFields.isNotEmpty ? '''fields: const {
       ${[
         fields.map(_renderFields).join(','),
@@ -84,7 +85,10 @@ String _renderMetadata(List<ElementAnnotation> metadata) {
   var annotations = metadata.where((a) =>
       (a.constantValue.type.element as ClassElement).allSupertypes.any((st) => st.name == 'Annotation'));
   return annotations.isNotEmpty
-      ? ", annotations: const [${annotations.map((a) => 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}').join(',')}]"
+      ? ", annotations: const [${annotations.map((a) =>
+          a.element is ConstructorElement
+            ? 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}'
+            : a.element.name).join(',')}]"
       : '';
 }
 

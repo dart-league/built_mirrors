@@ -10,6 +10,11 @@ class MyAnnotation extends Annotation {
   const MyAnnotation(this.val1, {this.val2});
 }
 
+const myOtherAnnotation = const _MyOtherAnnotation();
+class _MyOtherAnnotation extends Annotation {
+  const _MyOtherAnnotation();
+}
+
 @reflectable
 class Person {
   Person({this.id, this.name, this.myDynamic, this.cars});
@@ -24,6 +29,7 @@ class Person {
 }
 
 @reflectable
+@myOtherAnnotation
 class Car {
   int id;
   String engine;
