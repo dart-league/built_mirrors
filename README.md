@@ -103,13 +103,6 @@ main() {
         engine: v8
    */
   print('car1:\n\tid: ${car1.id}\n\tengine: ${car1.engine}\n');
-
-  // adds car1 to p1.cars
-  p1.cars = [car1];
-
-  // prints: `getSymbolName(#mySymbol): mySymbol`
-  print('getSymbolName(#mySymbol): ${getSymbolName(#mySymbol)}');
-
 }
 ```
 
@@ -277,6 +270,4 @@ p1Fields['cars'].type: [List, Car]
 car1:
 	id: 1
 	engine: v8
-
-getSymbolName(#mySymbol): mySymbol
 ```

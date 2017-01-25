@@ -38,8 +38,4 @@ main() {
 
   // adds car1 to p1.cars
   p1.cars = [car1];
-
-  // prints: `getSymbolName(#mySymbol): mySymbol`
-  print('getSymbolName(#mySymbol): ${getSymbolName(#mySymbol)}');
-
 }

@@ -1,12 +1,6 @@
 /// Container map of Typ-ClassMirror combination
 Map<Type, ClassMirror> _classMirrors;
 
-/// returns the corresponding name of [symbol]
-String getSymbolName(Symbol symbol) {
-  var symbolStr = symbol.toString();
-  return symbolStr.substring(8, symbolStr.length - 2);
-}
-
 /// creates a map containing a Map with [Type] as keys and [ClassMirrors] as values
 void initClassMirrors(Map<Type, ClassMirror> classMirrors) {
   if(_classMirrors != null) {
