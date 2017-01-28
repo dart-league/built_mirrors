@@ -13,6 +13,13 @@ class BuiltMirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
 
   @override
   Future<String> generateForAnnotatedElement(ClassElement element, Reflectable annotation, BuildStep buildStep) async {
+    if(element.isEnum) {
+      return "const ${element.name}ClassMirror = const ClassMirror("
+          "name: '${element.name}',"
+          "isEnum: true,"
+          "values: ${element.name}.values);";
+    }
+
     var constructors = element.constructors;
     var className = element.name;
     var fields = element.fields;
@@ -32,10 +39,11 @@ class BuiltMirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
 ${fields.map(_renderFieldsDeclarations).join('\n')}
 
 const ${className}ClassMirror = const ClassMirror(
+  name: '${element.name}',
   ${[
     '''constructors: const {
       ${constructors.map((c) => "'${c.name}': const FunctionMirror("
-          "parameters: const {${c.parameters.map(_renderDeclarations).join(',')}},"
+          "parameters: const {${c.parameters.map(_renderParameter).join(',')}},"
           "call: _${className}_${c.name}_Constructor)").join(',')}
     }'''
     '${_renderMetadata(element.metadata)}',
@@ -66,15 +74,17 @@ String _renderConstructorParametersCall(ConstructorElement c) {
       p.parameterKind == ParameterKind.NAMED ? "${p.name}: params['${p.name}']" : "params['${p.name}']").join(',');
 }
 
-String _renderDeclarations(VariableElement e) =>
+String _renderParameter(ParameterElement e) =>
     "'${e.name}': const DeclarationMirror("
       'type: ${_renderType(e.type)}'
+      '${e.parameterKind == ParameterKind.REQUIRED ? '' : ', isOptional: true'}'
       '${_renderMetadata(e.metadata)}'
     ')';
 
-String _renderFieldsDeclarations(VariableElement e) =>
+String _renderFieldsDeclarations(FieldElement e) =>
     "const \$\$${e.enclosingElement.name}_fields_${e.name} = const DeclarationMirror("
         'type: ${_renderType(e.type)}'
+        '${e.isFinal ? ', isFinal: true' : ''}'
         '${_renderMetadata(e.metadata)}'
     ');';
 
