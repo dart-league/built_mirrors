@@ -8,8 +8,8 @@ import 'package:built_mirrors/built_mirrors.dart';
 import 'package:source_gen/source_gen.dart';
 
 /// Generates ClassMirror constants from classes annotated with `@Reflectable()`
-class BuiltMirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
-  const BuiltMirrorsGenerator();
+class ClassMirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
+  const ClassMirrorsGenerator();
 
   @override
   Future<String> generateForAnnotatedElement(ClassElement element, Reflectable annotation, BuildStep buildStep) async {

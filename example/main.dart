@@ -1,17 +1,14 @@
-// Copyright (c) 2017, Luis Vargas. All rights reserved. Use of this source code
-
-// is governed by a BSD-style license that can be found in the LICENSE file.
+library built_mirrors.example.main;
 
 import 'models.dart';
 import 'package:built_mirrors/built_mirrors.dart';
 
+part 'main.g.dart';
+
 main() {
 
   // Initializes the `Type-ClassMirror` map
-  initClassMirrors({
-    Person: PersonClassMirror,
-    Car: CarClassMirror
-  });
+  _initClassMirrors();
 
   // Gets the PersonClassMirror
   var personClassMirror = reflectType(Person);

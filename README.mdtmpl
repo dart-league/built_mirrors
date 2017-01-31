@@ -1,0 +1,51 @@
+# built_mirrors
+
+This is a library that generates `ClassMirror` from classes annotated with
+`@reflectable` or `@Reflectable()`.
+
+## Getting Started
+
+1. Create a new dart-web project.
+2. add `built_mirrors` dependency to your `pubspec.yaml`.
+
+```yaml
+...
+dependencies:
+  ...
+  built_mirrors: any
+  ...
+```
+
+3. create a file in `bin` folder called `models.dart` and put next code on it:
+
+{@example example/models.dart}
+
+4. edit the file `main.dart` in the folder `bin` and put next code on it:
+
+{@example example/main.dart}
+
+5. create a file in `tool` folder called `build.dart` and put next code on it:
+
+{@example tool/build.dart}
+
+6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
+has been generated and it will contains the next code:
+
+{@example example/models.g.dart}
+
+7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+output in console:
+
+```
+p1Fields['myDynamic'].type: dynamic
+
+p1Fields['cars'].type: [List, Car]
+
+car1:
+	id: 1
+	engine: v8
+```
+
+# TODO
+
+- [ ] add `initClassMirrors` generator based on `main` function

@@ -1,4 +1,4 @@
-library built_mirrors.example;
+library built_mirrors.example.models;
 
 import 'package:built_mirrors/built_mirrors.dart';
 

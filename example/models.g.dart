@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.example;
+part of built_mirrors.example.models;
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class Person
 // **************************************************************************
 
@@ -52,7 +52,7 @@ const PersonClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class Car
 // **************************************************************************
 
@@ -80,7 +80,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
 ]);
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class EmptyClass
 // **************************************************************************
 
@@ -92,7 +92,7 @@ const EmptyClassClassMirror =
 });
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class ExtendedPerson
 // **************************************************************************
 

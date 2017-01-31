@@ -19,7 +19,7 @@ dependencies:
 3. create a file in `bin` folder called `models.dart` and put next code on it:
 
 ```dart
-library built_mirrors.example;
+library built_mirrors.example.models;
 
 import 'package:built_mirrors/built_mirrors.dart';
 
@@ -72,20 +72,17 @@ class ExtendedPerson extends Person {
 4. edit the file `main.dart` in the folder `bin` and put next code on it:
 
 ```dart
-// Copyright (c) 2017, luis. All rights reserved. Use of this source code
-
-// is governed by a BSD-style license that can be found in the LICENSE file.
+library built_mirrors.example.main;
 
 import 'models.dart';
 import 'package:built_mirrors/built_mirrors.dart';
 
+part 'main.g.dart';
+
 main() {
 
   // Initializes the `Type-ClassMirror` map
-  initClassMirrors({
-    Person: PersonClassMirror,
-    Car: CarClassMirror
-  });
+  _initClassMirrors();
 
   // Gets the PersonClassMirror
   var personClassMirror = reflectType(Person);
@@ -109,7 +106,11 @@ main() {
         engine: v8
    */
   print('car1:\n\tid: ${car1.id}\n\tengine: ${car1.engine}\n');
+
+  // adds car1 to p1.cars
+  p1.cars = [car1];
 }
+
 ```
 
 5. create a file in `tool` folder called `build.dart` and put next code on it:
@@ -136,10 +137,10 @@ has been generated and it will contains the next code:
 ```dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.example;
+part of built_mirrors.example.models;
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class Person
 // **************************************************************************
 
@@ -161,10 +162,10 @@ const $$Person_fields_mySetter = const DeclarationMirror(type: String);
 const PersonClassMirror =
     const ClassMirror(name: 'Person', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const ParameterMirror(type: int, isOptional: true),
-    'name': const ParameterMirror(type: String, isOptional: true),
-    'myDynamic': const ParameterMirror(type: dynamic, isOptional: true),
-    'cars': const ParameterMirror(type: const [List, Car], isOptional: true)
+    'id': const DeclarationMirror(type: int, isOptional: true),
+    'name': const DeclarationMirror(type: String, isOptional: true),
+    'myDynamic': const DeclarationMirror(type: dynamic, isOptional: true),
+    'cars': const DeclarationMirror(type: const [List, Car], isOptional: true)
   }, call: _Person__Constructor)
 }, fields: const {
   'id': $$Person_fields_id,
@@ -188,7 +189,7 @@ const PersonClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class Car
 // **************************************************************************
 
@@ -199,8 +200,8 @@ const $$Car_fields_engine = const DeclarationMirror(type: String);
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const ParameterMirror(type: int, isOptional: true),
-    'engine': const ParameterMirror(type: String, isOptional: true)
+    'id': const DeclarationMirror(type: int, isOptional: true),
+    'engine': const DeclarationMirror(type: String, isOptional: true)
   }, call: _Car__Constructor)
 }, annotations: const [
   myOtherAnnotation
@@ -216,7 +217,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
 ]);
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class EmptyClass
 // **************************************************************************
 
@@ -228,7 +229,7 @@ const EmptyClassClassMirror =
 });
 
 // **************************************************************************
-// Generator: BuiltMirrorsGenerator
+// Generator: ClassMirrorsGenerator
 // Target: class ExtendedPerson
 // **************************************************************************
 
@@ -269,6 +270,7 @@ const ExtendedPersonClassMirror =
   'extendedName',
   'otherExtended'
 ]);
+
 ```
 
 7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next

@@ -6,7 +6,7 @@ import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
-import 'package:built_mirrors/generator.dart';
+import 'package:built_mirrors/class_mirrors_generator.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:test/test.dart';
 
@@ -19,7 +19,7 @@ void main() {
 
 final String pkgName = 'pkg';
 
-final Builder builder = new GeneratorBuilder([new BuiltMirrorsGenerator()]);
+final Builder builder = new GeneratorBuilder([new ClassMirrorsGenerator()]);
 
 Future<String> generate(String source) async {
   final srcs = <String, String>{
@@ -29,5 +29,5 @@ Future<String> generate(String source) async {
 
   final writer = new InMemoryAssetWriter();
   await testBuilder(builder, srcs, rootPackage: pkgName, writer: writer);
-  return writer.assets[new AssetId(pkgName, 'lib/value.g.dart')]?.value;
+  return writer.assets[new AssetId(pkgName, 'lib/value.g.dart')]?.stringValue;
 }
