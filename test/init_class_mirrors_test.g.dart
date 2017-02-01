@@ -8,8 +8,8 @@ part of built_mirrors.test.init_class_mirrors_test;
 // **************************************************************************
 
 _initClassMirrors() => initClassMirrors({
+      Student: StudentClassMirror,
+      Course: CourseClassMirror,
       Person: PersonClassMirror,
-      Car: CarClassMirror,
-      EmptyClass: EmptyClassClassMirror,
-      ExtendedPerson: ExtendedPersonClassMirror
+      Employee: EmployeeClassMirror
     });

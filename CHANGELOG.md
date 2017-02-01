@@ -1,4 +1,12 @@
-# Changelog
+## 0.0.6
+
+- reinitialize static variables from `InitClassMirrorsGenerator` to avoid multiple adding mirrors from other modules
+
+## 0.0.5
+
+- add `init_class_mirrors_generator`
+- rename `generator.dart` to `class_mirrors_generator`
+_ rename `BuiltMirrorsGenerator` to `ClassMirrorsGenerator`
 
 ## 0.0.4
 

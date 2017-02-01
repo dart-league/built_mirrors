@@ -9,12 +9,14 @@ class InitClassMirrorsGenerator extends Generator {
 
   const InitClassMirrorsGenerator();
 
-  static Set<LibraryElement> libraryElements = new Set();
+  static Set<LibraryElement> libraryElements;
 
-  static Set<String> _classMirrors = new Set();
+  static Set<String> _classMirrors;
 
   @override
   Future<String> generate(Element element, BuildStep buildStep) async {
+    libraryElements = new Set();
+    _classMirrors = new Set();
     if (element is LibraryElement && element.entryPoint != null && element.name != '') {
       _mapLibraries(element);
       libraryElements.forEach((il) {
@@ -30,10 +32,7 @@ ${_classMirrors.join(',\n')}
   }
 
   void _mapLibraries(LibraryElement le) {
-    bool hasReflectables() => le.units.any((unit) {
-      return unit.types.any((type) => type.metadata.any(_isReflectable));
-    });
-    if (le.name != '' && !libraryElements.contains(le) && (le.entryPoint != null  || hasReflectables())) {
+    if (le.name != '' && !libraryElements.contains(le)) {
       libraryElements.add(le);
       le.importedLibraries.forEach(_mapLibraries);
       le.exportedLibraries.forEach(_mapLibraries);
