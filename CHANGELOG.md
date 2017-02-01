@@ -1,3 +1,7 @@
+## 0.0.7
+
+- add enum to `InitClassMirrorsGenerator`
+
 ## 0.0.6
 
 - reinitialize static variables from `InitClassMirrorsGenerator` to avoid multiple adding mirrors from other modules

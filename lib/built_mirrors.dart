@@ -28,7 +28,7 @@ abstract class Annotation {
 /// reflects a Dart language class.
 class ClassMirror {
   /// name of the class
-  final String name;
+  final String _name;
 
   /// If the class is enum
   final bool isEnum;
@@ -43,7 +43,7 @@ class ClassMirror {
   final Map<String, FunctionMirror> methods;
 
   const ClassMirror({
-    this.name,
+    name,
     this.isEnum = false,
     this.values,
     this.annotations,
@@ -52,9 +52,9 @@ class ClassMirror {
     this.getters,
     this.setters,
     this.methods
-  });
+  }) : _name = name;
 
-  toString() => 'ClassMirror on $name';
+  toString() => 'ClassMirror on $_name';
 }
 
 typedef FunctionCall(Map<String, dynamic> params);

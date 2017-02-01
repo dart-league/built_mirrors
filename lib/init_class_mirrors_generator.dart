@@ -41,6 +41,10 @@ ${_classMirrors.join(',\n')}
 
   void _addClassMirrorsFromLibrary(LibraryElement library) {
     library.units.forEach((unit) {
+      unit.enums.forEach((enum_) {
+        if (enum_.metadata.any(_isReflectable))
+          _classMirrors.add('${enum_.name}: ${enum_.name}ClassMirror');
+      });
       unit.types.forEach((type) {
         if (type.metadata.any(_isReflectable))
           _classMirrors.add('${type.name}: ${type.name}ClassMirror');
