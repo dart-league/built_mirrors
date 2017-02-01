@@ -21,6 +21,7 @@ main() {
     expect(colorClassMirror, ColorClassMirror);
     expect(colorClassMirror.values, Color.values);
     expect(colorClassMirror.isEnum, true);
+    expect(colorClassMirror.name, 'Color');
     expect(colorClassMirror.toString(), 'ClassMirror on Color');
   });
 }

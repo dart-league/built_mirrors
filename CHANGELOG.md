@@ -1,3 +1,7 @@
+## 0.0.8
+
+- make `ClassMirror.name` public again
+
 ## 0.0.7
 
 - add enum to `InitClassMirrorsGenerator`
