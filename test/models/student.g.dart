@@ -3,7 +3,7 @@
 part of built_mirrors.test.models.student;
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class Student
 // **************************************************************************
 

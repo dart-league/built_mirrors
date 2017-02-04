@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 part 'init_class_mirrors_test.g.dart';
 
 main() {
-  _initClassMirrors();
+  _initMirrors();
   test('initClassMirrors', () {
     expect(reflectType(Student), StudentClassMirror);
     expect(reflectType(Course), CourseClassMirror);

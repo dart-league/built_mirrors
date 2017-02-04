@@ -1,3 +1,9 @@
+## 0.1.0
+
+- add `FunctionMirrors`
+- add `MethodMirrors` generation to `ClassMirror`
+- 
+
 ## 0.0.8
 
 - make `ClassMirror.name` public again

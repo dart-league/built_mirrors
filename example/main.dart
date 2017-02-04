@@ -5,10 +5,16 @@ import 'package:built_mirrors/built_mirrors.dart';
 
 part 'main.g.dart';
 
+@reflectable
+@myOtherAnnotation
+String someFunction(@myOtherAnnotation int p1) {
+  return '';
+}
+
 main() {
 
-  // Initializes the `Type-ClassMirror` map
-  _initClassMirrors();
+  // Initializes the mirrors map
+  _initMirrors();
 
   // Gets the PersonClassMirror
   var personClassMirror = reflectType(Person);
@@ -35,4 +41,26 @@ main() {
 
   // adds car1 to p1.cars
   p1.cars = [car1];
+
+  print('\n--------------------------');
+  print('reflecting "ClassWithMethod"');
+  print('--------------------------');
+  var methods = reflectType(ClassWithMethod).methods;
+  print(methods.keys); // prints: 'someFunction'
+  print(methods['someMethod'].returnType); // prints: String
+  print(methods['someMethod'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods['someMethod'].parameters); // prints: {p1: Instance of 'DeclarationMirror'}
+  print(methods['someMethod'].parameters['someParameter'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods['someMethod'].parameters['someParameter'].type); // prints: int
+
+  print('\n--------------------------');
+  print('reflecting "someFunction"');
+  print('--------------------------');
+  var sfMirror = reflectFunction(someFunction);
+  print(sfMirror.name); // prints: '(someMethod)'
+  print(sfMirror.returnType); // prints: dynamic
+  print(sfMirror.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror.parameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
+  print(sfMirror.parameters['p1'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror.parameters['p1'].type); // prints: String
 }

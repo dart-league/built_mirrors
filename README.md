@@ -67,6 +67,15 @@ class ExtendedPerson extends Person {
   var extendedName;
   var otherExtended;
 }
+
+@reflectable
+class ClassWithMethod {
+
+  @myOtherAnnotation
+  someMethod(@myOtherAnnotation String someParameter) {
+    return 'someMethod';
+  }
+}
 ```
 
 4. edit the file `main.dart` in the folder `bin` and put next code on it:
@@ -79,10 +88,16 @@ import 'package:built_mirrors/built_mirrors.dart';
 
 part 'main.g.dart';
 
+@reflectable
+@myOtherAnnotation
+String someFunction(@myOtherAnnotation int p1) {
+  return '';
+}
+
 main() {
 
-  // Initializes the `Type-ClassMirror` map
-  _initClassMirrors();
+  // Initializes the mirrors map
+  _initMirrors();
 
   // Gets the PersonClassMirror
   var personClassMirror = reflectType(Person);
@@ -109,6 +124,28 @@ main() {
 
   // adds car1 to p1.cars
   p1.cars = [car1];
+
+  print('\n--------------------------');
+  print('reflecting "ClassWithMethod"');
+  print('--------------------------');
+  var methods = reflectType(ClassWithMethod).methods;
+  print(methods.keys); // prints: 'someFunction'
+  print(methods['someMethod'].returnType); // prints: String
+  print(methods['someMethod'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods['someMethod'].parameters); // prints: {p1: Instance of 'DeclarationMirror'}
+  print(methods['someMethod'].parameters['someParameter'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods['someMethod'].parameters['someParameter'].type); // prints: int
+
+  print('\n--------------------------');
+  print('reflecting "someFunction"');
+  print('--------------------------');
+  var sfMirror = reflectFunction(someFunction);
+  print(sfMirror.name); // prints: '(someMethod)'
+  print(sfMirror.returnType); // prints: dynamic
+  print(sfMirror.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror.parameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
+  print(sfMirror.parameters['p1'].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror.parameters['p1'].type); // prints: String
 }
 
 ```
@@ -140,7 +177,7 @@ has been generated and it will contains the next code:
 part of built_mirrors.example.models;
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class Person
 // **************************************************************************
 
@@ -189,7 +226,7 @@ const PersonClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class Car
 // **************************************************************************
 
@@ -217,7 +254,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
 ]);
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class EmptyClass
 // **************************************************************************
 
@@ -229,7 +266,7 @@ const EmptyClassClassMirror =
 });
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class ExtendedPerson
 // **************************************************************************
 
@@ -254,22 +291,46 @@ const ExtendedPersonClassMirror =
   'myGetter': $$Person_fields_myGetter,
   'mySetter': $$Person_fields_mySetter
 }, getters: const [
+  'extendedName',
+  'otherExtended',
   'id',
   'name',
   'myDynamic',
   'cars',
-  'myGetter',
-  'extendedName',
-  'otherExtended'
+  'myGetter'
 ], setters: const [
+  'extendedName',
+  'otherExtended',
   'id',
   'name',
   'myDynamic',
   'cars',
-  'mySetter',
-  'extendedName',
-  'otherExtended'
+  'mySetter'
 ]);
+
+// **************************************************************************
+// Generator: MirrorsGenerator
+// Target: class ClassWithMethod
+// **************************************************************************
+
+_ClassWithMethod__Constructor(params) => new ClassWithMethod();
+
+const ClassWithMethodClassMirror =
+    const ClassMirror(name: 'ClassWithMethod', constructors: const {
+  '': const FunctionMirror(
+      parameters: const {}, call: _ClassWithMethod__Constructor)
+}, methods: const {
+  'someMethod': const FunctionMirror(
+      name: 'someMethod',
+      returnType: dynamic,
+      parameters: const {
+        'someParameter': const DeclarationMirror(
+            type: String, annotations: const [myOtherAnnotation])
+      },
+      annotations: const [
+        myOtherAnnotation
+      ])
+});
 
 ```
 

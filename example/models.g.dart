@@ -3,7 +3,7 @@
 part of built_mirrors.example.models;
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class Person
 // **************************************************************************
 
@@ -52,7 +52,7 @@ const PersonClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class Car
 // **************************************************************************
 
@@ -80,7 +80,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
 ]);
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class EmptyClass
 // **************************************************************************
 
@@ -92,7 +92,7 @@ const EmptyClassClassMirror =
 });
 
 // **************************************************************************
-// Generator: ClassMirrorsGenerator
+// Generator: MirrorsGenerator
 // Target: class ExtendedPerson
 // **************************************************************************
 
@@ -117,19 +117,43 @@ const ExtendedPersonClassMirror =
   'myGetter': $$Person_fields_myGetter,
   'mySetter': $$Person_fields_mySetter
 }, getters: const [
+  'extendedName',
+  'otherExtended',
   'id',
   'name',
   'myDynamic',
   'cars',
-  'myGetter',
-  'extendedName',
-  'otherExtended'
+  'myGetter'
 ], setters: const [
+  'extendedName',
+  'otherExtended',
   'id',
   'name',
   'myDynamic',
   'cars',
-  'mySetter',
-  'extendedName',
-  'otherExtended'
+  'mySetter'
 ]);
+
+// **************************************************************************
+// Generator: MirrorsGenerator
+// Target: class ClassWithMethod
+// **************************************************************************
+
+_ClassWithMethod__Constructor(params) => new ClassWithMethod();
+
+const ClassWithMethodClassMirror =
+    const ClassMirror(name: 'ClassWithMethod', constructors: const {
+  '': const FunctionMirror(
+      parameters: const {}, call: _ClassWithMethod__Constructor)
+}, methods: const {
+  'someMethod': const FunctionMirror(
+      name: 'someMethod',
+      returnType: dynamic,
+      parameters: const {
+        'someParameter': const DeclarationMirror(
+            type: String, annotations: const [myOtherAnnotation])
+      },
+      annotations: const [
+        myOtherAnnotation
+      ])
+});

@@ -3,11 +3,11 @@
 part of built_mirrors.test.init_class_mirrors_test;
 
 // **************************************************************************
-// Generator: InitClassMirrorsGenerator
+// Generator: InitMirrorsGenerator
 // Target: library built_mirrors.test.init_class_mirrors_test
 // **************************************************************************
 
-_initClassMirrors() => initClassMirrors({
+_initMirrors() => initClassMirrors({
       Student: StudentClassMirror,
       Course: CourseClassMirror,
       Person: PersonClassMirror,

@@ -46,3 +46,12 @@ class ExtendedPerson extends Person {
   var extendedName;
   var otherExtended;
 }
+
+@reflectable
+class ClassWithMethod {
+
+  @myOtherAnnotation
+  someMethod(@myOtherAnnotation String someParameter) {
+    return 'someMethod';
+  }
+}
