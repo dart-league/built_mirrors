@@ -45,7 +45,3 @@ car1:
 	id: 1
 	engine: v8
 ```
-
-# TODO
-
-- [ ] add `initClassMirrors` generator based on `main` function
