@@ -277,36 +277,41 @@ const $$ExtendedPerson_fields_extendedName =
 const $$ExtendedPerson_fields_otherExtended =
     const DeclarationMirror(type: dynamic);
 
-const ExtendedPersonClassMirror =
-    const ClassMirror(name: 'ExtendedPerson', constructors: const {
-  '': const FunctionMirror(
-      parameters: const {}, call: _ExtendedPerson__Constructor)
-}, fields: const {
-  'extendedName': $$ExtendedPerson_fields_extendedName,
-  'otherExtended': $$ExtendedPerson_fields_otherExtended,
-  'id': $$Person_fields_id,
-  'name': $$Person_fields_name,
-  'myDynamic': $$Person_fields_myDynamic,
-  'cars': $$Person_fields_cars,
-  'myGetter': $$Person_fields_myGetter,
-  'mySetter': $$Person_fields_mySetter
-}, getters: const [
-  'extendedName',
-  'otherExtended',
-  'id',
-  'name',
-  'myDynamic',
-  'cars',
-  'myGetter'
-], setters: const [
-  'extendedName',
-  'otherExtended',
-  'id',
-  'name',
-  'myDynamic',
-  'cars',
-  'mySetter'
-]);
+const ExtendedPersonClassMirror = const ClassMirror(
+    name: 'ExtendedPerson',
+    constructors: const {
+      '': const FunctionMirror(
+          parameters: const {}, call: _ExtendedPerson__Constructor)
+    },
+    fields: const {
+      'extendedName': $$ExtendedPerson_fields_extendedName,
+      'otherExtended': $$ExtendedPerson_fields_otherExtended,
+      'id': $$Person_fields_id,
+      'name': $$Person_fields_name,
+      'myDynamic': $$Person_fields_myDynamic,
+      'cars': $$Person_fields_cars,
+      'myGetter': $$Person_fields_myGetter,
+      'mySetter': $$Person_fields_mySetter
+    },
+    getters: const [
+      'extendedName',
+      'otherExtended',
+      'id',
+      'name',
+      'myDynamic',
+      'cars',
+      'myGetter'
+    ],
+    setters: const [
+      'extendedName',
+      'otherExtended',
+      'id',
+      'name',
+      'myDynamic',
+      'cars',
+      'mySetter'
+    ],
+    superclass: Person);
 
 // **************************************************************************
 // Generator: MirrorsGenerator
@@ -346,7 +351,3 @@ car1:
 	id: 1
 	engine: v8
 ```
-
-# TODO
-
-- [ ] add `initClassMirrors` generator based on `main` function

@@ -7,8 +7,11 @@ part of built_mirrors.test.enum_test;
 // Target: library built_mirrors.test.enum_test
 // **************************************************************************
 
-_initMirrors() => initClassMirrors(
-    {Color: ColorClassMirror, ClassWithMethods: ClassWithMethodsClassMirror});
+_initMirrors() {
+  initClassMirrors(
+      {Color: ColorClassMirror, ClassWithMethods: ClassWithMethodsClassMirror});
+  initFunctionMirrors({});
+}
 
 // **************************************************************************
 // Generator: MirrorsGenerator
@@ -30,20 +33,33 @@ const ClassWithMethodsClassMirror =
   '': const FunctionMirror(
       parameters: const {}, call: _ClassWithMethods__Constructor)
 }, methods: const {
-  'methodNoReturnTypeNoParams': const FunctionMirror(returnType: dynamic),
+  'methodNoReturnTypeNoParams': const FunctionMirror(
+    name: 'methodNoReturnTypeNoParams',
+    returnType: dynamic,
+  ),
   'methodNoReturnTypeWithParams': const FunctionMirror(
-      returnType: dynamic,
-      parameters: const {'param1': const DeclarationMirror(type: String)}),
+    name: 'methodNoReturnTypeWithParams',
+    returnType: dynamic,
+    parameters: const {'param1': const DeclarationMirror(type: String)},
+  ),
   'methodWithAnnotation': const FunctionMirror(
-      returnType: dynamic, annotations: const [const SomeAnnotation()]),
-  'methodWithAnnotatedParams':
-      const FunctionMirror(returnType: dynamic, parameters: const {
-    'p1': const DeclarationMirror(
-        type: dynamic, annotations: const [const SomeAnnotation()])
-  }),
-  'methodWithReturnTypeAndParams':
-      const FunctionMirror(returnType: String, parameters: const {
-    'b': const DeclarationMirror(type: String),
-    'c': const DeclarationMirror(type: int)
-  })
+      name: 'methodWithAnnotation',
+      returnType: dynamic,
+      annotations: const [const SomeAnnotation()]),
+  'methodWithAnnotatedParams': const FunctionMirror(
+    name: 'methodWithAnnotatedParams',
+    returnType: dynamic,
+    parameters: const {
+      'p1': const DeclarationMirror(
+          type: dynamic, annotations: const [const SomeAnnotation()])
+    },
+  ),
+  'methodWithReturnTypeAndParams': const FunctionMirror(
+    name: 'methodWithReturnTypeAndParams',
+    returnType: String,
+    parameters: const {
+      'b': const DeclarationMirror(type: String),
+      'c': const DeclarationMirror(type: int)
+    },
+  )
 });

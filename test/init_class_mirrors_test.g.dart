@@ -7,9 +7,12 @@ part of built_mirrors.test.init_class_mirrors_test;
 // Target: library built_mirrors.test.init_class_mirrors_test
 // **************************************************************************
 
-_initMirrors() => initClassMirrors({
-      Student: StudentClassMirror,
-      Course: CourseClassMirror,
-      Person: PersonClassMirror,
-      Employee: EmployeeClassMirror
-    });
+_initMirrors() {
+  initClassMirrors({
+    Student: StudentClassMirror,
+    Course: CourseClassMirror,
+    Person: PersonClassMirror,
+    Employee: EmployeeClassMirror
+  });
+  initFunctionMirrors({});
+}

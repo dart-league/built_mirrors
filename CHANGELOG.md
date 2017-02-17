@@ -1,3 +1,7 @@
+## 0.1.1
+
+- add `scanners`
+
 ## 0.1.0
 
 - add `FunctionMirrors`

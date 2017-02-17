@@ -32,32 +32,38 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
 
       var constructors = element.constructors;
       var className = element.name;
-      var fields = _distinctByName(element.fields.toList()..addAll(stFields));
-      var accessors = _distinctByName(element.accessors.toList()..addAll(stAccessors));
+      var fields = _distinctByName(element.fields.toList()
+        ..addAll(stFields));
+      var accessors = _distinctByName(element.accessors.toList()
+        ..addAll(stAccessors));
       var getters = _distinctByName(accessors.where((a) => a.kind == ElementKind.GETTER));
       var setters = _distinctByName(accessors.where((a) => a.kind == ElementKind.SETTER));
-      var methods = _distinctByName(element.methods.toList()..addAll(stMethods));
+      var methods = _distinctByName(element.methods.toList()
+        ..addAll(stMethods));
 
-      return '''${constructors.map((c) => '_${className}_${c.name}_Constructor(params) =>'
-          'new ${className}${c.name.isEmpty ? '' : '.${c.name}'}(${_renderConstructorParametersCall(c)});').join('\n')}
+      return '''${element.isAbstract ? '' : constructors.map((c) => '_${className}_${c.name}_Constructor(params) =>'
+          'new ${className}${c.name.isEmpty ? '' : '.${c.name}'}(${_renderConstructorParametersCall(c)});\n').join('')}
 
 ${element.fields.map(_renderFieldsDeclarations).join('\n')}
 
 const ${className}ClassMirror = const ClassMirror(
   name: '${element.name}',
   ${[
-        '''constructors: const {
-      ${constructors.map((c) => "'${c.name}': const FunctionMirror("
+        element.isAbstract ? '' : '''constructors: const {
+          ${constructors.map((c) => "'${c.name}': const FunctionMirror("
             "parameters: const {${c.parameters.map(_renderParameter).join(',')}},"
             "call: _${className}_${c.name}_Constructor)").join(',')}
-      }'''
-            '${_renderMetadata(element.metadata)}',
+          }''',
+        _renderMetadata(element.metadata),
         fields.isNotEmpty ? 'fields: const {${fields.map(_renderFields).join(',')}}' : '',
         getters.isNotEmpty ? 'getters: const [${getters.map((g) => "'${g.name}'").join(',')}]' : '',
         setters.isNotEmpty
             ? 'setters: const [${setters.map((s) => "'${s.name.substring(0, s.name.length - 1)}'").join(',')}]'
             : '',
-        methods.isNotEmpty ? 'methods: const {${methods.map(_renderMethods).join(',')}}' : ''
+        methods.isNotEmpty ? 'methods: const {${methods.map(_renderMethods).join(',')}}' : '',
+        element.isAbstract ? 'isAbstract: true' : '',
+        element.supertype.name != 'Object' ? 'superclass: ${element.supertype}' : '',
+        element.interfaces.isNotEmpty ? 'superinterfaces: const [${element.interfaces.join(',')}]' : ''
       ].fold('', _combine)}
 );''';
     }
@@ -89,21 +95,21 @@ String _renderFunction(ExecutableElement f) =>
         "name: '${f.name}',"
         'returnType: ${_renderType(f.returnType)}'
         + (f.parameters.isNotEmpty ? ', parameters: const {${f.parameters.map(_renderParameter).join(',')}}' : '')
-        + _renderMetadata(f.metadata) +
+        + ',' + _renderMetadata(f.metadata) +
         ')';
 
 String _renderParameter(ParameterElement e) =>
     "'${e.name}': const DeclarationMirror("
         'type: ${_renderType(e.type)}'
         '${e.parameterKind == ParameterKind.REQUIRED ? '' : ', isOptional: true'}'
-        '${_renderMetadata(e.metadata)}'
+        '${e.metadata.isEmpty ? '' : ','} ${_renderMetadata(e.metadata)}'
         ')';
 
 String _renderFieldsDeclarations(FieldElement e) =>
     "const \$\$${e.enclosingElement.name}_fields_${e.name} = const DeclarationMirror("
         'type: ${_renderType(e.type)}'
         '${e.isFinal ? ', isFinal: true' : ''}'
-        '${_renderMetadata(e.metadata)}'
+        '${e.metadata.isEmpty ? '' : ','} ${_renderMetadata(e.metadata)}'
         ');';
 
 String _renderFields(VariableElement e) =>
@@ -113,10 +119,10 @@ String _renderMetadata(List<ElementAnnotation> metadata) {
   var annotations = metadata.where((a) =>
       (a.constantValue.type.element as ClassElement).allSupertypes.any((st) => st.name == 'Annotation'));
   return annotations.isNotEmpty
-      ? ", annotations: const [${annotations.map((a) =>
-  a.element is ConstructorElement
-      ? 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}'
-      : a.element.name).join(',')}]"
+      ? "annotations: const [${annotations.map((a) =>
+        a.element is ConstructorElement
+          ? 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}'
+          : a.element.name).join(',')}]"
       : '';
 }
 
