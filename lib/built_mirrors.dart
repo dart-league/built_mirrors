@@ -22,7 +22,7 @@ ClassMirror reflect(instance) => _classMirrors[instance.runtimeType];
 Map<Function, FunctionMirror> _functionMirrors;
 
 /// returns the map of Function-FunctionMirror combination
-Map<Function, FunctionMirror> get functionMirrors => functionMirrors;
+Map<Function, FunctionMirror> get functionMirrors => _functionMirrors;
 
 /// creates a map containing a [Map]<[Function], [FunctionMirror]> as values
 void initFunctionMirrors(Map<Function, FunctionMirror> classMirrors) {

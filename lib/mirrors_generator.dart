@@ -71,8 +71,8 @@ const ${className}ClassMirror = const ClassMirror(
   }
 }
 
-List<Element> _distinctByName(Iterable<Element> elements) {
-  var result = [];
+List<T> _distinctByName<T extends Element>(Iterable<T> elements) {
+  var result = <T>[];
   for (var element in elements) {
     if (!result.any((e) => e.name == element.name)) result.add(element);
   }
@@ -139,15 +139,15 @@ String _renderParameterValue(ParameterElement parameter, ElementAnnotation annot
     case 'String':
       return "'${field.toStringValue()}'";
     case 'int':
-      return field.toIntValue();
+      return field.toIntValue().toString();
     case 'double':
-      return field.toDoubleValue();
+      return field.toDoubleValue().toString();
     case 'bool':
-      return field.toBoolValue();
+      return field.toBoolValue().toString();
     case 'Map':
-      return field.toMapValue();
+      return field.toMapValue().toString();
     case 'List':
-      return field.toListValue();
+      return field.toListValue().toString();
   }
   return 'null';
 }

@@ -1,3 +1,8 @@
+## 0.1.2
+
+- enable `strong-mode` in `.analysys_options`
+- correct getter `functionMirrors`
+
 ## 0.1.1
 
 - add `scanners`

@@ -50,7 +50,7 @@ class GetMethodsAnnotatedWith<T> {
   ///       //should return a list of [DeclarationMirror] of annotated1
   ///       var methodsAnnotatedWithAnnotation2 = new GetMethodsAnnotatedWith<Annotation2>().from(o);
   Iterable<FunctionMirror> from(instance) =>
-      reflect(instance).methods.values.where((methodMirror) => methodMirror.annotations.any(new Is<T>()));
+      reflect(instance).methods.values.where((methodMirror) => methodMirror.annotations.any((a) => a is T));
 }
 
 ///  Get List of variables annotated with [T] from the InstanceMirror [instance]. For example:
@@ -97,12 +97,12 @@ class GetFieldsAnnotatedWith<T> {
   ///       var fieldsAnnotatedWithAnnotation2 = new GetFieldsAnnotatedWith<Annotation2>().from(o);
   ///     }
   Iterable<DeclarationMirror> from(instance) =>
-      reflect(instance).fields.values.where((methodMirror) => methodMirror.annotations.any(new Is<T>()));
+      reflect(instance).fields.values.where((methodMirror) => methodMirror.annotations.any((a) => a is T));
 }
 
 /// Get the list of public [MethodMirror] from [classMirror]
 Map<String, FunctionMirror> getPublicMethodsFromClass(ClassMirror classMirror) {
-  var methods = {};
+  var methods = <String, FunctionMirror>{};
   classMirror.methods.forEach((key, method) {
     if (!key.startsWith('_')) methods[key] = method;
   });
@@ -111,7 +111,7 @@ Map<String, FunctionMirror> getPublicMethodsFromClass(ClassMirror classMirror) {
 
 /// Get the list of public variables [DeclarationMirror] and setters from [classMirror]
 Map<String, DeclarationMirror> getPublicSettersFrom(ClassMirror classMirror) {
-  var publicSetters = {};
+  var publicSetters = <String, DeclarationMirror>{};
   classMirror.setters.forEach((setter) {
     if (!setter.startsWith('_')) publicSetters[setter] = classMirror.fields[setter];
   });
@@ -120,7 +120,7 @@ Map<String, DeclarationMirror> getPublicSettersFrom(ClassMirror classMirror) {
 
 /// Get the list of public variables [DeclarationMirror] and setters from [classMirror]
 Map<String, DeclarationMirror> getPublicGettersFrom(ClassMirror classMirror) {
-  var publicGetters = {};
+  var publicGetters = <String, DeclarationMirror>{};
   classMirror.getters.forEach((getter) {
     if (!getter.startsWith('_')) publicGetters[getter] = classMirror.fields[getter];
   });
@@ -129,7 +129,7 @@ Map<String, DeclarationMirror> getPublicGettersFrom(ClassMirror classMirror) {
 
 /// Get the list of public variables [DeclarationMirror] from [classMirror]
 Map<String, DeclarationMirror> getPublicFieldsFrom(ClassMirror classMirror) {
-  var publicFields = {};
+  var publicFields = <String, DeclarationMirror>{};
   var fields = classMirror.getters.where((getter) => classMirror.setters.contains(getter));
   fields.forEach((getter) {
     if (!getter.startsWith('_')) publicFields[getter] = classMirror.fields[getter];
