@@ -194,9 +194,10 @@ Object getObjectThatExtend(ClassMirror classMirror) {
 ///       String someMethod() => super.someMethod() + '2';
 ///     }
 int _getExtensionLevel(ClassMirror superClassCM, Type subType, int counter) {
-  if (subType == Object) return counter = 0;
+  if (subType == Object) return 0;
 
   var subTypeCM = reflectType(subType);
+  if (subTypeCM == null) return 0;
 
   counter++;
   if (!(subTypeCM.superinterfaces.any((si) => reflectType(si) == superClassCM)

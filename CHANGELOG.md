@@ -1,3 +1,8 @@
+## 0.1.3
+
+- correct `_getExtensionLevel` when processing non-reflectable classes
+- correct `mirror_generator` for generating function values in annotations parameters
+
 ## 0.1.2
 
 - enable `strong-mode` in `.analysys_options`

@@ -8,8 +8,11 @@ part of built_mirrors.test.enum_test;
 // **************************************************************************
 
 _initMirrors() {
-  initClassMirrors(
-      {Color: ColorClassMirror, ClassWithMethods: ClassWithMethodsClassMirror});
+  initClassMirrors({
+    Color: ColorClassMirror,
+    ClassWithMethods: ClassWithMethodsClassMirror,
+    ClassWithAnnotationWithFunction: ClassWithAnnotationWithFunctionClassMirror
+  });
   initFunctionMirrors({});
 }
 
@@ -63,3 +66,22 @@ const ClassWithMethodsClassMirror =
     },
   )
 });
+
+// **************************************************************************
+// Generator: MirrorsGenerator
+// Target: class ClassWithAnnotationWithFunction
+// **************************************************************************
+
+_ClassWithAnnotationWithFunction__Constructor(params) =>
+    new ClassWithAnnotationWithFunction();
+
+const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
+    name: 'ClassWithAnnotationWithFunction',
+    constructors: const {
+      '': const FunctionMirror(
+          parameters: const {},
+          call: _ClassWithAnnotationWithFunction__Constructor)
+    },
+    annotations: const [
+      const AnnotationWithFunction(someFunction)
+    ]);

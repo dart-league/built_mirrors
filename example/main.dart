@@ -6,9 +6,17 @@ import 'package:built_mirrors/built_mirrors.dart';
 part 'main.g.dart';
 
 @reflectable
-@myOtherAnnotation
+@AnnotationWithFunction(otherFunction)
 String someFunction(@myOtherAnnotation int p1) {
   return '';
+}
+
+otherFunction() {}
+
+class AnnotationWithFunction extends Annotation {
+  const AnnotationWithFunction(this.function);
+
+  final Function function;
 }
 
 main() {

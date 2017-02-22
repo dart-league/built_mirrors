@@ -31,5 +31,5 @@ const someFunctionFunctionMirror = const FunctionMirror(
           type: int, annotations: const [myOtherAnnotation])
     },
     annotations: const [
-      myOtherAnnotation
+      const AnnotationWithFunction(otherFunction)
     ]);

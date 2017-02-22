@@ -135,6 +135,9 @@ String _renderAnnotationParameters(ElementAnnotation annotation) {
 
 String _renderParameterValue(ParameterElement parameter, ElementAnnotation annotation) {
   var field = annotation.constantValue.getField(parameter.name);
+
+  if (field.type is FunctionType) return field.type.element.displayName;
+
   switch (field.type.toString()) {
     case 'String':
       return "'${field.toStringValue()}'";

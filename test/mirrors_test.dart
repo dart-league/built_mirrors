@@ -32,6 +32,18 @@ class ClassWithMethods {
   String methodWithReturnTypeAndParams(String b, int c) => '';
 }
 
+class AnnotationWithFunction extends Annotation {
+  const AnnotationWithFunction(this.function);
+
+  final Function function;
+}
+
+someFunction() {}
+
+@reflectable
+@AnnotationWithFunction(someFunction)
+class ClassWithAnnotationWithFunction {}
+
 main() {
   _initMirrors();
 
@@ -79,5 +91,12 @@ main() {
     expect(methodWithReturnTypeAndParams.parameters.keys, ['b', 'c']);
     expect(methodWithReturnTypeAndParams.annotations, null);
     expect(methodWithReturnTypeAndParams.returnType, String);
+  });
+
+  test('class with annotation with function', () {
+    var cm = reflectType(ClassWithAnnotationWithFunction);
+    AnnotationWithFunction annotationWithFunction = cm.annotations[0];
+    expect(annotationWithFunction, new isInstanceOf<AnnotationWithFunction>());
+    expect(annotationWithFunction.function, someFunction);
   });
 }
