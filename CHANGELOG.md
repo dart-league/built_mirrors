@@ -1,3 +1,8 @@
+## 0.2.0
+
+- remove `packageName` parameter from `phase`
+- upgrade `build_test` to version `^0.5.0`
+
 ## 0.1.3
 
 - correct `_getExtensionLevel` when processing non-reflectable classes
