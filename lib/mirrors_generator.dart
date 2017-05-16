@@ -140,7 +140,7 @@ String _renderParameterValue(ParameterElement parameter, ElementAnnotation annot
 
   switch (field.type.toString()) {
     case 'String':
-      return "'${field.toStringValue()}'";
+      return "r'${field.toStringValue()}'";
     case 'int':
       return field.toIntValue().toString();
     case 'double':

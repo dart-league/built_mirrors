@@ -19,7 +19,7 @@ class _MyOtherAnnotation extends Annotation {
 class Person {
   Person({this.id, this.name, this.myDynamic, this.cars});
   int id;
-  @MyAnnotation('hello', val2: null)
+  @MyAnnotation('hello\uabcd', val2: null)
   String name;
   var myDynamic;
   List<Car> cars;
@@ -32,6 +32,7 @@ class Person {
 @myOtherAnnotation
 class Car {
   int id;
+  @MyAnnotation(r'\uabcd', val2: null)
   String engine;
   Car([this.id, this.engine]);
 }

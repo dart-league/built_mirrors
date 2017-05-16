@@ -15,7 +15,8 @@ _Person__Constructor(params) => new Person(
 
 const $$Person_fields_id = const DeclarationMirror(type: int);
 const $$Person_fields_name = const DeclarationMirror(
-    type: String, annotations: const [const MyAnnotation('hello', val2: null)]);
+    type: String,
+    annotations: const [const MyAnnotation(r'helloꯍ', val2: null)]);
 const $$Person_fields_myDynamic = const DeclarationMirror(type: dynamic);
 const $$Person_fields_cars = const DeclarationMirror(type: const [List, Car]);
 const $$Person_fields_myGetter =
@@ -59,7 +60,9 @@ const PersonClassMirror =
 _Car__Constructor(params) => new Car(params['id'], params['engine']);
 
 const $$Car_fields_id = const DeclarationMirror(type: int);
-const $$Car_fields_engine = const DeclarationMirror(type: String);
+const $$Car_fields_engine = const DeclarationMirror(
+    type: String,
+    annotations: const [const MyAnnotation(r'\uabcd', val2: null)]);
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   '': const FunctionMirror(parameters: const {

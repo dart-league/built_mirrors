@@ -1,3 +1,7 @@
+## 0.2.1
+
+- make generated strings raw
+
 ## 0.2.0
 
 - remove `packageName` parameter from `phase`
