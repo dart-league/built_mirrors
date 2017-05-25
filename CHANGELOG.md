@@ -1,3 +1,7 @@
+## 0.2.2
+
+- upgrade `build` package to version `^0.9.0`
+
 ## 0.2.1
 
 - make generated strings raw
