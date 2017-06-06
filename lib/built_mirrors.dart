@@ -91,7 +91,7 @@ class ClassMirror extends Mirror {
 
   const ClassMirror({
     String name,
-    this.isEnum = false,
+    this.isEnum: false,
     this.values,
     List<Annotation> annotations,
     this.constructors,
@@ -99,9 +99,9 @@ class ClassMirror extends Mirror {
     this.getters,
     this.setters,
     this.methods,
-    this.superclass = Object,
-    this.superinterfaces = const [],
-    this.isAbstract = false
+    this.superclass: Object,
+    this.superinterfaces: const [],
+    this.isAbstract: false
   }) : super(name, annotations);
 
   toString() => 'ClassMirror on $name';
@@ -132,6 +132,6 @@ class DeclarationMirror extends Mirror {
 
   final isOptional;
 
-  const DeclarationMirror({String name, this.type, annotations, this.isFinal = false, this.isOptional = false})
+  const DeclarationMirror({String name, this.type, annotations, this.isFinal: false, this.isOptional: false})
       : super(name, annotations);
 }

@@ -1,3 +1,7 @@
+# 0.2.3
+
+- correct default values for dartdoc
+
 ## 0.2.2
 
 - upgrade `build` package to version `^0.9.0`

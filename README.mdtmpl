@@ -1,5 +1,7 @@
 # built_mirrors
 
+[![Build Status](https://travis-ci.org/dart-league/built_mirrors.svg?branch=master)](https://travis-ci.org/dart-league/built_mirrors)
+
 This is a library that generates `ClassMirror` from classes annotated with
 `@reflectable` or `@Reflectable()`.
 
