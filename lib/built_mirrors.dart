@@ -1,15 +1,12 @@
 /// Container map of [Type]-[ClassMirror] combination
-Map<Type, ClassMirror> _classMirrors;
+Map<Type, ClassMirror> _classMirrors = {};
 
 /// returns the map of [Type]-[ClassMirror]
 Map<Type, ClassMirror> get classMirrors => _classMirrors;
 
-/// creates a map containing a Map with [Type] as keys and [ClassMirrors] as values
+/// adds to a map containing a Map with [Type] as keys and [ClassMirrors] as values
 void initClassMirrors(Map<Type, ClassMirror> classMirrors) {
-  if (_classMirrors != null) {
-    throw new Exception('initClassMirrors function should only be called once');
-  }
-  _classMirrors = classMirrors;
+  _classMirrors.addAll(classMirrors);
 }
 
 /// Returns the [ClassMirror] corresponding to the [type]
@@ -19,17 +16,14 @@ ClassMirror reflectType(Type type) => _classMirrors[type];
 ClassMirror reflect(instance) => _classMirrors[instance.runtimeType];
 
 /// Container map of Function-FunctionMirror combination
-Map<Function, FunctionMirror> _functionMirrors;
+Map<Function, FunctionMirror> _functionMirrors = {};
 
 /// returns the map of Function-FunctionMirror combination
 Map<Function, FunctionMirror> get functionMirrors => _functionMirrors;
 
-/// creates a map containing a [Map]<[Function], [FunctionMirror]> as values
+/// adds to a map containing a [Map]<[Function], [FunctionMirror]> as values
 void initFunctionMirrors(Map<Function, FunctionMirror> classMirrors) {
-  if (_functionMirrors != null) {
-    throw new Exception('initFunctionMirrors function should only be called once');
-  }
-  _functionMirrors = classMirrors;
+  _functionMirrors.addAll(classMirrors);
 }
 
 /// Returns the [FunctionMirror] corresponding to the [function]
