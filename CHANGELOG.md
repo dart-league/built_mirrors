@@ -1,3 +1,7 @@
+# 0.2.4
+
+- allow multiple initMirrors functions
+
 # 0.2.3
 
 - correct default values for dartdoc
