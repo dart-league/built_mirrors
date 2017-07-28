@@ -1,3 +1,8 @@
+# 0.3.0
+
+- upgrade `source_gen` pacakge to version `^0.6.0`
+- change `a.constanValue` to `a.computeConstantValue()`
+
 # 0.2.4
 
 - allow multiple initMirrors functions

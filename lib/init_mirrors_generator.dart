@@ -65,7 +65,7 @@ class InitMirrorsGenerator extends Generator {
   }
 
   bool _isReflectable(ElementAnnotation a) {
-    var acv = a.constantValue;
+    var acv = a.computeConstantValue();
     return acv != null && (acv.type.name == 'Reflectable'
         || (acv.type.element as ClassElement).allSupertypes.any((st) => st.name == 'Reflectable'));
   }
