@@ -4,7 +4,6 @@ part of built_mirrors.example.models;
 
 // **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class Person
 // **************************************************************************
 
 _Person__Constructor(params) => new Person(
@@ -51,12 +50,6 @@ const PersonClassMirror =
   'cars',
   'mySetter'
 ]);
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class Car
-// **************************************************************************
-
 _Car__Constructor(params) => new Car(params['id'], params['engine']);
 
 const $$Car_fields_id = const DeclarationMirror(type: int);
@@ -81,24 +74,12 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   'id',
   'engine'
 ]);
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class EmptyClass
-// **************************************************************************
-
 _EmptyClass__Constructor(params) => new EmptyClass();
 
 const EmptyClassClassMirror =
     const ClassMirror(name: 'EmptyClass', constructors: const {
   '': const FunctionMirror(parameters: const {}, call: _EmptyClass__Constructor)
 });
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class ExtendedPerson
-// **************************************************************************
-
 _ExtendedPerson__Constructor(params) => new ExtendedPerson();
 
 const $$ExtendedPerson_fields_extendedName =
@@ -141,12 +122,6 @@ const ExtendedPersonClassMirror = const ClassMirror(
       'mySetter'
     ],
     superclass: Person);
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class ClassWithMethod
-// **************************************************************************
-
 _ClassWithMethod__Constructor(params) => new ClassWithMethod();
 
 const ClassWithMethodClassMirror =

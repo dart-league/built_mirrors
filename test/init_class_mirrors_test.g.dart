@@ -4,7 +4,6 @@ part of built_mirrors.test.init_class_mirrors_test;
 
 // **************************************************************************
 // Generator: InitMirrorsGenerator
-// Target: library built_mirrors.test.init_class_mirrors_test
 // **************************************************************************
 
 _initMirrors() {

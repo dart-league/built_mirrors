@@ -3,19 +3,7 @@
 part of GetFieldsAnnotatedWith_test;
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
-// Target: library GetFieldsAnnotatedWith_test
-// **************************************************************************
-
-_initMirrors() {
-  initClassMirrors(
-      {ObjectWithAnnotatedFields: ObjectWithAnnotatedFieldsClassMirror});
-  initFunctionMirrors({});
-}
-
-// **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class ObjectWithAnnotatedFields
 // **************************************************************************
 
 _ObjectWithAnnotatedFields__Constructor(params) =>
@@ -41,3 +29,13 @@ const ObjectWithAnnotatedFieldsClassMirror =
   'annotated1',
   'annotated2'
 ]);
+
+// **************************************************************************
+// Generator: InitMirrorsGenerator
+// **************************************************************************
+
+_initMirrors() {
+  initClassMirrors(
+      {ObjectWithAnnotatedFields: ObjectWithAnnotatedFieldsClassMirror});
+  initFunctionMirrors({});
+}

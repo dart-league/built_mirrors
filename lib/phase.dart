@@ -9,5 +9,5 @@ import 'package:source_gen/source_gen.dart';
 /// Example: {@example /tool/watch.dart}
 builtMirrorsPhase([Iterable<String> globs = const ['bin/**.dart', 'web/**.dart', 'lib/**.dart']]) =>
     new Phase()..addAction(
-        new GeneratorBuilder(const [const MirrorsGenerator(), const InitMirrorsGenerator()]),
+        new PartBuilder(const [const MirrorsGenerator(), const InitMirrorsGenerator()]),
         new InputSet(new PackageGraph.forThisPackage().root.name, globs));

@@ -4,7 +4,6 @@ part of built_mirrors.test.models.student;
 
 // **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class Student
 // **************************************************************************
 
 _Student__Constructor(params) => new Student();

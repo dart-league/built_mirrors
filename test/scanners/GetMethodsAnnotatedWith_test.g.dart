@@ -3,19 +3,7 @@
 part of GetMethodsAnnotatedWith_test;
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
-// Target: library GetMethodsAnnotatedWith_test
-// **************************************************************************
-
-_initMirrors() {
-  initClassMirrors(
-      {ObjectWithAnnotatedMethods: ObjectWithAnnotatedMethodsClassMirror});
-  initFunctionMirrors({});
-}
-
-// **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class ObjectWithAnnotatedMethods
 // **************************************************************************
 
 _ObjectWithAnnotatedMethods__Constructor(params) =>
@@ -35,3 +23,13 @@ const ObjectWithAnnotatedMethodsClassMirror =
       returnType: dynamic,
       annotations: const [const Annotation1()])
 });
+
+// **************************************************************************
+// Generator: InitMirrorsGenerator
+// **************************************************************************
+
+_initMirrors() {
+  initClassMirrors(
+      {ObjectWithAnnotatedMethods: ObjectWithAnnotatedMethodsClassMirror});
+  initFunctionMirrors({});
+}

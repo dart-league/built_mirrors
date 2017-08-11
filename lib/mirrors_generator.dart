@@ -12,7 +12,7 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
   const MirrorsGenerator();
 
   @override
-  Future<String> generateForAnnotatedElement(Element element, Reflectable annotation, BuildStep buildStep) async {
+  Future<String> generateForAnnotatedElement(Element element, ConstantReader constantReader, BuildStep buildStep) async {
     if (element is FunctionElement) {
       return 'const ${element.name}FunctionMirror = ${_renderFunction(element)};';
     }

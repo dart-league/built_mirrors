@@ -19,7 +19,7 @@ void main() {
 
 final String pkgName = 'pkg';
 
-final Builder builder = new GeneratorBuilder([new MirrorsGenerator()]);
+final Builder builder = new PartBuilder([new MirrorsGenerator()]);
 
 Future<String> generate(String source) async {
   final srcs = <String, String>{

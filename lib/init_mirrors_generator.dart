@@ -4,7 +4,6 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
-// Makes copies of things!
 class InitMirrorsGenerator extends Generator {
 
   const InitMirrorsGenerator();
@@ -16,11 +15,12 @@ class InitMirrorsGenerator extends Generator {
   static Set<String> _functionMirrors;
 
   @override
-  Future<String> generate(Element element, BuildStep buildStep) async {
+  Future<String> generate(LibraryReader libraryReader, BuildStep buildStep) async {
     libraryElements = new Set();
     _classMirrors = new Set();
     _functionMirrors = new Set();
-    if (element is LibraryElement && element.entryPoint != null && element.name != '') {
+    var element = libraryReader.element;
+    if (element.entryPoint != null && element.name != '') {
       _mapLibraries(element);
       libraryElements.forEach((il) {
         _addMirrorsFromLibrary(il);

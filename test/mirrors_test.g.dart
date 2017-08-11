@@ -3,32 +3,11 @@
 part of built_mirrors.test.enum_test;
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
-// Target: library built_mirrors.test.enum_test
-// **************************************************************************
-
-_initMirrors() {
-  initClassMirrors({
-    Color: ColorClassMirror,
-    ClassWithMethods: ClassWithMethodsClassMirror,
-    ClassWithAnnotationWithFunction: ClassWithAnnotationWithFunctionClassMirror
-  });
-  initFunctionMirrors({});
-}
-
-// **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class Color
 // **************************************************************************
 
 const ColorClassMirror =
     const ClassMirror(name: 'Color', isEnum: true, values: Color.values);
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class ClassWithMethods
-// **************************************************************************
-
 _ClassWithMethods__Constructor(params) => new ClassWithMethods();
 
 const ClassWithMethodsClassMirror =
@@ -66,12 +45,6 @@ const ClassWithMethodsClassMirror =
     },
   )
 });
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class ClassWithAnnotationWithFunction
-// **************************************************************************
-
 _ClassWithAnnotationWithFunction__Constructor(params) =>
     new ClassWithAnnotationWithFunction();
 
@@ -85,3 +58,16 @@ const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
     annotations: const [
       const AnnotationWithFunction(someFunction)
     ]);
+
+// **************************************************************************
+// Generator: InitMirrorsGenerator
+// **************************************************************************
+
+_initMirrors() {
+  initClassMirrors({
+    Color: ColorClassMirror,
+    ClassWithMethods: ClassWithMethodsClassMirror,
+    ClassWithAnnotationWithFunction: ClassWithAnnotationWithFunctionClassMirror
+  });
+  initFunctionMirrors({});
+}

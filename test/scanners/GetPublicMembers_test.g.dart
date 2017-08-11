@@ -3,21 +3,7 @@
 part of GetVarialbesAndGettersTest_test;
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
-// Target: library GetVarialbesAndGettersTest_test
-// **************************************************************************
-
-_initMirrors() {
-  initClassMirrors({
-    ObjectWithMembers: ObjectWithMembersClassMirror,
-    ExtendedObject: ExtendedObjectClassMirror
-  });
-  initFunctionMirrors({});
-}
-
-// **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class ObjectWithMembers
 // **************************************************************************
 
 _ObjectWithMembers__Constructor(params) => new ObjectWithMembers();
@@ -39,12 +25,6 @@ const ObjectWithMembersClassMirror =
   'name',
   'age'
 ]);
-
-// **************************************************************************
-// Generator: MirrorsGenerator
-// Target: class ExtendedObject
-// **************************************************************************
-
 _ExtendedObject__Constructor(params) => new ExtendedObject();
 
 const $$ExtendedObject_fields_myProp = const DeclarationMirror(type: String);
@@ -63,3 +43,15 @@ const ExtendedObjectClassMirror = const ClassMirror(
     getters: const ['myProp', 'name', 'age'],
     setters: const ['myProp', 'name', 'age'],
     superclass: ObjectWithMembers);
+
+// **************************************************************************
+// Generator: InitMirrorsGenerator
+// **************************************************************************
+
+_initMirrors() {
+  initClassMirrors({
+    ObjectWithMembers: ObjectWithMembersClassMirror,
+    ExtendedObject: ExtendedObjectClassMirror
+  });
+  initFunctionMirrors({});
+}

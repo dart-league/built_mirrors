@@ -4,7 +4,6 @@ part of built_mirrors.test.models.course;
 
 // **************************************************************************
 // Generator: MirrorsGenerator
-// Target: class Course
 // **************************************************************************
 
 _Course__Constructor(params) => new Course();
