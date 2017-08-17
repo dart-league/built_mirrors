@@ -3,10 +3,8 @@ import 'package:built_mirrors/phase.dart';
 
 
 main() async {
-  await watch(new PhaseGroup()
-    ..addPhase(
+  await watch([
     // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
     // to take all the dart files of the project as input.
-        builtMirrorsPhase(const ['example/*.dart', 'test/**.dart'])),
-      deleteFilesByDefault: true);
+    builtMirrorsAction(const ['example/*.dart', 'test/**.dart'])], deleteFilesByDefault: true);
 }

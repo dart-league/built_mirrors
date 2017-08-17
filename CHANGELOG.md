@@ -1,3 +1,8 @@
+# 0.4.0
+
+- upgrade `build_runner` to version `^0.4.0`
+- upgrade `build` to version `^0.10.0`
+
 # 0.3.0
 
 - upgrade `source_gen` pacakge to version `^0.6.0`
