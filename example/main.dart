@@ -7,7 +7,7 @@ part 'main.g.dart';
 
 @reflectable
 @AnnotationWithFunction(otherFunction)
-String someFunction(@myOtherAnnotation int p1) {
+String someFunction(@myOtherAnnotation int p1, int p0, int p2) {
   return '';
 }
 
@@ -71,4 +71,7 @@ main() {
   print(sfMirror.parameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
   print(sfMirror.parameters['p1'].annotations); // prints: [Instance of '_MyOtherAnnotation']
   print(sfMirror.parameters['p1'].type); // prints: String
+  print(sfMirror.parameters.values.elementAt(0).name);
+  print(sfMirror.parameters.values.elementAt(1).name);
+  print(sfMirror.parameters.values.elementAt(2).name);
 }

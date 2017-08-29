@@ -25,10 +25,13 @@ const $$Person_fields_mySetter = const DeclarationMirror(type: String);
 const PersonClassMirror =
     const ClassMirror(name: 'Person', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(type: int, isOptional: true),
-    'name': const DeclarationMirror(type: String, isOptional: true),
-    'myDynamic': const DeclarationMirror(type: dynamic, isOptional: true),
-    'cars': const DeclarationMirror(type: const [List, Car], isOptional: true)
+    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
+    'name':
+        const DeclarationMirror(name: 'name', type: String, isOptional: true),
+    'myDynamic': const DeclarationMirror(
+        name: 'myDynamic', type: dynamic, isOptional: true),
+    'cars': const DeclarationMirror(
+        name: 'cars', type: const [List, Car], isOptional: true)
   }, call: _Person__Constructor)
 }, fields: const {
   'id': $$Person_fields_id,
@@ -59,8 +62,9 @@ const $$Car_fields_engine = const DeclarationMirror(
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(type: int, isOptional: true),
-    'engine': const DeclarationMirror(type: String, isOptional: true)
+    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
+    'engine':
+        const DeclarationMirror(name: 'engine', type: String, isOptional: true)
   }, call: _Car__Constructor)
 }, annotations: const [
   myOtherAnnotation
@@ -134,7 +138,9 @@ const ClassWithMethodClassMirror =
       returnType: dynamic,
       parameters: const {
         'someParameter': const DeclarationMirror(
-            type: String, annotations: const [myOtherAnnotation])
+            name: 'someParameter',
+            type: String,
+            annotations: const [myOtherAnnotation])
       },
       annotations: const [
         myOtherAnnotation

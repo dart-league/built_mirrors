@@ -11,7 +11,9 @@ const someFunctionFunctionMirror = const FunctionMirror(
     returnType: String,
     parameters: const {
       'p1': const DeclarationMirror(
-          type: int, annotations: const [myOtherAnnotation])
+          name: 'p1', type: int, annotations: const [myOtherAnnotation]),
+      'p0': const DeclarationMirror(name: 'p0', type: int),
+      'p2': const DeclarationMirror(name: 'p2', type: int)
     },
     annotations: const [
       const AnnotationWithFunction(otherFunction)

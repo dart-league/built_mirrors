@@ -93,7 +93,7 @@ part 'main.g.dart';
 
 @reflectable
 @AnnotationWithFunction(otherFunction)
-String someFunction(@myOtherAnnotation int p1) {
+String someFunction(@myOtherAnnotation int p1, int p0, int p2) {
   return '';
 }
 
@@ -157,6 +157,9 @@ main() {
   print(sfMirror.parameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
   print(sfMirror.parameters['p1'].annotations); // prints: [Instance of '_MyOtherAnnotation']
   print(sfMirror.parameters['p1'].type); // prints: String
+  print(sfMirror.parameters.values.elementAt(0).name);
+  print(sfMirror.parameters.values.elementAt(1).name);
+  print(sfMirror.parameters.values.elementAt(2).name);
 }
 
 ```
@@ -206,10 +209,13 @@ const $$Person_fields_mySetter = const DeclarationMirror(type: String);
 const PersonClassMirror =
     const ClassMirror(name: 'Person', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(type: int, isOptional: true),
-    'name': const DeclarationMirror(type: String, isOptional: true),
-    'myDynamic': const DeclarationMirror(type: dynamic, isOptional: true),
-    'cars': const DeclarationMirror(type: const [List, Car], isOptional: true)
+    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
+    'name':
+        const DeclarationMirror(name: 'name', type: String, isOptional: true),
+    'myDynamic': const DeclarationMirror(
+        name: 'myDynamic', type: dynamic, isOptional: true),
+    'cars': const DeclarationMirror(
+        name: 'cars', type: const [List, Car], isOptional: true)
   }, call: _Person__Constructor)
 }, fields: const {
   'id': $$Person_fields_id,
@@ -240,8 +246,9 @@ const $$Car_fields_engine = const DeclarationMirror(
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(type: int, isOptional: true),
-    'engine': const DeclarationMirror(type: String, isOptional: true)
+    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
+    'engine':
+        const DeclarationMirror(name: 'engine', type: String, isOptional: true)
   }, call: _Car__Constructor)
 }, annotations: const [
   myOtherAnnotation
@@ -315,7 +322,9 @@ const ClassWithMethodClassMirror =
       returnType: dynamic,
       parameters: const {
         'someParameter': const DeclarationMirror(
-            type: String, annotations: const [myOtherAnnotation])
+            name: 'someParameter',
+            type: String,
+            annotations: const [myOtherAnnotation])
       },
       annotations: const [
         myOtherAnnotation

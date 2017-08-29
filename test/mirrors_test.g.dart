@@ -22,7 +22,9 @@ const ClassWithMethodsClassMirror =
   'methodNoReturnTypeWithParams': const FunctionMirror(
     name: 'methodNoReturnTypeWithParams',
     returnType: dynamic,
-    parameters: const {'param1': const DeclarationMirror(type: String)},
+    parameters: const {
+      'param1': const DeclarationMirror(name: 'param1', type: String)
+    },
   ),
   'methodWithAnnotation': const FunctionMirror(
       name: 'methodWithAnnotation',
@@ -33,15 +35,17 @@ const ClassWithMethodsClassMirror =
     returnType: dynamic,
     parameters: const {
       'p1': const DeclarationMirror(
-          type: dynamic, annotations: const [const SomeAnnotation()])
+          name: 'p1',
+          type: dynamic,
+          annotations: const [const SomeAnnotation()])
     },
   ),
   'methodWithReturnTypeAndParams': const FunctionMirror(
     name: 'methodWithReturnTypeAndParams',
     returnType: String,
     parameters: const {
-      'b': const DeclarationMirror(type: String),
-      'c': const DeclarationMirror(type: int)
+      'b': const DeclarationMirror(name: 'b', type: String),
+      'c': const DeclarationMirror(name: 'c', type: int)
     },
   )
 });

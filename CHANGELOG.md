@@ -1,3 +1,12 @@
+# 0.5.1
+
+- add `name` to `DeclarationMirror` generator
+
+# 0.5.0
+
+- upgrade `build_runner` to version `^0.4.0`
+- upgrade `build` to version `^0.10.0`
+
 # 0.4.0
 
 - upgrade `build_runner` to version `^0.4.0`

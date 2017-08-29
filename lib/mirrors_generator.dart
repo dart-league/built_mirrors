@@ -100,6 +100,7 @@ String _renderFunction(ExecutableElement f) =>
 
 String _renderParameter(ParameterElement e) =>
     "'${e.name}': const DeclarationMirror("
+        "name: '${e.name}',"
         'type: ${_renderType(e.type)}'
         '${e.parameterKind == ParameterKind.REQUIRED ? '' : ', isOptional: true'}'
         '${e.metadata.isEmpty ? '' : ','} ${_renderMetadata(e.metadata)}'
