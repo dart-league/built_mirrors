@@ -1,3 +1,7 @@
+# 0.5.2
+
+- add generators for annotations with List, Map and other constants
+
 # 0.5.1
 
 - add `name` to `DeclarationMirror` generator

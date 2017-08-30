@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:analyzer/analyzer.dart';
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:build/build.dart';
@@ -12,7 +13,8 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
   const MirrorsGenerator();
 
   @override
-  Future<String> generateForAnnotatedElement(Element element, ConstantReader constantReader, BuildStep buildStep) async {
+  Future<String> generateForAnnotatedElement(Element element, ConstantReader constantReader,
+      BuildStep buildStep) async {
     if (element is FunctionElement) {
       return 'const ${element.name}FunctionMirror = ${_renderFunction(element)};';
     }
@@ -121,9 +123,9 @@ String _renderMetadata(List<ElementAnnotation> metadata) {
       (a.constantValue.type.element as ClassElement).allSupertypes.any((st) => st.name == 'Annotation'));
   return annotations.isNotEmpty
       ? "annotations: const [${annotations.map((a) =>
-        a.element is ConstructorElement
-          ? 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}'
-          : a.element.name).join(',')}]"
+  a.element is ConstructorElement
+      ? 'const ${a.constantValue.type}${_renderAnnotationParameters(a)}'
+      : a.element.name).join(',')}]"
       : '';
 }
 
@@ -135,25 +137,27 @@ String _renderAnnotationParameters(ElementAnnotation annotation) {
 }
 
 String _renderParameterValue(ParameterElement parameter, ElementAnnotation annotation) {
-  var field = annotation.constantValue.getField(parameter.name);
+  return _renderValue(annotation.constantValue.getField(parameter.name));
+}
 
+String _renderValue(DartObject field) {
   if (field.type is FunctionType) return field.type.element.displayName;
 
-  switch (field.type.toString()) {
-    case 'String':
-      return "r'${field.toStringValue()}'";
-    case 'int':
-      return field.toIntValue().toString();
-    case 'double':
-      return field.toDoubleValue().toString();
-    case 'bool':
-      return field.toBoolValue().toString();
-    case 'Map':
-      return field.toMapValue().toString();
-    case 'List':
-      return field.toListValue().toString();
+  var cr = new ConstantReader(field);
+  if (cr.isString) return "r'${cr.stringValue}'";
+  if (cr.isList) return 'const [${cr.listValue.map((v) => _renderValue(v)).join(',')}]';
+  if (cr.isMap) {
+    var values = [];
+    cr.mapValue.forEach((k, v) => values.add("${_renderValue(k)}: ${_renderValue(v)}"));
+    return 'const {${values.join(',')}}';
   }
-  return 'null';
+  if (cr.isLiteral) return cr.literalValue.toString();
+  if (cr.isType) return cr.typeValue.toString();
+
+  var revived = cr.revive();
+  var arguments = revived.positionalArguments.map(_renderValue).toList();
+  revived.namedArguments.forEach((k, v) => arguments.add('$k: ${_renderValue(v)}'));
+  return 'const ${field.type.displayName}(${arguments.join(',')})';
 }
 
 

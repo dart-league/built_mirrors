@@ -62,6 +62,40 @@ const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
     annotations: const [
       const AnnotationWithFunction(someFunction)
     ]);
+_ClassWithAnnotationWithList__Constructor(params) =>
+    new ClassWithAnnotationWithList();
+
+const ClassWithAnnotationWithListClassMirror =
+    const ClassMirror(name: 'ClassWithAnnotationWithList', constructors: const {
+  '': const FunctionMirror(
+      parameters: const {}, call: _ClassWithAnnotationWithList__Constructor)
+}, annotations: const [
+  const AnnotationWithList(const [r'hello', r'hi'])
+]);
+_ClassWithAnnotationWithMap__Constructor(params) =>
+    new ClassWithAnnotationWithMap();
+
+const ClassWithAnnotationWithMapClassMirror =
+    const ClassMirror(name: 'ClassWithAnnotationWithMap', constructors: const {
+  '': const FunctionMirror(
+      parameters: const {}, call: _ClassWithAnnotationWithMap__Constructor)
+}, annotations: const [
+  const AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
+]);
+_ClassWithAnnotationWithConstant__Constructor(params) =>
+    new ClassWithAnnotationWithConstant();
+
+const ClassWithAnnotationWithConstantClassMirror = const ClassMirror(
+    name: 'ClassWithAnnotationWithConstant',
+    constructors: const {
+      '': const FunctionMirror(
+          parameters: const {},
+          call: _ClassWithAnnotationWithConstant__Constructor)
+    },
+    annotations: const [
+      const AnnotationWithConstant(const SomeConstant(r'my-constant'),
+          otherConstant: const SomeConstant(r'other-constant'))
+    ]);
 
 // **************************************************************************
 // Generator: InitMirrorsGenerator
@@ -71,7 +105,10 @@ _initMirrors() {
   initClassMirrors({
     Color: ColorClassMirror,
     ClassWithMethods: ClassWithMethodsClassMirror,
-    ClassWithAnnotationWithFunction: ClassWithAnnotationWithFunctionClassMirror
+    ClassWithAnnotationWithFunction: ClassWithAnnotationWithFunctionClassMirror,
+    ClassWithAnnotationWithList: ClassWithAnnotationWithListClassMirror,
+    ClassWithAnnotationWithMap: ClassWithAnnotationWithMapClassMirror,
+    ClassWithAnnotationWithConstant: ClassWithAnnotationWithConstantClassMirror
   });
   initFunctionMirrors({});
 }

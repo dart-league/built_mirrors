@@ -344,4 +344,28 @@ p1Fields['cars'].type: [List, Car]
 car1:
 	id: 1
 	engine: v8
+
+
+--------------------------
+reflecting "ClassWithMethod"
+--------------------------
+(someMethod)
+dynamic
+[Instance of '_MyOtherAnnotation']
+{someParameter: Instance of 'DeclarationMirror'}
+[Instance of '_MyOtherAnnotation']
+String
+
+--------------------------
+reflecting "someFunction"
+--------------------------
+someFunction
+String
+[Instance of 'AnnotationWithFunction']
+{p1: Instance of 'DeclarationMirror', p0: Instance of 'DeclarationMirror', p2: Instance of 'DeclarationMirror'}
+[Instance of '_MyOtherAnnotation']
+int
+p1
+p0
+p2
 ```
