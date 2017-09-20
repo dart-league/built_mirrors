@@ -43,7 +43,8 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
       var methods = _distinctByName(element.methods.toList()
         ..addAll(stMethods));
 
-      return '''${element.isAbstract ? '' : constructors.map((c) => '_${className}_${c.name}_Constructor(params) =>'
+      return '''${element.isAbstract ? '' : constructors.map((c) => '_${className}_${c
+          .name}_Constructor([positionalParams, namedParams]) =>'
           'new ${className}${c.name.isEmpty ? '' : '.${c.name}'}(${_renderConstructorParametersCall(c)});\n').join('')}
 
 ${element.fields.map(_renderFieldsDeclarations).join('\n')}
@@ -53,8 +54,9 @@ const ${className}ClassMirror = const ClassMirror(
   ${[
         element.isAbstract ? '' : '''constructors: const {
           ${constructors.map((c) => "'${c.name}': const FunctionMirror("
-            "parameters: const {${c.parameters.map(_renderParameter).join(',')}},"
-            "call: _${className}_${c.name}_Constructor)").join(',')}
+            "${_renderPositionalParameters(c.parameters)}"
+            "${_renderNamedParameters(c.parameters)}"
+            "\$call: _${className}_${c.name}_Constructor)").join(',')}
           }''',
         _renderMetadata(element.metadata),
         fields.isNotEmpty ? 'fields: const {${fields.map(_renderFields).join(',')}}' : '',
@@ -85,8 +87,12 @@ String _combine(String pv, String e) =>
     pv.isNotEmpty && e.isNotEmpty ? pv + ',' + e : pv.isEmpty ? e : e.isEmpty ? pv : '';
 
 String _renderConstructorParametersCall(ConstructorElement c) {
+  var i = 0;
   return c.parameters.map((p) =>
-  p.parameterKind == ParameterKind.NAMED ? "${p.name}: params['${p.name}']" : "params['${p.name}']").join(',');
+  p.parameterKind != ParameterKind.NAMED
+      ? 'positionalParams[${i++}]'
+      : "${p.name}: namedParams['${p.name}']"
+  ).join(',');
 }
 
 String _renderMethods(MethodElement m) =>
@@ -94,18 +100,31 @@ String _renderMethods(MethodElement m) =>
 
 String _renderFunction(ExecutableElement f) =>
     "const FunctionMirror("
+        "${_renderPositionalParameters(f.parameters)}"
+        "${_renderNamedParameters(f.parameters)}"
         "name: '${f.name}',"
         'returnType: ${_renderType(f.returnType)}'
-        + (f.parameters.isNotEmpty ? ', parameters: const {${f.parameters.map(_renderParameter).join(',')}}' : '')
         + ',' + _renderMetadata(f.metadata) +
         ')';
 
-String _renderParameter(ParameterElement e) =>
-    "'${e.name}': const DeclarationMirror("
-        "name: '${e.name}',"
-        'type: ${_renderType(e.type)}'
-        '${e.parameterKind == ParameterKind.REQUIRED ? '' : ', isOptional: true'}'
-        '${e.metadata.isEmpty ? '' : ','} ${_renderMetadata(e.metadata)}'
+String _renderNamedParameters(List<ParameterElement> params) {
+  var result = params.where((p) => p.parameterKind == ParameterKind.NAMED)
+      .map((p) => "'${p.name}': ${_renderParameter(p)}").join(',');
+  return result.isEmpty ? '' : 'namedParameters: const {${result}},';
+}
+
+String _renderPositionalParameters(List<ParameterElement> params) {
+  var result = params.where((p) => p.parameterKind != ParameterKind.NAMED).map(_renderParameter).join(',');
+  return result.isEmpty ? '' : 'positionalParameters: const [$result],';
+}
+
+String _renderParameter(ParameterElement p) =>
+    "const DeclarationMirror("
+        "name: '${p.name}',"
+        'type: ${_renderType(p.type)}'
+        '${p.parameterKind == ParameterKind.REQUIRED ? ', isRequired: true' : ''}'
+        '${p.parameterKind == ParameterKind.NAMED ? ', isNamed: true' : ''}'
+        '${p.metadata.isEmpty ? '' : ','} ${_renderMetadata(p.metadata)}'
         ')';
 
 String _renderFieldsDeclarations(FieldElement e) =>
@@ -137,7 +156,7 @@ String _renderAnnotationParameters(ElementAnnotation annotation) {
 }
 
 String _renderParameterValue(ParameterElement parameter, ElementAnnotation annotation) {
-  return _renderValue(annotation.constantValue.getField(parameter.name));
+  return _renderValue(new ConstantReader(annotation.computeConstantValue()).read(parameter.name).objectValue);
 }
 
 String _renderValue(DartObject field) {
@@ -145,7 +164,9 @@ String _renderValue(DartObject field) {
 
   var cr = new ConstantReader(field);
   if (cr.isString) return "r'${cr.stringValue}'";
-  if (cr.isList) return 'const [${cr.listValue.map((v) => _renderValue(v)).join(',')}]';
+  if (cr.isList) {
+    return 'const [${cr.listValue.map((v) => _renderValue(v)).join(',')}]';
+  }
   if (cr.isMap) {
     var values = [];
     cr.mapValue.forEach((k, v) => values.add("${_renderValue(k)}: ${_renderValue(v)}"));
@@ -164,7 +185,9 @@ String _renderValue(DartObject field) {
 String _renderType(DartType type) =>
     type is ParameterizedType && type.typeArguments.isNotEmpty
         ? 'const [${type.name}, ${_renderTypes(type.typeArguments)}]'
-        : type.name;
+        : type.name != 'void'
+          ? type.name
+          : 'null';
 
 String _renderTypes(List<DartType> types) =>
     types.length > 1

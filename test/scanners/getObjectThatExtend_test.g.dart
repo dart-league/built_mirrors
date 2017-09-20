@@ -8,13 +8,13 @@ part of getObjectThatExtend_test;
 
 const Service1ClassMirror =
     const ClassMirror(name: 'Service1', isAbstract: true);
-_Service1Impl__Constructor(params) => new Service1Impl();
+_Service1Impl__Constructor([positionalParams, namedParams]) =>
+    new Service1Impl();
 
 const Service1ImplClassMirror = const ClassMirror(
     name: 'Service1Impl',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _Service1Impl__Constructor)
+      '': const FunctionMirror($call: _Service1Impl__Constructor)
     },
     superinterfaces: const [
       Service1
@@ -22,24 +22,24 @@ const Service1ImplClassMirror = const ClassMirror(
 
 const Service2ClassMirror =
     const ClassMirror(name: 'Service2', isAbstract: true);
-_Service2Impl__Constructor(params) => new Service2Impl();
+_Service2Impl__Constructor([positionalParams, namedParams]) =>
+    new Service2Impl();
 
 const Service2ImplClassMirror = const ClassMirror(
     name: 'Service2Impl',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _Service2Impl__Constructor)
+      '': const FunctionMirror($call: _Service2Impl__Constructor)
     },
     superinterfaces: const [
       Service2
     ]);
-_Service22Impl__Constructor(params) => new Service22Impl();
+_Service22Impl__Constructor([positionalParams, namedParams]) =>
+    new Service22Impl();
 
 const Service22ImplClassMirror = const ClassMirror(
     name: 'Service22Impl',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _Service22Impl__Constructor)
+      '': const FunctionMirror($call: _Service22Impl__Constructor)
     },
     superclass: Service2Impl);
 

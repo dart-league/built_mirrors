@@ -1,5 +1,5 @@
 import 'package:build_runner/build_runner.dart';
-import 'package:built_mirrors/phase.dart';
+import 'package:built_mirrors/action.dart';
 
 
 main() async {

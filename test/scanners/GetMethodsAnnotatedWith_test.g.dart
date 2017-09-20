@@ -6,13 +6,12 @@ part of GetMethodsAnnotatedWith_test;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_ObjectWithAnnotatedMethods__Constructor(params) =>
+_ObjectWithAnnotatedMethods__Constructor([positionalParams, namedParams]) =>
     new ObjectWithAnnotatedMethods();
 
 const ObjectWithAnnotatedMethodsClassMirror =
     const ClassMirror(name: 'ObjectWithAnnotatedMethods', constructors: const {
-  '': const FunctionMirror(
-      parameters: const {}, call: _ObjectWithAnnotatedMethods__Constructor)
+  '': const FunctionMirror($call: _ObjectWithAnnotatedMethods__Constructor)
 }, methods: const {
   'annotated1': const FunctionMirror(
       name: 'annotated1',

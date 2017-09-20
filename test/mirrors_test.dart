@@ -109,27 +109,27 @@ main() {
     ]);
 
     var methodNoReturnTypeNoParamsMirror = cm.methods['methodNoReturnTypeNoParams'];
-    expect(methodNoReturnTypeNoParamsMirror.parameters, null);
+    expect(methodNoReturnTypeNoParamsMirror.namedParameters, null);
     expect(methodNoReturnTypeNoParamsMirror.annotations, null);
     expect(methodNoReturnTypeNoParamsMirror.returnType, dynamic);
 
     var methodNoReturnTypeWithParams = cm.methods['methodNoReturnTypeWithParams'];
-    expect(methodNoReturnTypeWithParams.parameters.keys.elementAt(0), 'param1');
+    expect(methodNoReturnTypeWithParams.positionalParameters[0].name, 'param1');
     expect(methodNoReturnTypeWithParams.annotations, null);
     expect(methodNoReturnTypeWithParams.returnType, dynamic);
 
     var methodWithAnnotation = cm.methods['methodWithAnnotation'];
-    expect(methodWithAnnotation.parameters, null);
+    expect(methodWithAnnotation.namedParameters, null);
     expect(methodWithAnnotation.annotations[0], new isInstanceOf<SomeAnnotation>());
     expect(methodWithAnnotation.returnType, dynamic);
 
     var methodWithAnnotatedParams = cm.methods['methodWithAnnotatedParams'];
-    expect(methodWithAnnotatedParams.parameters['p1'].annotations[0], new isInstanceOf<SomeAnnotation>());
+    expect(methodWithAnnotatedParams.namedParameters['p1'].annotations[0], new isInstanceOf<SomeAnnotation>());
     expect(methodWithAnnotatedParams.annotations, null);
     expect(methodWithAnnotatedParams.returnType, dynamic);
 
     var methodWithReturnTypeAndParams = cm.methods['methodWithReturnTypeAndParams'];
-    expect(methodWithReturnTypeAndParams.parameters.keys, ['b', 'c']);
+    expect(methodWithReturnTypeAndParams.namedParameters.keys, ['b', 'c']);
     expect(methodWithReturnTypeAndParams.annotations, null);
     expect(methodWithReturnTypeAndParams.returnType, String);
   });

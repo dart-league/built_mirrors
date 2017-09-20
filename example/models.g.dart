@@ -6,11 +6,11 @@ part of built_mirrors.example.models;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_Person__Constructor(params) => new Person(
-    id: params['id'],
-    name: params['name'],
-    myDynamic: params['myDynamic'],
-    cars: params['cars']);
+_Person__Constructor([positionalParams, namedParams]) => new Person(
+    id: namedParams['id'],
+    name: namedParams['name'],
+    myDynamic: namedParams['myDynamic'],
+    cars: namedParams['cars']);
 
 const $$Person_fields_id = const DeclarationMirror(type: int);
 const $$Person_fields_name = const DeclarationMirror(
@@ -24,15 +24,14 @@ const $$Person_fields_mySetter = const DeclarationMirror(type: String);
 
 const PersonClassMirror =
     const ClassMirror(name: 'Person', constructors: const {
-  '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
-    'name':
-        const DeclarationMirror(name: 'name', type: String, isOptional: true),
+  '': const FunctionMirror(namedParameters: const {
+    'id': const DeclarationMirror(name: 'id', type: int, isNamed: true),
+    'name': const DeclarationMirror(name: 'name', type: String, isNamed: true),
     'myDynamic': const DeclarationMirror(
-        name: 'myDynamic', type: dynamic, isOptional: true),
+        name: 'myDynamic', type: dynamic, isNamed: true),
     'cars': const DeclarationMirror(
-        name: 'cars', type: const [List, Car], isOptional: true)
-  }, call: _Person__Constructor)
+        name: 'cars', type: const [List, Car], isNamed: true)
+  }, $call: _Person__Constructor)
 }, fields: const {
   'id': $$Person_fields_id,
   'name': $$Person_fields_name,
@@ -53,7 +52,8 @@ const PersonClassMirror =
   'cars',
   'mySetter'
 ]);
-_Car__Constructor(params) => new Car(params['id'], params['engine']);
+_Car__Constructor([positionalParams, namedParams]) =>
+    new Car(positionalParams[0], positionalParams[1]);
 
 const $$Car_fields_id = const DeclarationMirror(type: int);
 const $$Car_fields_engine = const DeclarationMirror(
@@ -61,11 +61,10 @@ const $$Car_fields_engine = const DeclarationMirror(
     annotations: const [const MyAnnotation(r'\uabcd', val2: null)]);
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
-  '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
-    'engine':
-        const DeclarationMirror(name: 'engine', type: String, isOptional: true)
-  }, call: _Car__Constructor)
+  '': const FunctionMirror(positionalParameters: const [
+    const DeclarationMirror(name: 'id', type: int),
+    const DeclarationMirror(name: 'engine', type: String)
+  ], $call: _Car__Constructor)
 }, annotations: const [
   myOtherAnnotation
 ], fields: const {
@@ -78,13 +77,15 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   'id',
   'engine'
 ]);
-_EmptyClass__Constructor(params) => new EmptyClass();
+_EmptyClass__Constructor([positionalParams, namedParams]) => new EmptyClass();
 
-const EmptyClassClassMirror =
-    const ClassMirror(name: 'EmptyClass', constructors: const {
-  '': const FunctionMirror(parameters: const {}, call: _EmptyClass__Constructor)
-});
-_ExtendedPerson__Constructor(params) => new ExtendedPerson();
+const EmptyClassClassMirror = const ClassMirror(
+    name: 'EmptyClass',
+    constructors: const {
+      '': const FunctionMirror($call: _EmptyClass__Constructor)
+    });
+_ExtendedPerson__Constructor([positionalParams, namedParams]) =>
+    new ExtendedPerson();
 
 const $$ExtendedPerson_fields_extendedName =
     const DeclarationMirror(type: dynamic);
@@ -94,8 +95,7 @@ const $$ExtendedPerson_fields_otherExtended =
 const ExtendedPersonClassMirror = const ClassMirror(
     name: 'ExtendedPerson',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _ExtendedPerson__Constructor)
+      '': const FunctionMirror($call: _ExtendedPerson__Constructor)
     },
     fields: const {
       'extendedName': $$ExtendedPerson_fields_extendedName,
@@ -126,23 +126,33 @@ const ExtendedPersonClassMirror = const ClassMirror(
       'mySetter'
     ],
     superclass: Person);
-_ClassWithMethod__Constructor(params) => new ClassWithMethod();
+_ClassWithMethod__Constructor([positionalParams, namedParams]) =>
+    new ClassWithMethod();
 
 const ClassWithMethodClassMirror =
     const ClassMirror(name: 'ClassWithMethod', constructors: const {
-  '': const FunctionMirror(
-      parameters: const {}, call: _ClassWithMethod__Constructor)
+  '': const FunctionMirror($call: _ClassWithMethod__Constructor)
 }, methods: const {
   'someMethod': const FunctionMirror(
+      positionalParameters: const [
+        const DeclarationMirror(
+            name: 'someParameter',
+            type: String,
+            isRequired: true,
+            annotations: const [myOtherAnnotation])
+      ],
       name: 'someMethod',
       returnType: dynamic,
-      parameters: const {
+      annotations: const [myOtherAnnotation]),
+  'someMethodWithNamedParams': const FunctionMirror(
+      namedParameters: const {
         'someParameter': const DeclarationMirror(
             name: 'someParameter',
             type: String,
+            isNamed: true,
             annotations: const [myOtherAnnotation])
       },
-      annotations: const [
-        myOtherAnnotation
-      ])
+      name: 'someMethodWithNamedParams',
+      returnType: dynamic,
+      annotations: const [myOtherAnnotation])
 });

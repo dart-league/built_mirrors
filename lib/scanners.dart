@@ -5,7 +5,7 @@ import 'package:built_mirrors/built_mirrors.dart';
 ///     // Get all the annotations from the class of `object` where they are type `SomeAnnotation`
 ///     reflect(object).annotations.where(new Is<SomeAnnotation>());
 class Is<T> {
-  call(Annotation annotation) => annotation is T;
+  bool call(Annotation annotation) => annotation is T;
 }
 
 ///  Get List of methods annotated with [T]. For example:
@@ -97,7 +97,7 @@ class GetFieldsAnnotatedWith<T> {
   ///       var fieldsAnnotatedWithAnnotation2 = new GetFieldsAnnotatedWith<Annotation2>().from(o);
   ///     }
   Iterable<DeclarationMirror> from(instance) =>
-      reflect(instance).fields.values.where((methodMirror) => methodMirror.annotations.any((a) => a is T));
+      reflect(instance).fields.values.where((methodMirror) => methodMirror.annotations.any(new Is<T>()));
 }
 
 /// Get the list of public [MethodMirror] from [classMirror]
@@ -171,7 +171,7 @@ Object getObjectThatExtend(ClassMirror classMirror) {
     }
   }
 
-  return result.constructors[''].call({});
+  return result.constructors[''].$call();
 }
 
 /// Get the level value that a [subType] extends the [superClassCM], for example:

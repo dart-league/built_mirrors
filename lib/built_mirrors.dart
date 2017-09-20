@@ -101,31 +101,71 @@ class ClassMirror extends Mirror {
   toString() => 'ClassMirror on $name';
 }
 
-typedef FunctionCall(Map<String, dynamic> params);
+typedef FunctionCall([List positionalParams, Map<String, dynamic> namedParams]);
+
+Map<FunctionMirror, List<DeclarationMirror>> _parametersFunctionMirrorCache = {};
 
 /// reflects functions declared in a Dart program.
 class FunctionMirror extends Mirror {
   /// Used only for constructors. It creates new instances with the map of parameters passed
-  final FunctionCall call;
+  final FunctionCall $call;
+
+  /// Used only for constructors. It creates new instances with the map of parameters passed
+  call([List positionalParams, Map<String, dynamic> namedParams]) => $call(positionalParams, namedParams);
 
   /// return type of the function
   final /*Type | List<Type, Type | List<Type> | List<Type, ...>>*/ returnType;
 
-  /// parameters of the function
-  final Map<String, DeclarationMirror> parameters;
+  /// positional parameters of the function
+  final List<DeclarationMirror> positionalParameters;
 
-  const FunctionMirror({String name, this.call, this.returnType, this.parameters, List<Annotation> annotations})
+  /// parameters of the function
+  final Map<String, DeclarationMirror> namedParameters;
+
+  List<DeclarationMirror> get parameters =>
+      (
+          _parametersFunctionMirrorCache
+            ..putIfAbsent(this, () => []..addAll(positionalParameters ?? [])..addAll(namedParameters?.values ?? []))
+      )[this];
+
+  const FunctionMirror({
+    String name,
+    this.$call,
+    this.returnType,
+    this.positionalParameters,
+    this.namedParameters,
+    List<Annotation> annotations})
       : super(name, annotations);
+
+  toString() => 'FunctionMirror on $name';
 }
 
 /// reflects attributes declared in a Dart program.
 class DeclarationMirror extends Mirror {
-  /*Type | List<Type, Type | List<Type> | List<Type, ...>>*/ final type;
+  /// Returns the type of the attribute, for example:
+  ///
+  ///     String                  ->  returns String
+  ///     List<String>            ->  returns [List, [String]]
+  ///     Map<String, int>        ->  returns [Map, [String, int]]
+  ///     Map<String, List<int>>  ->  returns [Map, [List, [int]]]
+  final /*Type | List<Type, Type | List<Type> | List<Type, ...>>*/ type;
 
-  final isFinal;
+  /// Determines if the attribute is final
+  final bool isFinal;
 
-  final isOptional;
+  /// Determines if the attribute is required
+  final bool isRequired;
 
-  const DeclarationMirror({String name, this.type, annotations, this.isFinal: false, this.isOptional: false})
-      : super(name, annotations);
+  /// Determines if the attribute is named
+  final bool isNamed;
+
+  const DeclarationMirror({
+    String name,
+    this.type, annotations,
+    this.isFinal: false,
+    this.isRequired: false,
+    this.isNamed = false
+  }) : super(name, annotations);
+
+  toString() => 'DeclarationMirror on $name';
 }

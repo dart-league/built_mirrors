@@ -6,7 +6,7 @@ part of built_mirrors.test.models.student;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_Student__Constructor(params) => new Student();
+_Student__Constructor([positionalParams, namedParams]) => new Student();
 
 const $$Student_fields_studentId = const DeclarationMirror(type: String);
 const $$Student_fields_courses =
@@ -14,10 +14,7 @@ const $$Student_fields_courses =
 
 const StudentClassMirror = const ClassMirror(
     name: 'Student',
-    constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _Student__Constructor)
-    },
+    constructors: const {'': const FunctionMirror($call: _Student__Constructor)},
     fields: const {
       'studentId': $$Student_fields_studentId,
       'courses': $$Student_fields_courses,

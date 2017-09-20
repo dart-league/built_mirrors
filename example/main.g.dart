@@ -7,17 +7,18 @@ part of built_mirrors.example.main;
 // **************************************************************************
 
 const someFunctionFunctionMirror = const FunctionMirror(
+    positionalParameters: const [
+      const DeclarationMirror(
+          name: 'p1',
+          type: int,
+          isRequired: true,
+          annotations: const [myOtherAnnotation]),
+      const DeclarationMirror(name: 'p0', type: int, isRequired: true),
+      const DeclarationMirror(name: 'p2', type: int, isRequired: true)
+    ],
     name: 'someFunction',
     returnType: String,
-    parameters: const {
-      'p1': const DeclarationMirror(
-          name: 'p1', type: int, annotations: const [myOtherAnnotation]),
-      'p0': const DeclarationMirror(name: 'p0', type: int),
-      'p2': const DeclarationMirror(name: 'p2', type: int)
-    },
-    annotations: const [
-      const AnnotationWithFunction(otherFunction)
-    ]);
+    annotations: const [const AnnotationWithFunction(otherFunction)]);
 
 // **************************************************************************
 // Generator: InitMirrorsGenerator

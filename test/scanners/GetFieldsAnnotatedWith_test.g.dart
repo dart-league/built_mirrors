@@ -6,7 +6,7 @@ part of GetFieldsAnnotatedWith_test;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_ObjectWithAnnotatedFields__Constructor(params) =>
+_ObjectWithAnnotatedFields__Constructor([positionalParams, namedParams]) =>
     new ObjectWithAnnotatedFields();
 
 const $$ObjectWithAnnotatedFields_fields_annotated1 = const DeclarationMirror(
@@ -17,8 +17,7 @@ const $$ObjectWithAnnotatedFields_fields_annotated2 = const DeclarationMirror(
 
 const ObjectWithAnnotatedFieldsClassMirror =
     const ClassMirror(name: 'ObjectWithAnnotatedFields', constructors: const {
-  '': const FunctionMirror(
-      parameters: const {}, call: _ObjectWithAnnotatedFields__Constructor)
+  '': const FunctionMirror($call: _ObjectWithAnnotatedFields__Constructor)
 }, fields: const {
   'annotated1': $$ObjectWithAnnotatedFields_fields_annotated1,
   'annotated2': $$ObjectWithAnnotatedFields_fields_annotated2

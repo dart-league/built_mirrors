@@ -55,4 +55,9 @@ class ClassWithMethod {
   someMethod(@myOtherAnnotation String someParameter) {
     return 'someMethod';
   }
+
+  @myOtherAnnotation
+  someMethodWithNamedParams({@myOtherAnnotation String someParameter}) {
+    return 'someMethod';
+  }
 }

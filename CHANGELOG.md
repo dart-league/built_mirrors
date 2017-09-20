@@ -1,3 +1,8 @@
+# 0.6.0
+
+- split function parameters into positional and named
+- rename `phase.dart` to `action.dart`
+
 # 0.5.2
 
 - add generators for annotations with List, Map and other constants

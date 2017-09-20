@@ -6,15 +6,14 @@ part of built_mirrors.test.models.employee;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_Employee__Constructor(params) => new Employee();
+_Employee__Constructor([positionalParams, namedParams]) => new Employee();
 
 const $$Employee_fields_salary = const DeclarationMirror(type: num);
 
 const EmployeeClassMirror = const ClassMirror(
     name: 'Employee',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _Employee__Constructor)
+      '': const FunctionMirror($call: _Employee__Constructor)
     },
     fields: const {
       'salary': $$Employee_fields_salary,
