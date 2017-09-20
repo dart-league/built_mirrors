@@ -78,7 +78,13 @@ class ClassWithMethod {
   someMethod(@myOtherAnnotation String someParameter) {
     return 'someMethod';
   }
+
+  @myOtherAnnotation
+  someMethodWithNamedParams({@myOtherAnnotation String someParameter}) {
+    return 'someMethod';
+  }
 }
+
 ```
 
 4. edit the file `main.dart` in the folder `bin` and put next code on it:
@@ -114,7 +120,7 @@ main() {
   var personClassMirror = reflectType(Person);
   // and then constructs a new person using a map with the
   // needed parameters for the constructor
-  var p1 = personClassMirror.constructors[''].call({'id': 1, 'name': 'person 1'});
+  var p1 = personClassMirror.constructors['']([], {'id': 1, 'name': 'person 1'});
   // Get the list of DeclarationMirror corresponding to the fields of Person class
   var p1Fields = personClassMirror.fields;
 
@@ -125,7 +131,7 @@ main() {
 
   // Gets the CarClassMirror and constructs a new car using the default constructor
   // passing a map containing the required parameters
-  Car car1 = reflectType(Car).constructors[''].call({'id': 1, 'engine': 'v8'});
+  Car car1 = reflectType(Car).constructors['']([1, 'v8']);
   /* prints:
       car1:
         id: 1
@@ -143,9 +149,9 @@ main() {
   print(methods.keys); // prints: 'someFunction'
   print(methods['someMethod'].returnType); // prints: String
   print(methods['someMethod'].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].parameters); // prints: {p1: Instance of 'DeclarationMirror'}
-  print(methods['someMethod'].parameters['someParameter'].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].parameters['someParameter'].type); // prints: int
+  print(methods['someMethod'].positionalParameters); // prints: {p1: Instance of 'DeclarationMirror'}
+  print(methods['someMethod'].positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods['someMethod'].positionalParameters[0].type); // prints: int
 
   print('\n--------------------------');
   print('reflecting "someFunction"');
@@ -154,12 +160,12 @@ main() {
   print(sfMirror.name); // prints: '(someMethod)'
   print(sfMirror.returnType); // prints: dynamic
   print(sfMirror.annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.parameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
-  print(sfMirror.parameters['p1'].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.parameters['p1'].type); // prints: String
-  print(sfMirror.parameters.values.elementAt(0).name);
-  print(sfMirror.parameters.values.elementAt(1).name);
-  print(sfMirror.parameters.values.elementAt(2).name);
+  print(sfMirror.positionalParameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
+  print(sfMirror.positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror.positionalParameters[0].type); // prints: String
+  print(sfMirror.positionalParameters[0].name);
+  print(sfMirror.positionalParameters[1].name);
+  print(sfMirror.positionalParameters[2].name);
 }
 
 ```
@@ -168,7 +174,7 @@ main() {
 
 ```dart
 import 'package:build_runner/build_runner.dart';
-import 'package:built_mirrors/phase.dart';
+import 'package:built_mirrors/action.dart';
 
 
 main() async {
@@ -176,6 +182,7 @@ main() async {
   // or leave it empty to take all the dart files of the project as input.
   await build([builtMirrorsAction(const ['example/*.dart'])], deleteFilesByDefault: true);
 }
+
 ```
 
 6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
@@ -190,11 +197,11 @@ part of built_mirrors.example.models;
 // Generator: MirrorsGenerator
 // **************************************************************************
 
-_Person__Constructor(params) => new Person(
-    id: params['id'],
-    name: params['name'],
-    myDynamic: params['myDynamic'],
-    cars: params['cars']);
+_Person__Constructor([positionalParams, namedParams]) => new Person(
+    id: namedParams['id'],
+    name: namedParams['name'],
+    myDynamic: namedParams['myDynamic'],
+    cars: namedParams['cars']);
 
 const $$Person_fields_id = const DeclarationMirror(type: int);
 const $$Person_fields_name = const DeclarationMirror(
@@ -208,15 +215,14 @@ const $$Person_fields_mySetter = const DeclarationMirror(type: String);
 
 const PersonClassMirror =
     const ClassMirror(name: 'Person', constructors: const {
-  '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
-    'name':
-        const DeclarationMirror(name: 'name', type: String, isOptional: true),
+  '': const FunctionMirror(namedParameters: const {
+    'id': const DeclarationMirror(name: 'id', type: int, isNamed: true),
+    'name': const DeclarationMirror(name: 'name', type: String, isNamed: true),
     'myDynamic': const DeclarationMirror(
-        name: 'myDynamic', type: dynamic, isOptional: true),
+        name: 'myDynamic', type: dynamic, isNamed: true),
     'cars': const DeclarationMirror(
-        name: 'cars', type: const [List, Car], isOptional: true)
-  }, call: _Person__Constructor)
+        name: 'cars', type: const [List, Car], isNamed: true)
+  }, $call: _Person__Constructor)
 }, fields: const {
   'id': $$Person_fields_id,
   'name': $$Person_fields_name,
@@ -237,7 +243,8 @@ const PersonClassMirror =
   'cars',
   'mySetter'
 ]);
-_Car__Constructor(params) => new Car(params['id'], params['engine']);
+_Car__Constructor([positionalParams, namedParams]) =>
+    new Car(positionalParams[0], positionalParams[1]);
 
 const $$Car_fields_id = const DeclarationMirror(type: int);
 const $$Car_fields_engine = const DeclarationMirror(
@@ -245,11 +252,10 @@ const $$Car_fields_engine = const DeclarationMirror(
     annotations: const [const MyAnnotation(r'\uabcd', val2: null)]);
 
 const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
-  '': const FunctionMirror(parameters: const {
-    'id': const DeclarationMirror(name: 'id', type: int, isOptional: true),
-    'engine':
-        const DeclarationMirror(name: 'engine', type: String, isOptional: true)
-  }, call: _Car__Constructor)
+  '': const FunctionMirror(positionalParameters: const [
+    const DeclarationMirror(name: 'id', type: int),
+    const DeclarationMirror(name: 'engine', type: String)
+  ], $call: _Car__Constructor)
 }, annotations: const [
   myOtherAnnotation
 ], fields: const {
@@ -262,13 +268,15 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   'id',
   'engine'
 ]);
-_EmptyClass__Constructor(params) => new EmptyClass();
+_EmptyClass__Constructor([positionalParams, namedParams]) => new EmptyClass();
 
-const EmptyClassClassMirror =
-    const ClassMirror(name: 'EmptyClass', constructors: const {
-  '': const FunctionMirror(parameters: const {}, call: _EmptyClass__Constructor)
-});
-_ExtendedPerson__Constructor(params) => new ExtendedPerson();
+const EmptyClassClassMirror = const ClassMirror(
+    name: 'EmptyClass',
+    constructors: const {
+      '': const FunctionMirror($call: _EmptyClass__Constructor)
+    });
+_ExtendedPerson__Constructor([positionalParams, namedParams]) =>
+    new ExtendedPerson();
 
 const $$ExtendedPerson_fields_extendedName =
     const DeclarationMirror(type: dynamic);
@@ -278,8 +286,7 @@ const $$ExtendedPerson_fields_otherExtended =
 const ExtendedPersonClassMirror = const ClassMirror(
     name: 'ExtendedPerson',
     constructors: const {
-      '': const FunctionMirror(
-          parameters: const {}, call: _ExtendedPerson__Constructor)
+      '': const FunctionMirror($call: _ExtendedPerson__Constructor)
     },
     fields: const {
       'extendedName': $$ExtendedPerson_fields_extendedName,
@@ -310,25 +317,35 @@ const ExtendedPersonClassMirror = const ClassMirror(
       'mySetter'
     ],
     superclass: Person);
-_ClassWithMethod__Constructor(params) => new ClassWithMethod();
+_ClassWithMethod__Constructor([positionalParams, namedParams]) =>
+    new ClassWithMethod();
 
 const ClassWithMethodClassMirror =
     const ClassMirror(name: 'ClassWithMethod', constructors: const {
-  '': const FunctionMirror(
-      parameters: const {}, call: _ClassWithMethod__Constructor)
+  '': const FunctionMirror($call: _ClassWithMethod__Constructor)
 }, methods: const {
   'someMethod': const FunctionMirror(
+      positionalParameters: const [
+        const DeclarationMirror(
+            name: 'someParameter',
+            type: String,
+            isRequired: true,
+            annotations: const [myOtherAnnotation])
+      ],
       name: 'someMethod',
       returnType: dynamic,
-      parameters: const {
+      annotations: const [myOtherAnnotation]),
+  'someMethodWithNamedParams': const FunctionMirror(
+      namedParameters: const {
         'someParameter': const DeclarationMirror(
             name: 'someParameter',
             type: String,
+            isNamed: true,
             annotations: const [myOtherAnnotation])
       },
-      annotations: const [
-        myOtherAnnotation
-      ])
+      name: 'someMethodWithNamedParams',
+      returnType: dynamic,
+      annotations: const [myOtherAnnotation])
 });
 
 ```
