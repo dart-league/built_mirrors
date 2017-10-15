@@ -14,7 +14,9 @@ const $$Student_fields_courses =
 
 const StudentClassMirror = const ClassMirror(
     name: 'Student',
-    constructors: const {'': const FunctionMirror($call: _Student__Constructor)},
+    constructors: const {
+      '': const FunctionMirror($call: _Student__Constructor)
+    },
     fields: const {
       'studentId': $$Student_fields_studentId,
       'courses': $$Student_fields_courses,

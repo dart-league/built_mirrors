@@ -29,7 +29,7 @@ class ClassWithMethods {
 
   methodWithAnnotatedParams(@SomeAnnotation() p1) {}
 
-  String methodWithReturnTypeAndParams(String b, int c) => '';
+  String methodWithReturnTypeAndParams({String b, int c}) => '';
 }
 
 class AnnotationWithFunction extends Annotation {
@@ -124,7 +124,7 @@ main() {
     expect(methodWithAnnotation.returnType, dynamic);
 
     var methodWithAnnotatedParams = cm.methods['methodWithAnnotatedParams'];
-    expect(methodWithAnnotatedParams.namedParameters['p1'].annotations[0], new isInstanceOf<SomeAnnotation>());
+    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], new isInstanceOf<SomeAnnotation>());
     expect(methodWithAnnotatedParams.annotations, null);
     expect(methodWithAnnotatedParams.returnType, dynamic);
 

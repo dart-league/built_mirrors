@@ -156,7 +156,9 @@ String _renderAnnotationParameters(ElementAnnotation annotation) {
 }
 
 String _renderParameterValue(ParameterElement parameter, ElementAnnotation annotation) {
-  return _renderValue(new ConstantReader(annotation.computeConstantValue()).read(parameter.name).objectValue);
+  var thingy = new ConstantReader(annotation.computeConstantValue()).read(parameter.name);
+  
+  return (thingy?.isNull != false) ? 'null' : _renderValue(thingy.objectValue);
 }
 
 String _renderValue(DartObject field) {

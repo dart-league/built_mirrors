@@ -1,3 +1,7 @@
+# 0.6.0+2
+
+- fixed the null issue
+
 # 0.6.0
 
 - split function parameters into positional and named
