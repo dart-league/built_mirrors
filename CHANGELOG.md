@@ -1,6 +1,8 @@
-# 0.6.0+2
+# 0.7.0
 
 - fixed the null issue
+- upgrade `build` package to `^0.11.1`
+- upgrade `build_runner` to version `^0.6.0`
 
 # 0.6.0
 

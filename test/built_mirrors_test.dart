@@ -2,6 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:build/build.dart';
@@ -29,5 +30,5 @@ Future<String> generate(String source) async {
 
   final writer = new InMemoryAssetWriter();
   await testBuilder(builder, srcs, rootPackage: pkgName, writer: writer);
-  return writer.assets[new AssetId(pkgName, 'lib/value.g.dart')]?.stringValue;
+  return UTF8.decode(writer.assets[new AssetId(pkgName, 'lib/value.g.dart')]);
 }
