@@ -59,12 +59,12 @@ const ${className}ClassMirror = const ClassMirror(
             "\$call: _${className}_${c.name}_Constructor)").join(',')}
           }''',
         _renderMetadata(element.metadata),
-        fields.isNotEmpty ? 'fields: const {${fields.map(_renderFields).join(',')}}' : '',
-        getters.isNotEmpty ? 'getters: const [${getters.map((g) => "'${g.name}'").join(',')}]' : '',
-        setters.isNotEmpty
-            ? 'setters: const [${setters.map((s) => "'${s.name.substring(0, s.name.length - 1)}'").join(',')}]'
+        fields.where((x) => !x.isStatic).isNotEmpty ? 'fields: const {${fields.where((x) => !x.isStatic).map(_renderFields).join(',')}}' : '',
+        getters.where((x) => !x.isStatic).isNotEmpty ? 'getters: const [${getters.where((x) => !x.isStatic).map((g) => "'${g.name}'").join(',')}]' : '',
+        setters.where((x) => !x.isStatic).isNotEmpty
+            ? 'setters: const [${setters.where((x) => !x.isStatic).map((s) => "'${s.name.substring(0, s.name.length - 1)}'").join(',')}]'
             : '',
-        methods.isNotEmpty ? 'methods: const {${methods.map(_renderMethods).join(',')}}' : '',
+        methods.where((x) => !x.isStatic).isNotEmpty ? 'methods: const {${methods.where((x) => !x.isStatic).map(_renderMethods).join(',')}}' : '',
         element.isAbstract ? 'isAbstract: true' : '',
         element.supertype.name != 'Object' ? 'superclass: ${element.supertype}' : '',
         element.interfaces.isNotEmpty ? 'superinterfaces: const [${element.interfaces.join(',')}]' : ''
@@ -156,7 +156,9 @@ String _renderAnnotationParameters(ElementAnnotation annotation) {
 }
 
 String _renderParameterValue(ParameterElement parameter, ElementAnnotation annotation) {
-  return _renderValue(new ConstantReader(annotation.computeConstantValue()).read(parameter.name).objectValue);
+  var thingy = new ConstantReader(annotation.computeConstantValue()).read(parameter.name);
+  
+  return (thingy?.isNull != false) ? 'null' : _renderValue(thingy.objectValue);
 }
 
 String _renderValue(DartObject field) {
