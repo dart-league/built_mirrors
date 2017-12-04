@@ -1,3 +1,7 @@
+# 0.7.1
+
+- add name param to fields and constructors
+
 # 0.7.0
 
 - fixed the null issue

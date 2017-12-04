@@ -14,7 +14,7 @@ _Service1Impl__Constructor([positionalParams, namedParams]) =>
 const Service1ImplClassMirror = const ClassMirror(
     name: 'Service1Impl',
     constructors: const {
-      '': const FunctionMirror($call: _Service1Impl__Constructor)
+      '': const FunctionMirror(name: '', $call: _Service1Impl__Constructor)
     },
     superinterfaces: const [
       Service1
@@ -28,7 +28,7 @@ _Service2Impl__Constructor([positionalParams, namedParams]) =>
 const Service2ImplClassMirror = const ClassMirror(
     name: 'Service2Impl',
     constructors: const {
-      '': const FunctionMirror($call: _Service2Impl__Constructor)
+      '': const FunctionMirror(name: '', $call: _Service2Impl__Constructor)
     },
     superinterfaces: const [
       Service2
@@ -39,7 +39,7 @@ _Service22Impl__Constructor([positionalParams, namedParams]) =>
 const Service22ImplClassMirror = const ClassMirror(
     name: 'Service22Impl',
     constructors: const {
-      '': const FunctionMirror($call: _Service22Impl__Constructor)
+      '': const FunctionMirror(name: '', $call: _Service22Impl__Constructor)
     },
     superclass: Service2Impl);
 

@@ -8,13 +8,15 @@ part of built_mirrors.test.models.course;
 
 _Course__Constructor([positionalParams, namedParams]) => new Course();
 
-const $$Course_fields_id = const DeclarationMirror(type: int);
-const $$Course_fields_name = const DeclarationMirror(type: String);
-const $$Course_fields_credits = const DeclarationMirror(type: num);
+const $$Course_fields_id = const DeclarationMirror(name: 'id', type: int);
+const $$Course_fields_name =
+    const DeclarationMirror(name: 'name', type: String);
+const $$Course_fields_credits =
+    const DeclarationMirror(name: 'credits', type: num);
 
 const CourseClassMirror =
     const ClassMirror(name: 'Course', constructors: const {
-  '': const FunctionMirror($call: _Course__Constructor)
+  '': const FunctionMirror(name: '', $call: _Course__Constructor)
 }, fields: const {
   'id': $$Course_fields_id,
   'name': $$Course_fields_name,

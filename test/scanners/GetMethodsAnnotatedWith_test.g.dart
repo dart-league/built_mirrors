@@ -11,7 +11,8 @@ _ObjectWithAnnotatedMethods__Constructor([positionalParams, namedParams]) =>
 
 const ObjectWithAnnotatedMethodsClassMirror =
     const ClassMirror(name: 'ObjectWithAnnotatedMethods', constructors: const {
-  '': const FunctionMirror($call: _ObjectWithAnnotatedMethods__Constructor)
+  '': const FunctionMirror(
+      name: '', $call: _ObjectWithAnnotatedMethods__Constructor)
 }, methods: const {
   'annotated1': const FunctionMirror(
       name: 'annotated1',

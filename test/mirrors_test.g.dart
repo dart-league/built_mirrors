@@ -13,7 +13,7 @@ _ClassWithMethods__Constructor([positionalParams, namedParams]) =>
 
 const ClassWithMethodsClassMirror =
     const ClassMirror(name: 'ClassWithMethods', constructors: const {
-  '': const FunctionMirror($call: _ClassWithMethods__Constructor)
+  '': const FunctionMirror(name: '', $call: _ClassWithMethods__Constructor)
 }, methods: const {
   'methodNoReturnTypeNoParams': const FunctionMirror(
     name: 'methodNoReturnTypeNoParams',
@@ -58,7 +58,7 @@ const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
     name: 'ClassWithAnnotationWithFunction',
     constructors: const {
       '': const FunctionMirror(
-          $call: _ClassWithAnnotationWithFunction__Constructor)
+          name: '', $call: _ClassWithAnnotationWithFunction__Constructor)
     },
     annotations: const [
       const AnnotationWithFunction(someFunction)
@@ -68,7 +68,8 @@ _ClassWithAnnotationWithList__Constructor([positionalParams, namedParams]) =>
 
 const ClassWithAnnotationWithListClassMirror =
     const ClassMirror(name: 'ClassWithAnnotationWithList', constructors: const {
-  '': const FunctionMirror($call: _ClassWithAnnotationWithList__Constructor)
+  '': const FunctionMirror(
+      name: '', $call: _ClassWithAnnotationWithList__Constructor)
 }, annotations: const [
   const AnnotationWithList(const [r'hello', r'hi'])
 ]);
@@ -77,7 +78,8 @@ _ClassWithAnnotationWithMap__Constructor([positionalParams, namedParams]) =>
 
 const ClassWithAnnotationWithMapClassMirror =
     const ClassMirror(name: 'ClassWithAnnotationWithMap', constructors: const {
-  '': const FunctionMirror($call: _ClassWithAnnotationWithMap__Constructor)
+  '': const FunctionMirror(
+      name: '', $call: _ClassWithAnnotationWithMap__Constructor)
 }, annotations: const [
   const AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
 ]);
@@ -89,7 +91,7 @@ const ClassWithAnnotationWithConstantClassMirror = const ClassMirror(
     name: 'ClassWithAnnotationWithConstant',
     constructors: const {
       '': const FunctionMirror(
-          $call: _ClassWithAnnotationWithConstant__Constructor)
+          name: '', $call: _ClassWithAnnotationWithConstant__Constructor)
     },
     annotations: const [
       const AnnotationWithConstant(const SomeConstant(r'my-constant'),

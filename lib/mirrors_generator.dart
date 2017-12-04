@@ -54,6 +54,7 @@ const ${className}ClassMirror = const ClassMirror(
   ${[
         element.isAbstract ? '' : '''constructors: const {
           ${constructors.map((c) => "'${c.name}': const FunctionMirror("
+            "name: '${c.name}',"
             "${_renderPositionalParameters(c.parameters)}"
             "${_renderNamedParameters(c.parameters)}"
             "\$call: _${className}_${c.name}_Constructor)").join(',')}
@@ -129,6 +130,7 @@ String _renderParameter(ParameterElement p) =>
 
 String _renderFieldsDeclarations(FieldElement e) =>
     "const \$\$${e.enclosingElement.name}_fields_${e.name} = const DeclarationMirror("
+        "name: '${e.name}',"
         'type: ${_renderType(e.type)}'
         '${e.isFinal ? ', isFinal: true' : ''}'
         '${e.metadata.isEmpty ? '' : ','} ${_renderMetadata(e.metadata)}'

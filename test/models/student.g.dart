@@ -8,14 +8,15 @@ part of built_mirrors.test.models.student;
 
 _Student__Constructor([positionalParams, namedParams]) => new Student();
 
-const $$Student_fields_studentId = const DeclarationMirror(type: String);
+const $$Student_fields_studentId =
+    const DeclarationMirror(name: 'studentId', type: String);
 const $$Student_fields_courses =
-    const DeclarationMirror(type: const [List, Course]);
+    const DeclarationMirror(name: 'courses', type: const [List, Course]);
 
 const StudentClassMirror = const ClassMirror(
     name: 'Student',
     constructors: const {
-      '': const FunctionMirror($call: _Student__Constructor)
+      '': const FunctionMirror(name: '', $call: _Student__Constructor)
     },
     fields: const {
       'studentId': $$Student_fields_studentId,
