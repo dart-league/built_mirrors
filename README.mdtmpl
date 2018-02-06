@@ -14,28 +14,29 @@ This is a library that generates `ClassMirror` from classes annotated with
 ...
 dependencies:
   ...
+  # replace for the latest version
   built_mirrors: any
   ...
 ```
 
 3. create a file in `bin` folder called `models.dart` and put next code on it:
 
-{@example example/models.dart}
+{@example example/bin/models.dart}
 
 4. edit the file `main.dart` in the folder `bin` and put next code on it:
 
-{@example example/main.dart}
+{@example example/bin/main.dart}
 
-5. create a file in `tool` folder called `build.dart` and put next code on it:
+5. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
+and `bin/main.g.dart` have been generated and they will contain the next code:
 
-{@example tool/build.dart}
+{@example example/bin/main.g.dart}
 
-6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
-has been generated and it will contains the next code:
+and:
 
-{@example example/models.g.dart}
+{@example example/bin/models.g.dart}
 
-7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+6. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
 output in console:
 
 ```
@@ -51,10 +52,10 @@ car1:
 --------------------------
 reflecting "ClassWithMethod"
 --------------------------
-(someMethod)
+(someMethod, someMethodWithNamedParams)
 dynamic
 [Instance of '_MyOtherAnnotation']
-{someParameter: Instance of 'DeclarationMirror'}
+[DeclarationMirror on someParameter]
 [Instance of '_MyOtherAnnotation']
 String
 
@@ -64,7 +65,7 @@ reflecting "someFunction"
 someFunction
 String
 [Instance of 'AnnotationWithFunction']
-{p1: Instance of 'DeclarationMirror', p0: Instance of 'DeclarationMirror', p2: Instance of 'DeclarationMirror'}
+[DeclarationMirror on p1, DeclarationMirror on p0, DeclarationMirror on p2]
 [Instance of '_MyOtherAnnotation']
 int
 p1

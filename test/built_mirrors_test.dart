@@ -13,8 +13,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('generated files', () async {
-    expect(await generate(await new File('example/models.dart').readAsString()),
-        await new File('example/models.g.dart').readAsString());
+    expect(await generate(await new File('example/bin/models.dart').readAsString()),
+        await new File('example/bin/models.g.dart').readAsString());
   });
 }
 

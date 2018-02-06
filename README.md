@@ -14,6 +14,7 @@ This is a library that generates `ClassMirror` from classes annotated with
 ...
 dependencies:
   ...
+  # replace for the latest version
   built_mirrors: any
   ...
 ```
@@ -170,23 +171,50 @@ main() {
 
 ```
 
-5. create a file in `tool` folder called `build.dart` and put next code on it:
+5. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
+and `bin/main.g.dart` have been generated and they will contain the next code:
 
 ```dart
-import 'package:build_runner/build_runner.dart';
-import 'package:built_mirrors/action.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
+part of built_mirrors.example.main;
 
-main() async {
-  // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
-  // or leave it empty to take all the dart files of the project as input.
-  await build([builtMirrorsAction(const ['example/*.dart'])], deleteFilesByDefault: true);
+// **************************************************************************
+// Generator: MirrorsGenerator
+// **************************************************************************
+
+const someFunctionFunctionMirror = const FunctionMirror(
+    positionalParameters: const [
+      const DeclarationMirror(
+          name: 'p1',
+          type: int,
+          isRequired: true,
+          annotations: const [myOtherAnnotation]),
+      const DeclarationMirror(name: 'p0', type: int, isRequired: true),
+      const DeclarationMirror(name: 'p2', type: int, isRequired: true)
+    ],
+    name: 'someFunction',
+    returnType: String,
+    annotations: const [const AnnotationWithFunction(otherFunction)]);
+
+// **************************************************************************
+// Generator: InitMirrorsGenerator
+// **************************************************************************
+
+_initMirrors() {
+  initClassMirrors({
+    Person: PersonClassMirror,
+    Car: CarClassMirror,
+    EmptyClass: EmptyClassClassMirror,
+    ExtendedPerson: ExtendedPersonClassMirror,
+    ClassWithMethod: ClassWithMethodClassMirror
+  });
+  initFunctionMirrors({someFunction: someFunctionFunctionMirror});
 }
 
 ```
 
-6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
-has been generated and it will contains the next code:
+and:
 
 ```dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
@@ -362,7 +390,7 @@ const ClassWithMethodClassMirror =
 
 ```
 
-7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+6. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
 output in console:
 
 ```
@@ -378,10 +406,10 @@ car1:
 --------------------------
 reflecting "ClassWithMethod"
 --------------------------
-(someMethod)
+(someMethod, someMethodWithNamedParams)
 dynamic
 [Instance of '_MyOtherAnnotation']
-{someParameter: Instance of 'DeclarationMirror'}
+[DeclarationMirror on someParameter]
 [Instance of '_MyOtherAnnotation']
 String
 
@@ -391,7 +419,7 @@ reflecting "someFunction"
 someFunction
 String
 [Instance of 'AnnotationWithFunction']
-{p1: Instance of 'DeclarationMirror', p0: Instance of 'DeclarationMirror', p2: Instance of 'DeclarationMirror'}
+[DeclarationMirror on p1, DeclarationMirror on p0, DeclarationMirror on p2]
 [Instance of '_MyOtherAnnotation']
 int
 p1

@@ -1,3 +1,9 @@
+# 0.8.0
+
+- upgrade `build` package to `^0.12.0`
+- remove `build_runner` package
+- remove files in `tool` folder
+
 # 0.7.1
 
 - add name param to fields and constructors
