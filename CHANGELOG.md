@@ -1,3 +1,7 @@
+# 0.8.1
+
+- Add `build_runner` package as `dev_dependency`
+
 # 0.8.0
 
 - upgrade `build` package to `^0.12.0`

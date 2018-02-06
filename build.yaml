@@ -1,9 +1,9 @@
 builders:
   built_mirrors_builder:
-    target: built_mirrors_builder
+    target: :_built_mirrors
     import: package:built_mirrors/builder.dart
     builder_factories: [builder]
     build_to: source
-    auto_apply: dependents
+    auto_apply: root_package
     build_extensions:
       .dart: [.g.dart]

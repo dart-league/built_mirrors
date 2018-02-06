@@ -17,6 +17,11 @@ dependencies:
   # replace for the latest version
   built_mirrors: any
   ...
+dev_dependencies:
+  ...
+  # replace for the latest version
+  built_runner: any
+  ...
 ```
 
 3. create a file in `bin` folder called `models.dart` and put next code on it:
