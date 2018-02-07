@@ -1,6 +1,6 @@
 library built_mirrors.test.enum_test;
 
-import 'package:built_mirrors/built_mirrors.dart';
+import 'package:built_mirrors_core/built_mirrors.dart';
 import 'package:test/test.dart';
 
 part 'mirrors_test.g.dart';

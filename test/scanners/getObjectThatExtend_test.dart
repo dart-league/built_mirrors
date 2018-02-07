@@ -1,8 +1,8 @@
 library getObjectThatExtend_test;
 
-import 'package:built_mirrors/built_mirrors.dart';
+import 'package:built_mirrors_core/built_mirrors.dart';
 import 'package:test/test.dart';
-import 'package:built_mirrors/scanners.dart';
+import 'package:built_mirrors_core/scanners.dart';
 
 part 'getObjectThatExtend_test.g.dart';
 

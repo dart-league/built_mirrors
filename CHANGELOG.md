@@ -1,3 +1,7 @@
+# 0.8.2
+
+- add `built_mirrors_core` package
+
 # 0.8.1
 
 - Add `build_runner` package as `dev_dependency`

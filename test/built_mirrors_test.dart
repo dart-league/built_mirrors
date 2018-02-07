@@ -7,7 +7,7 @@ import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
-import 'package:built_mirrors/mirrors_generator.dart';
+import 'package:built_mirrors_core/mirrors_generator.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:test/test.dart';
 
