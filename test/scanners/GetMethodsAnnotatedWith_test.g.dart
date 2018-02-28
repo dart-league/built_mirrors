@@ -31,5 +31,4 @@ const ObjectWithAnnotatedMethodsClassMirror =
 _initMirrors() {
   initClassMirrors(
       {ObjectWithAnnotatedMethods: ObjectWithAnnotatedMethodsClassMirror});
-  initFunctionMirrors({});
 }

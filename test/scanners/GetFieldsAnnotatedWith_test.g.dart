@@ -40,5 +40,4 @@ const ObjectWithAnnotatedFieldsClassMirror =
 _initMirrors() {
   initClassMirrors(
       {ObjectWithAnnotatedFields: ObjectWithAnnotatedFieldsClassMirror});
-  initFunctionMirrors({});
 }

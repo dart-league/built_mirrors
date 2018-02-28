@@ -13,5 +13,4 @@ _initMirrors() {
     Person: PersonClassMirror,
     Employee: EmployeeClassMirror
   });
-  initFunctionMirrors({});
 }

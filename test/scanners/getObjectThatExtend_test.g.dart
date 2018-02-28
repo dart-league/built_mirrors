@@ -55,5 +55,4 @@ _initMirrors() {
     Service2Impl: Service2ImplClassMirror,
     Service22Impl: Service22ImplClassMirror
   });
-  initFunctionMirrors({});
 }

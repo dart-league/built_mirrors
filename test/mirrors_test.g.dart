@@ -111,5 +111,4 @@ _initMirrors() {
     ClassWithAnnotationWithMap: ClassWithAnnotationWithMapClassMirror,
     ClassWithAnnotationWithConstant: ClassWithAnnotationWithConstantClassMirror
   });
-  initFunctionMirrors({});
 }

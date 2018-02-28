@@ -9,8 +9,6 @@ part 'init_class_mirrors_test.g.dart';
 main() {
   _initMirrors();
 
-  print('classMirrors: $classMirrors');
-
   test('initClassMirrors', () {
     expect(reflectType(Student), StudentClassMirror);
     expect(reflectType(Course), CourseClassMirror);

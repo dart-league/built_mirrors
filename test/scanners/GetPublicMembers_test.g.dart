@@ -60,5 +60,4 @@ _initMirrors() {
     ObjectWithMembers: ObjectWithMembersClassMirror,
     ExtendedObject: ExtendedObjectClassMirror
   });
-  initFunctionMirrors({});
 }

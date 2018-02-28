@@ -1,3 +1,7 @@
+# 0.8.3
+
+- add generics support
+
 # 0.8.2
 
 - add `built_mirrors_core` package

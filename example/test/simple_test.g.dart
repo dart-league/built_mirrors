@@ -20,5 +20,4 @@ const SimpleTestClassMirror = const ClassMirror(
 
 _initMirrors() {
   initClassMirrors({SimpleTest: SimpleTestClassMirror});
-  initFunctionMirrors({});
 }

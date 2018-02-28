@@ -23,5 +23,4 @@ const ClassWithAnnotationsClassMirror =
 
 _initMirrors() {
   initClassMirrors({ClassWithAnnotations: ClassWithAnnotationsClassMirror});
-  initFunctionMirrors({});
 }
