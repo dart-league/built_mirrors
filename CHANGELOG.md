@@ -1,3 +1,9 @@
+# 0.8.5
+
+- upgrade `analyzer` to version `^0.32.0`
+- upgrade `build_runner` to version `0.8.10`
+- upgrade `test` to version `^1.0.0`
+
 # 0.8.4
 
 - upgrade `source_gen` to version `0.8.0`

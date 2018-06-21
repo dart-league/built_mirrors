@@ -3,7 +3,7 @@
 part of built_mirrors.example.main;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 const someFunctionFunctionMirror = const FunctionMirror(
@@ -21,7 +21,7 @@ const someFunctionFunctionMirror = const FunctionMirror(
     annotations: const [const AnnotationWithFunction(otherFunction)]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

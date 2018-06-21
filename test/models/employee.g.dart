@@ -3,7 +3,7 @@
 part of built_mirrors.test.models.employee;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _Employee__Constructor([positionalParams, namedParams]) => new Employee();

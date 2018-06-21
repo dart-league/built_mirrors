@@ -3,7 +3,7 @@
 part of getObjectThatExtend_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 const Service1ClassMirror =
@@ -44,7 +44,7 @@ const Service22ImplClassMirror = const ClassMirror(
     superclass: Service2Impl);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

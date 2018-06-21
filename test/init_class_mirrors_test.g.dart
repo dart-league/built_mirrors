@@ -3,7 +3,7 @@
 part of built_mirrors.test.init_class_mirrors_test;
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

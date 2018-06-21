@@ -3,7 +3,7 @@
 part of GetFieldsAnnotatedWith_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _ObjectWithAnnotatedFields__Constructor([positionalParams, namedParams]) =>
@@ -34,7 +34,7 @@ const ObjectWithAnnotatedFieldsClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

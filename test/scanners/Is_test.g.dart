@@ -3,7 +3,7 @@
 part of Is_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _ClassWithAnnotations__Constructor([positionalParams, namedParams]) =>
@@ -18,7 +18,7 @@ const ClassWithAnnotationsClassMirror =
 ]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

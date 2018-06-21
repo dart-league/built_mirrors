@@ -3,7 +3,7 @@
 part of built_mirrors.test.models.person;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _Person__Constructor([positionalParams, namedParams]) => new Person();

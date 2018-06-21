@@ -3,7 +3,7 @@
 part of GetVarialbesAndGettersTest_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _ObjectWithMembers__Constructor([positionalParams, namedParams]) =>
@@ -52,7 +52,7 @@ const ExtendedObjectClassMirror = const ClassMirror(
     superclass: ObjectWithMembers);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

@@ -3,7 +3,7 @@
 part of built_mirrors.example.generics_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _NoGeneric__Constructor([positionalParams, namedParams]) => new NoGeneric();
@@ -56,7 +56,7 @@ const Generic2ClassMirror = const ClassMirror(
     ]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

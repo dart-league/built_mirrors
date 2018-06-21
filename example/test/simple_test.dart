@@ -12,6 +12,6 @@ main() {
   _initMirrors();
 
   test('simple test', () {
-
+    expect(reflectType(SimpleTest), SimpleTestClassMirror);
   });
 }

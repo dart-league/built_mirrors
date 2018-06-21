@@ -3,7 +3,7 @@
 part of GetMethodsAnnotatedWith_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _ObjectWithAnnotatedMethods__Constructor([positionalParams, namedParams]) =>
@@ -25,7 +25,7 @@ const ObjectWithAnnotatedMethodsClassMirror =
 });
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

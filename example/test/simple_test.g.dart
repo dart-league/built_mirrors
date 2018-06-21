@@ -3,7 +3,7 @@
 part of built_mirrors.example.simple_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _SimpleTest__Constructor([positionalParams, namedParams]) => new SimpleTest();
@@ -15,7 +15,7 @@ const SimpleTestClassMirror = const ClassMirror(
     });
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {

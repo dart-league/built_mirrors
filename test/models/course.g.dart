@@ -3,7 +3,7 @@
 part of built_mirrors.test.models.course;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _Course__Constructor([positionalParams, namedParams]) => new Course();

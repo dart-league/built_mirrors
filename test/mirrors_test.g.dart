@@ -3,7 +3,7 @@
 part of built_mirrors.test.enum_test;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 const ColorClassMirror =
@@ -99,7 +99,7 @@ const ClassWithAnnotationWithConstantClassMirror = const ClassMirror(
     ]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {
