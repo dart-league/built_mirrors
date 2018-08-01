@@ -7,8 +7,8 @@ This is a library that generates `ClassMirror` from classes annotated with
 
 ## Getting Started
 
-1. Create a new dart-web project.
-2. add `built_mirrors` dependency to your `pubspec.yaml`.
+1\. Create a new dart-web project.
+2\. add `built_mirrors` dependency to your `pubspec.yaml`.
 
 ```yaml
 ...
@@ -24,7 +24,7 @@ dev_dependencies:
   ...
 ```
 
-3. create a file in `bin` folder called `models.dart` and put next code on it:
+3\. create a file in `bin` folder called `models.dart` and put next code on it:
 
 ```dart
 library built_mirrors.example.models;
@@ -93,7 +93,7 @@ class ClassWithMethod {
 
 ```
 
-4. edit the file `main.dart` in the folder `bin` and put next code on it:
+4\. edit the file `main.dart` in the folder `bin` and put next code on it:
 
 ```dart
 library built_mirrors.example.main;
@@ -176,7 +176,7 @@ main() {
 
 ```
 
-5. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
+5\. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
 and `bin/main.g.dart` have been generated and they will contain the next code:
 
 ```dart
@@ -185,7 +185,7 @@ and `bin/main.g.dart` have been generated and they will contain the next code:
 part of built_mirrors.example.main;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 const someFunctionFunctionMirror = const FunctionMirror(
@@ -203,7 +203,7 @@ const someFunctionFunctionMirror = const FunctionMirror(
     annotations: const [const AnnotationWithFunction(otherFunction)]);
 
 // **************************************************************************
-// Generator: InitMirrorsGenerator
+// InitMirrorsGenerator
 // **************************************************************************
 
 _initMirrors() {
@@ -227,7 +227,7 @@ and:
 part of built_mirrors.example.models;
 
 // **************************************************************************
-// Generator: MirrorsGenerator
+// MirrorsGenerator
 // **************************************************************************
 
 _Person__Constructor([positionalParams, namedParams]) => new Person(
@@ -284,6 +284,7 @@ const PersonClassMirror =
   'cars',
   'mySetter'
 ]);
+
 _Car__Constructor([positionalParams, namedParams]) =>
     new Car(positionalParams[0], positionalParams[1]);
 
@@ -313,6 +314,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   'id',
   'engine'
 ]);
+
 _EmptyClass__Constructor([positionalParams, namedParams]) => new EmptyClass();
 
 const EmptyClassClassMirror = const ClassMirror(
@@ -320,6 +322,7 @@ const EmptyClassClassMirror = const ClassMirror(
     constructors: const {
       '': const FunctionMirror(name: '', $call: _EmptyClass__Constructor)
     });
+
 _ExtendedPerson__Constructor([positionalParams, namedParams]) =>
     new ExtendedPerson();
 
@@ -362,6 +365,7 @@ const ExtendedPersonClassMirror = const ClassMirror(
       'mySetter'
     ],
     superclass: Person);
+
 _ClassWithMethod__Constructor([positionalParams, namedParams]) =>
     new ClassWithMethod();
 
@@ -395,7 +399,7 @@ const ClassWithMethodClassMirror =
 
 ```
 
-6. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
+6\. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
 output in console:
 
 ```

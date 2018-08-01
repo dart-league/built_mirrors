@@ -8,6 +8,7 @@ part of built_mirrors.test.enum_test;
 
 const ColorClassMirror =
     const ClassMirror(name: 'Color', isEnum: true, values: Color.values);
+
 _ClassWithMethods__Constructor([positionalParams, namedParams]) =>
     new ClassWithMethods();
 
@@ -50,6 +51,7 @@ const ClassWithMethodsClassMirror =
     returnType: String,
   )
 });
+
 _ClassWithAnnotationWithFunction__Constructor(
         [positionalParams, namedParams]) =>
     new ClassWithAnnotationWithFunction();
@@ -63,6 +65,7 @@ const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
     annotations: const [
       const AnnotationWithFunction(someFunction)
     ]);
+
 _ClassWithAnnotationWithList__Constructor([positionalParams, namedParams]) =>
     new ClassWithAnnotationWithList();
 
@@ -73,6 +76,7 @@ const ClassWithAnnotationWithListClassMirror =
 }, annotations: const [
   const AnnotationWithList(const [r'hello', r'hi'])
 ]);
+
 _ClassWithAnnotationWithMap__Constructor([positionalParams, namedParams]) =>
     new ClassWithAnnotationWithMap();
 
@@ -83,6 +87,7 @@ const ClassWithAnnotationWithMapClassMirror =
 }, annotations: const [
   const AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
 ]);
+
 _ClassWithAnnotationWithConstant__Constructor(
         [positionalParams, namedParams]) =>
     new ClassWithAnnotationWithConstant();

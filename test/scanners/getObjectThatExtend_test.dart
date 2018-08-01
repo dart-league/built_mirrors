@@ -29,7 +29,7 @@ main() {
 
     var service1Cm = classMirrors.values.singleWhere((cm) => cm.name == 'Service1');
 
-    expect(getObjectThatExtend(service1Cm), new isInstanceOf<Service1Impl>());
+    expect(getObjectThatExtend(service1Cm), new TypeMatcher<Service1Impl>());
   });
 
 
@@ -37,6 +37,6 @@ main() {
 
     var service2ImplCm = classMirrors.values.singleWhere((cm) => cm.name == 'Service2');
 
-    expect(getObjectThatExtend(service2ImplCm), new isInstanceOf<Service22Impl>());
+    expect(getObjectThatExtend(service2ImplCm), new TypeMatcher<Service22Impl>());
   });
 }

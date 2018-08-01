@@ -31,6 +31,7 @@ const ObjectWithMembersClassMirror = const ClassMirror(
       'name',
       'age'
     ]);
+
 _ExtendedObject__Constructor([positionalParams, namedParams]) =>
     new ExtendedObject();
 

@@ -7,8 +7,8 @@ This is a library that generates `ClassMirror` from classes annotated with
 
 ## Getting Started
 
-1. Create a new dart-web project.
-2. add `built_mirrors` dependency to your `pubspec.yaml`.
+1\. Create a new dart-web project.
+2\. add `built_mirrors` dependency to your `pubspec.yaml`.
 
 ```yaml
 ...
@@ -24,15 +24,15 @@ dev_dependencies:
   ...
 ```
 
-3. create a file in `bin` folder called `models.dart` and put next code on it:
+3\. create a file in `bin` folder called `models.dart` and put next code on it:
 
 {@example example/bin/models.dart}
 
-4. edit the file `main.dart` in the folder `bin` and put next code on it:
+4\. edit the file `main.dart` in the folder `bin` and put next code on it:
 
 {@example example/bin/main.dart}
 
-5. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
+5\. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
 and `bin/main.g.dart` have been generated and they will contain the next code:
 
 {@example example/bin/main.g.dart}
@@ -41,7 +41,7 @@ and:
 
 {@example example/bin/models.g.dart}
 
-6. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
+6\. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
 output in console:
 
 ```

@@ -60,6 +60,7 @@ const PersonClassMirror =
   'cars',
   'mySetter'
 ]);
+
 _Car__Constructor([positionalParams, namedParams]) =>
     new Car(positionalParams[0], positionalParams[1]);
 
@@ -89,6 +90,7 @@ const CarClassMirror = const ClassMirror(name: 'Car', constructors: const {
   'id',
   'engine'
 ]);
+
 _EmptyClass__Constructor([positionalParams, namedParams]) => new EmptyClass();
 
 const EmptyClassClassMirror = const ClassMirror(
@@ -96,6 +98,7 @@ const EmptyClassClassMirror = const ClassMirror(
     constructors: const {
       '': const FunctionMirror(name: '', $call: _EmptyClass__Constructor)
     });
+
 _ExtendedPerson__Constructor([positionalParams, namedParams]) =>
     new ExtendedPerson();
 
@@ -138,6 +141,7 @@ const ExtendedPersonClassMirror = const ClassMirror(
       'mySetter'
     ],
     superclass: Person);
+
 _ClassWithMethod__Constructor([positionalParams, namedParams]) =>
     new ClassWithMethod();
 

@@ -13,6 +13,7 @@ const NoGenericClassMirror = const ClassMirror(
     constructors: const {
       '': const FunctionMirror(name: '', $call: _NoGeneric__Constructor)
     });
+
 _Generic1__Constructor([positionalParams, namedParams]) => new Generic1();
 
 const $$Generic1_fields_mList =
@@ -32,6 +33,7 @@ const Generic1ClassMirror = const ClassMirror(
     setters: const [
       'mList'
     ]);
+
 _Generic2__Constructor([positionalParams, namedParams]) => new Generic2();
 
 const $$Generic2_fields_mMap =

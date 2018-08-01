@@ -120,11 +120,11 @@ main() {
 
     var methodWithAnnotation = cm.methods['methodWithAnnotation'];
     expect(methodWithAnnotation.namedParameters, null);
-    expect(methodWithAnnotation.annotations[0], new isInstanceOf<SomeAnnotation>());
+    expect(methodWithAnnotation.annotations[0], new TypeMatcher<SomeAnnotation>());
     expect(methodWithAnnotation.returnType, dynamic);
 
     var methodWithAnnotatedParams = cm.methods['methodWithAnnotatedParams'];
-    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], new isInstanceOf<SomeAnnotation>());
+    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], new TypeMatcher<SomeAnnotation>());
     expect(methodWithAnnotatedParams.annotations, null);
     expect(methodWithAnnotatedParams.returnType, dynamic);
 
@@ -137,28 +137,28 @@ main() {
   test('class with annotation with function', () {
     var cm = reflectType(ClassWithAnnotationWithFunction);
     AnnotationWithFunction annotationWithFunction = cm.annotations[0];
-    expect(annotationWithFunction, new isInstanceOf<AnnotationWithFunction>());
+    expect(annotationWithFunction, new TypeMatcher<AnnotationWithFunction>());
     expect(annotationWithFunction.function, someFunction);
   });
 
   test('class with annotation with list', () {
     var cm = reflectType(ClassWithAnnotationWithList);
     AnnotationWithList annotationWithList = cm.annotations[0];
-    expect(annotationWithList, new isInstanceOf<AnnotationWithList>());
+    expect(annotationWithList, new TypeMatcher<AnnotationWithList>());
     expect(annotationWithList.myList, const ['hello', 'hi']);
   });
 
   test('class with annotation with map', () {
     var cm = reflectType(ClassWithAnnotationWithMap);
     AnnotationWithMap annotationWithMap = cm.annotations[0];
-    expect(annotationWithMap, new isInstanceOf<AnnotationWithMap>());
+    expect(annotationWithMap, new TypeMatcher<AnnotationWithMap>());
     expect(annotationWithMap.myMap, const {'k1': 'v1', 'k2': 'v2'});
   });
 
   test('class with annotation with constant', () {
     var cm = reflectType(ClassWithAnnotationWithConstant);
     AnnotationWithConstant annotationWithConstant = cm.annotations[0];
-    expect(annotationWithConstant, new isInstanceOf<AnnotationWithConstant>());
+    expect(annotationWithConstant, new TypeMatcher<AnnotationWithConstant>());
     expect(annotationWithConstant.someConstant, const SomeConstant('my-constant'));
     expect(annotationWithConstant.otherConstant, const SomeConstant('other-constant'));
   });

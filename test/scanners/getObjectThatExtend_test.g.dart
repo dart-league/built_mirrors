@@ -8,6 +8,7 @@ part of getObjectThatExtend_test;
 
 const Service1ClassMirror =
     const ClassMirror(name: 'Service1', isAbstract: true);
+
 _Service1Impl__Constructor([positionalParams, namedParams]) =>
     new Service1Impl();
 
@@ -22,6 +23,7 @@ const Service1ImplClassMirror = const ClassMirror(
 
 const Service2ClassMirror =
     const ClassMirror(name: 'Service2', isAbstract: true);
+
 _Service2Impl__Constructor([positionalParams, namedParams]) =>
     new Service2Impl();
 
@@ -33,6 +35,7 @@ const Service2ImplClassMirror = const ClassMirror(
     superinterfaces: const [
       Service2
     ]);
+
 _Service22Impl__Constructor([positionalParams, namedParams]) =>
     new Service22Impl();
 
