@@ -1,3 +1,7 @@
+# 0.10.0
+
+- add `SerializedName` annotation, this annotation will be compile time only.
+
 # 0.9.0
 
 - upgrade `source_gen` to version `^0.9.0`
