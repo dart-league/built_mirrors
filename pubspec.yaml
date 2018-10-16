@@ -1,5 +1,5 @@
 name: built_mirrors
-version: 0.10.0
+version: 0.10.1
 description: generates `ClassMirror` from classes annotated with `@reflectable` or `@Reflectable()`
 author: Luis Vargas <luisvargastijerino@gmail.com>
 homepage: https://github.com/dart-league/built_mirrors
@@ -9,9 +9,9 @@ environment:
 
 dependencies:
   source_gen: ^0.9.0
-  build: ^0.12.0
-  analyzer: ^0.32.0
-  built_mirrors_core: ^0.10.0
+  build: ^1.0.1
+  analyzer: ^0.33.0
+  built_mirrors_core: ^0.10.1
 #  built_mirrors_core:
 #    path: ../built_mirrors_core
 
@@ -19,4 +19,4 @@ dependencies:
 dev_dependencies:
   test: ^1.0.0
   build_test: ^0.10.1
-  build_runner: ^0.9.0
+  build_runner: ^1.0.0
