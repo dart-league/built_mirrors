@@ -48,17 +48,17 @@ const PersonClassMirror =
   'myGetter': $$Person_fields_myGetter,
   'mySetter': $$Person_fields_mySetter
 }, getters: const [
+  'myGetter',
   'id',
   'name',
   'myDynamic',
-  'cars',
-  'myGetter'
+  'cars'
 ], setters: const [
+  'mySetter',
   'id',
   'name',
   'myDynamic',
-  'cars',
-  'mySetter'
+  'cars'
 ]);
 
 _Car__Constructor([positionalParams, namedParams]) =>
@@ -125,20 +125,20 @@ const ExtendedPersonClassMirror = const ClassMirror(
     getters: const [
       'extendedName',
       'otherExtended',
+      'myGetter',
       'id',
       'name',
       'myDynamic',
-      'cars',
-      'myGetter'
+      'cars'
     ],
     setters: const [
       'extendedName',
       'otherExtended',
+      'mySetter',
       'id',
       'name',
       'myDynamic',
-      'cars',
-      'mySetter'
+      'cars'
     ],
     superclass: Person);
 
