@@ -2,7 +2,7 @@ name: built_mirrors_example
 version: 0.0.1
 
 environment:
-  sdk: '>=1.8.0 <2.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
   built_mirrors:

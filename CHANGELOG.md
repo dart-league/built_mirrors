@@ -1,3 +1,7 @@
+# 0.10.6
+
+- set `analyzer` to version `>=0.36.0 <1.0.0`
+
 # 0.10.5
 
 - upgrade `analyzer` to version `^0.36.0`
