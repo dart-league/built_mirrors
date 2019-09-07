@@ -7,21 +7,18 @@ part of GetMethodsAnnotatedWith_test;
 // **************************************************************************
 
 _ObjectWithAnnotatedMethods__Constructor([positionalParams, namedParams]) =>
-    new ObjectWithAnnotatedMethods();
+    ObjectWithAnnotatedMethods();
 
 const ObjectWithAnnotatedMethodsClassMirror =
-    const ClassMirror(name: 'ObjectWithAnnotatedMethods', constructors: const {
-  '': const FunctionMirror(
-      name: '', $call: _ObjectWithAnnotatedMethods__Constructor)
-}, methods: const {
-  'annotated1': const FunctionMirror(
+    ClassMirror(name: 'ObjectWithAnnotatedMethods', constructors: {
+  '': FunctionMirror(name: '', $call: _ObjectWithAnnotatedMethods__Constructor)
+}, methods: {
+  'annotated1': FunctionMirror(
       name: 'annotated1',
       returnType: dynamic,
-      annotations: const [const Annotation1(), const Annotation2()]),
-  'annotated2': const FunctionMirror(
-      name: 'annotated2',
-      returnType: dynamic,
-      annotations: const [const Annotation1()])
+      annotations: [Annotation1(), Annotation2()]),
+  'annotated2': FunctionMirror(
+      name: 'annotated2', returnType: dynamic, annotations: [Annotation1()])
 });
 
 // **************************************************************************

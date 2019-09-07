@@ -7,45 +7,45 @@ part of built_mirrors.test.enum_test;
 // **************************************************************************
 
 const ColorClassMirror =
-    const ClassMirror(name: 'Color', isEnum: true, values: Color.values);
+    ClassMirror(name: 'Color', isEnum: true, values: Color.values);
 
 _ClassWithMethods__Constructor([positionalParams, namedParams]) =>
-    new ClassWithMethods();
+    ClassWithMethods();
 
 const ClassWithMethodsClassMirror =
-    const ClassMirror(name: 'ClassWithMethods', constructors: const {
-  '': const FunctionMirror(name: '', $call: _ClassWithMethods__Constructor)
-}, methods: const {
-  'methodNoReturnTypeNoParams': const FunctionMirror(
+    ClassMirror(name: 'ClassWithMethods', constructors: {
+  '': FunctionMirror(name: '', $call: _ClassWithMethods__Constructor)
+}, methods: {
+  'methodNoReturnTypeNoParams': FunctionMirror(
     name: 'methodNoReturnTypeNoParams',
     returnType: dynamic,
   ),
-  'methodNoReturnTypeWithParams': const FunctionMirror(
-    positionalParameters: const [
-      const DeclarationMirror(name: 'param1', type: String, isRequired: true)
+  'methodNoReturnTypeWithParams': FunctionMirror(
+    positionalParameters: [
+      DeclarationMirror(name: 'param1', type: String, isRequired: true)
     ],
     name: 'methodNoReturnTypeWithParams',
     returnType: dynamic,
   ),
-  'methodWithAnnotation': const FunctionMirror(
+  'methodWithAnnotation': FunctionMirror(
       name: 'methodWithAnnotation',
       returnType: dynamic,
-      annotations: const [const SomeAnnotation()]),
-  'methodWithAnnotatedParams': const FunctionMirror(
-    positionalParameters: const [
-      const DeclarationMirror(
+      annotations: [SomeAnnotation()]),
+  'methodWithAnnotatedParams': FunctionMirror(
+    positionalParameters: [
+      DeclarationMirror(
           name: 'p1',
           type: dynamic,
           isRequired: true,
-          annotations: const [const SomeAnnotation()])
+          annotations: [SomeAnnotation()])
     ],
     name: 'methodWithAnnotatedParams',
     returnType: dynamic,
   ),
-  'methodWithReturnTypeAndParams': const FunctionMirror(
-    namedParameters: const {
-      'b': const DeclarationMirror(name: 'b', type: String, isNamed: true),
-      'c': const DeclarationMirror(name: 'c', type: int, isNamed: true)
+  'methodWithReturnTypeAndParams': FunctionMirror(
+    namedParameters: {
+      'b': DeclarationMirror(name: 'b', type: String, isNamed: true),
+      'c': DeclarationMirror(name: 'c', type: int, isNamed: true)
     },
     name: 'methodWithReturnTypeAndParams',
     returnType: String,
@@ -54,54 +54,48 @@ const ClassWithMethodsClassMirror =
 
 _ClassWithAnnotationWithFunction__Constructor(
         [positionalParams, namedParams]) =>
-    new ClassWithAnnotationWithFunction();
+    ClassWithAnnotationWithFunction();
 
-const ClassWithAnnotationWithFunctionClassMirror = const ClassMirror(
-    name: 'ClassWithAnnotationWithFunction',
-    constructors: const {
-      '': const FunctionMirror(
-          name: '', $call: _ClassWithAnnotationWithFunction__Constructor)
-    },
-    annotations: const [
-      const AnnotationWithFunction(someFunction)
-    ]);
+const ClassWithAnnotationWithFunctionClassMirror =
+    ClassMirror(name: 'ClassWithAnnotationWithFunction', constructors: {
+  '': FunctionMirror(
+      name: '', $call: _ClassWithAnnotationWithFunction__Constructor)
+}, annotations: [
+  AnnotationWithFunction(someFunction)
+]);
 
 _ClassWithAnnotationWithList__Constructor([positionalParams, namedParams]) =>
-    new ClassWithAnnotationWithList();
+    ClassWithAnnotationWithList();
 
 const ClassWithAnnotationWithListClassMirror =
-    const ClassMirror(name: 'ClassWithAnnotationWithList', constructors: const {
-  '': const FunctionMirror(
-      name: '', $call: _ClassWithAnnotationWithList__Constructor)
-}, annotations: const [
-  const AnnotationWithList(const [r'hello', r'hi'])
+    ClassMirror(name: 'ClassWithAnnotationWithList', constructors: {
+  '': FunctionMirror(name: '', $call: _ClassWithAnnotationWithList__Constructor)
+}, annotations: [
+  AnnotationWithList(const [r'hello', r'hi'])
 ]);
 
 _ClassWithAnnotationWithMap__Constructor([positionalParams, namedParams]) =>
-    new ClassWithAnnotationWithMap();
+    ClassWithAnnotationWithMap();
 
 const ClassWithAnnotationWithMapClassMirror =
-    const ClassMirror(name: 'ClassWithAnnotationWithMap', constructors: const {
-  '': const FunctionMirror(
-      name: '', $call: _ClassWithAnnotationWithMap__Constructor)
-}, annotations: const [
-  const AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
+    ClassMirror(name: 'ClassWithAnnotationWithMap', constructors: {
+  '': FunctionMirror(name: '', $call: _ClassWithAnnotationWithMap__Constructor)
+}, annotations: [
+  AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
 ]);
 
 _ClassWithAnnotationWithConstant__Constructor(
         [positionalParams, namedParams]) =>
-    new ClassWithAnnotationWithConstant();
+    ClassWithAnnotationWithConstant();
 
-const ClassWithAnnotationWithConstantClassMirror = const ClassMirror(
-    name: 'ClassWithAnnotationWithConstant',
-    constructors: const {
-      '': const FunctionMirror(
-          name: '', $call: _ClassWithAnnotationWithConstant__Constructor)
-    },
-    annotations: const [
-      const AnnotationWithConstant(const SomeConstant(r'my-constant'),
-          otherConstant: const SomeConstant(r'other-constant'))
-    ]);
+const ClassWithAnnotationWithConstantClassMirror =
+    ClassMirror(name: 'ClassWithAnnotationWithConstant', constructors: {
+  '': FunctionMirror(
+      name: '', $call: _ClassWithAnnotationWithConstant__Constructor)
+}, annotations: [
+  AnnotationWithConstant(const SomeConstant(r'my-constant'),
+      otherConstant: const SomeConstant(r'other-constant'))
+]);
 
 // **************************************************************************
 // InitMirrorsGenerator

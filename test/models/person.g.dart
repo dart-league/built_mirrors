@@ -6,30 +6,29 @@ part of built_mirrors.test.models.person;
 // MirrorsGenerator
 // **************************************************************************
 
-_Person__Constructor([positionalParams, namedParams]) => new Person();
+_Person__Constructor([positionalParams, namedParams]) => Person();
 
-const $$Person_fields_id = const DeclarationMirror(name: 'id', type: int);
+const $$Person_fields_id = DeclarationMirror(name: 'id', type: int);
 const $$Person_fields_firstName =
-    const DeclarationMirror(name: 'firstName', type: String);
+    DeclarationMirror(name: 'firstName', type: String);
 const $$Person_fields_className =
-    const DeclarationMirror(name: 'className', type: String);
+    DeclarationMirror(name: 'className', type: String);
 const $$Person_fields_dateOfBirth =
-    const DeclarationMirror(name: 'dateOfBirth', type: DateTime);
+    DeclarationMirror(name: 'dateOfBirth', type: DateTime);
 
-const PersonClassMirror =
-    const ClassMirror(name: 'Person', constructors: const {
-  '': const FunctionMirror(name: '', $call: _Person__Constructor)
-}, fields: const {
+const PersonClassMirror = ClassMirror(name: 'Person', constructors: {
+  '': FunctionMirror(name: '', $call: _Person__Constructor)
+}, fields: {
   'id': $$Person_fields_id,
   'firstName': $$Person_fields_firstName,
   'className': $$Person_fields_className,
   'dateOfBirth': $$Person_fields_dateOfBirth
-}, getters: const [
+}, getters: [
   'id',
   'firstName',
   'className',
   'dateOfBirth'
-], setters: const [
+], setters: [
   'id',
   'firstName',
   'className',

@@ -7,49 +7,49 @@ part of GetVarialbesAndGettersTest_test;
 // **************************************************************************
 
 _ObjectWithMembers__Constructor([positionalParams, namedParams]) =>
-    new ObjectWithMembers();
+    ObjectWithMembers();
 
 const $$ObjectWithMembers_fields_name =
-    const DeclarationMirror(name: 'name', type: String);
+    DeclarationMirror(name: 'name', type: String);
 const $$ObjectWithMembers_fields_age =
-    const DeclarationMirror(name: 'age', type: int);
+    DeclarationMirror(name: 'age', type: int);
 
-const ObjectWithMembersClassMirror = const ClassMirror(
+const ObjectWithMembersClassMirror = ClassMirror(
     name: 'ObjectWithMembers',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _ObjectWithMembers__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _ObjectWithMembers__Constructor)
     },
-    fields: const {
+    fields: {
       'name': $$ObjectWithMembers_fields_name,
       'age': $$ObjectWithMembers_fields_age
     },
-    getters: const [
+    getters: [
       'name',
       'age'
     ],
-    setters: const [
+    setters: [
       'name',
       'age'
     ]);
 
 _ExtendedObject__Constructor([positionalParams, namedParams]) =>
-    new ExtendedObject();
+    ExtendedObject();
 
 const $$ExtendedObject_fields_myProp =
-    const DeclarationMirror(name: 'myProp', type: String);
+    DeclarationMirror(name: 'myProp', type: String);
 
-const ExtendedObjectClassMirror = const ClassMirror(
+const ExtendedObjectClassMirror = ClassMirror(
     name: 'ExtendedObject',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _ExtendedObject__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _ExtendedObject__Constructor)
     },
-    fields: const {
+    fields: {
       'myProp': $$ExtendedObject_fields_myProp,
       'name': $$ObjectWithMembers_fields_name,
       'age': $$ObjectWithMembers_fields_age
     },
-    getters: const ['myProp', 'name', 'age'],
-    setters: const ['myProp', 'name', 'age'],
+    getters: ['myProp', 'name', 'age'],
+    setters: ['myProp', 'name', 'age'],
     superclass: ObjectWithMembers);
 
 // **************************************************************************

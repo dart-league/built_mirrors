@@ -6,19 +6,17 @@ part of built_mirrors.test.models.student;
 // MirrorsGenerator
 // **************************************************************************
 
-_Student__Constructor([positionalParams, namedParams]) => new Student();
+_Student__Constructor([positionalParams, namedParams]) => Student();
 
 const $$Student_fields_studentId =
-    const DeclarationMirror(name: 'studentId', type: String);
+    DeclarationMirror(name: 'studentId', type: String);
 const $$Student_fields_courses =
-    const DeclarationMirror(name: 'courses', type: const [List, Course]);
+    DeclarationMirror(name: 'courses', type: [List, Course]);
 
-const StudentClassMirror = const ClassMirror(
+const StudentClassMirror = ClassMirror(
     name: 'Student',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Student__Constructor)
-    },
-    fields: const {
+    constructors: {'': FunctionMirror(name: '', $call: _Student__Constructor)},
+    fields: {
       'studentId': $$Student_fields_studentId,
       'courses': $$Student_fields_courses,
       'id': $$Person_fields_id,
@@ -26,7 +24,7 @@ const StudentClassMirror = const ClassMirror(
       'className': $$Person_fields_className,
       'dateOfBirth': $$Person_fields_dateOfBirth
     },
-    getters: const [
+    getters: [
       'studentId',
       'courses',
       'id',
@@ -34,7 +32,7 @@ const StudentClassMirror = const ClassMirror(
       'className',
       'dateOfBirth'
     ],
-    setters: const [
+    setters: [
       'studentId',
       'courses',
       'id',

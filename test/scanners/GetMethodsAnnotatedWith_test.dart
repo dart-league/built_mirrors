@@ -1,7 +1,7 @@
 library GetMethodsAnnotatedWith_test;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
-import 'package:built_mirrors_core/scanners.dart';
+import 'package:built_mirrors/built_mirrors.dart';
+import 'package:built_mirrors/scanners.dart';
 import 'package:test/test.dart';
 
 part 'GetMethodsAnnotatedWith_test.g.dart';
@@ -27,12 +27,12 @@ class ObjectWithAnnotatedMethods {
 
 main() {
   _initMirrors();
-  var o = new ObjectWithAnnotatedMethods();
+  var o = ObjectWithAnnotatedMethods();
   var cm = reflectType(ObjectWithAnnotatedMethods);
 
   test('GetMethodsAnnotatedWith', () {
-    expect(new GetMethodsAnnotatedWith<Annotation1>().from(o), [cm.methods['annotated1'], cm.methods['annotated2']]);
+    expect(GetMethodsAnnotatedWith<Annotation1>().from(o), [cm.methods['annotated1'], cm.methods['annotated2']]);
 
-    expect(new GetMethodsAnnotatedWith<Annotation2>().from(o), [cm.methods['annotated1']]);
+    expect(GetMethodsAnnotatedWith<Annotation2>().from(o), [cm.methods['annotated1']]);
   });
 }

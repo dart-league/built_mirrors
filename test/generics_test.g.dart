@@ -6,56 +6,37 @@ part of built_mirrors.example.generics_test;
 // MirrorsGenerator
 // **************************************************************************
 
-_NoGeneric__Constructor([positionalParams, namedParams]) => new NoGeneric();
+_NoGeneric__Constructor([positionalParams, namedParams]) => NoGeneric();
 
-const NoGenericClassMirror = const ClassMirror(
-    name: 'NoGeneric',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _NoGeneric__Constructor)
-    });
+const NoGenericClassMirror = ClassMirror(name: 'NoGeneric', constructors: {
+  '': FunctionMirror(name: '', $call: _NoGeneric__Constructor)
+});
 
-_Generic1__Constructor([positionalParams, namedParams]) => new Generic1();
+_Generic1__Constructor([positionalParams, namedParams]) => Generic1();
 
 const $$Generic1_fields_mList =
-    const DeclarationMirror(name: 'mList', type: const [List, dynamic]);
+    DeclarationMirror(name: 'mList', type: [List, dynamic]);
 
-const Generic1ClassMirror = const ClassMirror(
+const Generic1ClassMirror = ClassMirror(
     name: 'Generic1',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Generic1__Constructor)
-    },
-    fields: const {
-      'mList': $$Generic1_fields_mList
-    },
-    getters: const [
-      'mList'
-    ],
-    setters: const [
-      'mList'
-    ]);
+    constructors: {'': FunctionMirror(name: '', $call: _Generic1__Constructor)},
+    fields: {'mList': $$Generic1_fields_mList},
+    getters: ['mList'],
+    setters: ['mList']);
 
-_Generic2__Constructor([positionalParams, namedParams]) => new Generic2();
+_Generic2__Constructor([positionalParams, namedParams]) => Generic2();
 
-const $$Generic2_fields_mMap =
-    const DeclarationMirror(name: 'mMap', type: const [
+const $$Generic2_fields_mMap = DeclarationMirror(name: 'mMap', type: [
   Map,
-  const [dynamic, dynamic]
+  [dynamic, dynamic]
 ]);
 
-const Generic2ClassMirror = const ClassMirror(
+const Generic2ClassMirror = ClassMirror(
     name: 'Generic2',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Generic2__Constructor)
-    },
-    fields: const {
-      'mMap': $$Generic2_fields_mMap
-    },
-    getters: const [
-      'mMap'
-    ],
-    setters: const [
-      'mMap'
-    ]);
+    constructors: {'': FunctionMirror(name: '', $call: _Generic2__Constructor)},
+    fields: {'mMap': $$Generic2_fields_mMap},
+    getters: ['mMap'],
+    setters: ['mMap']);
 
 // **************************************************************************
 // InitMirrorsGenerator

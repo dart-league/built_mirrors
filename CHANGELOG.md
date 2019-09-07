@@ -1,3 +1,10 @@
+# 0.11.0
+
+- Add `analysis_options` and check for unnecessary `new` and `const` kewords
+- Remove dependency on `built_mirrors_core`
+- Change builder from `PartBuilder` to `SharedPartBuilder`, this way generator can run alongside with other generators
+- Make builder `auto_apply: dependents`. This way builder only run on direct dependents
+
 # 0.10.6
 
 - set `analyzer` to version `>=0.36.0 <1.0.0`

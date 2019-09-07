@@ -6,26 +6,23 @@ part of built_mirrors.test.models.course;
 // MirrorsGenerator
 // **************************************************************************
 
-_Course__Constructor([positionalParams, namedParams]) => new Course();
+_Course__Constructor([positionalParams, namedParams]) => Course();
 
-const $$Course_fields_id = const DeclarationMirror(name: 'id', type: int);
-const $$Course_fields_name =
-    const DeclarationMirror(name: 'name', type: String);
-const $$Course_fields_credits =
-    const DeclarationMirror(name: 'credits', type: num);
+const $$Course_fields_id = DeclarationMirror(name: 'id', type: int);
+const $$Course_fields_name = DeclarationMirror(name: 'name', type: String);
+const $$Course_fields_credits = DeclarationMirror(name: 'credits', type: num);
 
-const CourseClassMirror =
-    const ClassMirror(name: 'Course', constructors: const {
-  '': const FunctionMirror(name: '', $call: _Course__Constructor)
-}, fields: const {
+const CourseClassMirror = ClassMirror(name: 'Course', constructors: {
+  '': FunctionMirror(name: '', $call: _Course__Constructor)
+}, fields: {
   'id': $$Course_fields_id,
   'name': $$Course_fields_name,
   'credits': $$Course_fields_credits
-}, getters: const [
+}, getters: [
   'id',
   'name',
   'credits'
-], setters: const [
+], setters: [
   'id',
   'name',
   'credits'

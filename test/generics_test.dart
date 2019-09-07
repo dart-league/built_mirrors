@@ -29,9 +29,9 @@ main() {
     });
 
     test('reflect', () {
-      expect(reflect(new NoGeneric()), NoGenericClassMirror);
-      expect(reflect(new Generic1<String>()), Generic1ClassMirror);
-      expect(reflect(new Generic2<String, NoGeneric>()), Generic2ClassMirror);
+      expect(reflect(NoGeneric()), NoGenericClassMirror);
+      expect(reflect(Generic1<String>()), Generic1ClassMirror);
+      expect(reflect(Generic2<String, NoGeneric>()), Generic2ClassMirror);
     });
   });
 }

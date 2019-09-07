@@ -7,28 +7,25 @@ part of GetFieldsAnnotatedWith_test;
 // **************************************************************************
 
 _ObjectWithAnnotatedFields__Constructor([positionalParams, namedParams]) =>
-    new ObjectWithAnnotatedFields();
+    ObjectWithAnnotatedFields();
 
-const $$ObjectWithAnnotatedFields_fields_annotated1 = const DeclarationMirror(
+const $$ObjectWithAnnotatedFields_fields_annotated1 = DeclarationMirror(
     name: 'annotated1',
     type: dynamic,
-    annotations: const [const Annotation1(), const Annotation2()]);
-const $$ObjectWithAnnotatedFields_fields_annotated2 = const DeclarationMirror(
-    name: 'annotated2',
-    type: dynamic,
-    annotations: const [const Annotation1()]);
+    annotations: [Annotation1(), Annotation2()]);
+const $$ObjectWithAnnotatedFields_fields_annotated2 = DeclarationMirror(
+    name: 'annotated2', type: dynamic, annotations: [Annotation1()]);
 
 const ObjectWithAnnotatedFieldsClassMirror =
-    const ClassMirror(name: 'ObjectWithAnnotatedFields', constructors: const {
-  '': const FunctionMirror(
-      name: '', $call: _ObjectWithAnnotatedFields__Constructor)
-}, fields: const {
+    ClassMirror(name: 'ObjectWithAnnotatedFields', constructors: {
+  '': FunctionMirror(name: '', $call: _ObjectWithAnnotatedFields__Constructor)
+}, fields: {
   'annotated1': $$ObjectWithAnnotatedFields_fields_annotated1,
   'annotated2': $$ObjectWithAnnotatedFields_fields_annotated2
-}, getters: const [
+}, getters: [
   'annotated1',
   'annotated2'
-], setters: const [
+], setters: [
   'annotated1',
   'annotated2'
 ]);

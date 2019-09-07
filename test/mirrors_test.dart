@@ -1,6 +1,6 @@
 library built_mirrors.test.enum_test;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
+import 'package:built_mirrors/built_mirrors.dart';
 import 'package:test/test.dart';
 
 part 'mirrors_test.g.dart';
@@ -51,7 +51,7 @@ class AnnotationWithList extends Annotation {
 }
 
 @reflectable
-@AnnotationWithList(const ['hello', 'hi'])
+@AnnotationWithList(['hello', 'hi'])
 class ClassWithAnnotationWithList {}
 
 class AnnotationWithMap extends Annotation {
@@ -61,7 +61,7 @@ class AnnotationWithMap extends Annotation {
 }
 
 @reflectable
-@AnnotationWithMap(const {'k1': 'v1', 'k2': 'v2'})
+@AnnotationWithMap({'k1': 'v1', 'k2': 'v2'})
 class ClassWithAnnotationWithMap {}
 
 class SomeConstant {
@@ -79,8 +79,8 @@ class AnnotationWithConstant extends Annotation {
 
 @reflectable
 @AnnotationWithConstant(
-    const SomeConstant('my-constant'),
-    otherConstant: const SomeConstant('other-constant')
+    SomeConstant('my-constant'),
+    otherConstant: SomeConstant('other-constant')
 )
 class ClassWithAnnotationWithConstant {}
 
@@ -120,11 +120,11 @@ main() {
 
     var methodWithAnnotation = cm.methods['methodWithAnnotation'];
     expect(methodWithAnnotation.namedParameters, null);
-    expect(methodWithAnnotation.annotations[0], new TypeMatcher<SomeAnnotation>());
+    expect(methodWithAnnotation.annotations[0], TypeMatcher<SomeAnnotation>());
     expect(methodWithAnnotation.returnType, dynamic);
 
     var methodWithAnnotatedParams = cm.methods['methodWithAnnotatedParams'];
-    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], new TypeMatcher<SomeAnnotation>());
+    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], TypeMatcher<SomeAnnotation>());
     expect(methodWithAnnotatedParams.annotations, null);
     expect(methodWithAnnotatedParams.returnType, dynamic);
 
@@ -137,28 +137,28 @@ main() {
   test('class with annotation with function', () {
     var cm = reflectType(ClassWithAnnotationWithFunction);
     AnnotationWithFunction annotationWithFunction = cm.annotations[0];
-    expect(annotationWithFunction, new TypeMatcher<AnnotationWithFunction>());
+    expect(annotationWithFunction, TypeMatcher<AnnotationWithFunction>());
     expect(annotationWithFunction.function, someFunction);
   });
 
   test('class with annotation with list', () {
     var cm = reflectType(ClassWithAnnotationWithList);
     AnnotationWithList annotationWithList = cm.annotations[0];
-    expect(annotationWithList, new TypeMatcher<AnnotationWithList>());
+    expect(annotationWithList, TypeMatcher<AnnotationWithList>());
     expect(annotationWithList.myList, const ['hello', 'hi']);
   });
 
   test('class with annotation with map', () {
     var cm = reflectType(ClassWithAnnotationWithMap);
     AnnotationWithMap annotationWithMap = cm.annotations[0];
-    expect(annotationWithMap, new TypeMatcher<AnnotationWithMap>());
+    expect(annotationWithMap, TypeMatcher<AnnotationWithMap>());
     expect(annotationWithMap.myMap, const {'k1': 'v1', 'k2': 'v2'});
   });
 
   test('class with annotation with constant', () {
     var cm = reflectType(ClassWithAnnotationWithConstant);
     AnnotationWithConstant annotationWithConstant = cm.annotations[0];
-    expect(annotationWithConstant, new TypeMatcher<AnnotationWithConstant>());
+    expect(annotationWithConstant, TypeMatcher<AnnotationWithConstant>());
     expect(annotationWithConstant.someConstant, const SomeConstant('my-constant'));
     expect(annotationWithConstant.otherConstant, const SomeConstant('other-constant'));
   });

@@ -7,15 +7,17 @@ part of Is_test;
 // **************************************************************************
 
 _ClassWithAnnotations__Constructor([positionalParams, namedParams]) =>
-    new ClassWithAnnotations();
+    ClassWithAnnotations();
 
-const ClassWithAnnotationsClassMirror =
-    const ClassMirror(name: 'ClassWithAnnotations', constructors: const {
-  '': const FunctionMirror(name: '', $call: _ClassWithAnnotations__Constructor)
-}, annotations: const [
-  const Annotation1(),
-  const Annotation1()
-]);
+const ClassWithAnnotationsClassMirror = ClassMirror(
+    name: 'ClassWithAnnotations',
+    constructors: {
+      '': FunctionMirror(name: '', $call: _ClassWithAnnotations__Constructor)
+    },
+    annotations: [
+      Annotation1(),
+      Annotation1()
+    ]);
 
 // **************************************************************************
 // InitMirrorsGenerator

@@ -7,26 +7,25 @@ part of built_mirrors.serialized_name;
 // **************************************************************************
 
 _ClassWithSerializedName__Constructor([positionalParams, namedParams]) =>
-    new ClassWithSerializedName();
+    ClassWithSerializedName();
 
-const $$ClassWithSerializedName_fields_renamed = const DeclarationMirror(
+const $$ClassWithSerializedName_fields_renamed = DeclarationMirror(
   name: 'the_renamed',
   type: dynamic,
 );
 
-const ClassWithSerializedNameClassMirror = const ClassMirror(
+const ClassWithSerializedNameClassMirror = ClassMirror(
     name: 'ClassWithSerializedName',
-    constructors: const {
-      '': const FunctionMirror(
-          name: '', $call: _ClassWithSerializedName__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _ClassWithSerializedName__Constructor)
     },
-    fields: const {
+    fields: {
       'the_renamed': $$ClassWithSerializedName_fields_renamed
     },
-    getters: const [
+    getters: [
       'the_renamed'
     ],
-    setters: const [
+    setters: [
       'the_renamed'
     ]);
 

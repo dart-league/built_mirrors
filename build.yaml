@@ -1,9 +1,14 @@
+targets:
+  $default:
+    builders:
+      built_mirrors:
+        generate_for:
+          - test/**
 builders:
-  built_mirrors_builder:
-    target: :_built_mirrors
+  built_mirrors:
     import: package:built_mirrors/builder.dart
     builder_factories: [builder]
-    build_to: source
-    auto_apply: root_package
+    auto_apply: dependents
     build_extensions:
-      .dart: [.g.dart]
+      .dart: [.built_mirrors.g.part]
+    applies_builders: [source_gen|combining_builder]

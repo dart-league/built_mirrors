@@ -1,7 +1,7 @@
 library GetFieldsAnnotatedWith_test;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
-import 'package:built_mirrors_core/scanners.dart';
+import 'package:built_mirrors/built_mirrors.dart';
+import 'package:built_mirrors/scanners.dart';
 import 'package:test/test.dart';
 
 part 'GetFieldsAnnotatedWith_test.g.dart';
@@ -27,12 +27,12 @@ class ObjectWithAnnotatedFields {
 
 main() {
   _initMirrors();
-  var o = new ObjectWithAnnotatedFields();
+  var o = ObjectWithAnnotatedFields();
   var cm = reflectType(ObjectWithAnnotatedFields);
 
   test('GetMethodsAnnotatedWith', () {
-    expect(new GetFieldsAnnotatedWith<Annotation1>().from(o), [cm.fields['annotated1'], cm.fields['annotated2']]);
+    expect(GetFieldsAnnotatedWith<Annotation1>().from(o), [cm.fields['annotated1'], cm.fields['annotated2']]);
 
-    expect(new GetFieldsAnnotatedWith<Annotation2>().from(o), [cm.fields['annotated1']]);
+    expect(GetFieldsAnnotatedWith<Annotation2>().from(o), [cm.fields['annotated1']]);
   });
 }

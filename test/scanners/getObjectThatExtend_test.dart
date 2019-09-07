@@ -1,8 +1,8 @@
 library getObjectThatExtend_test;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
+import 'package:built_mirrors/built_mirrors.dart';
 import 'package:test/test.dart';
-import 'package:built_mirrors_core/scanners.dart';
+import 'package:built_mirrors/scanners.dart';
 
 part 'getObjectThatExtend_test.g.dart';
 
@@ -29,7 +29,7 @@ main() {
 
     var service1Cm = classMirrors.values.singleWhere((cm) => cm.name == 'Service1');
 
-    expect(getObjectThatExtend(service1Cm), new TypeMatcher<Service1Impl>());
+    expect(getObjectThatExtend(service1Cm), TypeMatcher<Service1Impl>());
   });
 
 
@@ -37,6 +37,6 @@ main() {
 
     var service2ImplCm = classMirrors.values.singleWhere((cm) => cm.name == 'Service2');
 
-    expect(getObjectThatExtend(service2ImplCm), new TypeMatcher<Service22Impl>());
+    expect(getObjectThatExtend(service2ImplCm), TypeMatcher<Service22Impl>());
   });
 }

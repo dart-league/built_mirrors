@@ -10,7 +10,7 @@ class MyAnnotation extends Annotation {
   const MyAnnotation(this.val1, {this.val2});
 }
 
-const myOtherAnnotation = const _MyOtherAnnotation();
+const myOtherAnnotation = _MyOtherAnnotation();
 class _MyOtherAnnotation extends Annotation {
   const _MyOtherAnnotation();
 }

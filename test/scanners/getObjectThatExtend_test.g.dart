@@ -6,43 +6,38 @@ part of getObjectThatExtend_test;
 // MirrorsGenerator
 // **************************************************************************
 
-const Service1ClassMirror =
-    const ClassMirror(name: 'Service1', isAbstract: true);
+const Service1ClassMirror = ClassMirror(name: 'Service1', isAbstract: true);
 
-_Service1Impl__Constructor([positionalParams, namedParams]) =>
-    new Service1Impl();
+_Service1Impl__Constructor([positionalParams, namedParams]) => Service1Impl();
 
-const Service1ImplClassMirror = const ClassMirror(
+const Service1ImplClassMirror = ClassMirror(
     name: 'Service1Impl',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Service1Impl__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _Service1Impl__Constructor)
     },
-    superinterfaces: const [
+    superinterfaces: [
       Service1
     ]);
 
-const Service2ClassMirror =
-    const ClassMirror(name: 'Service2', isAbstract: true);
+const Service2ClassMirror = ClassMirror(name: 'Service2', isAbstract: true);
 
-_Service2Impl__Constructor([positionalParams, namedParams]) =>
-    new Service2Impl();
+_Service2Impl__Constructor([positionalParams, namedParams]) => Service2Impl();
 
-const Service2ImplClassMirror = const ClassMirror(
+const Service2ImplClassMirror = ClassMirror(
     name: 'Service2Impl',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Service2Impl__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _Service2Impl__Constructor)
     },
-    superinterfaces: const [
+    superinterfaces: [
       Service2
     ]);
 
-_Service22Impl__Constructor([positionalParams, namedParams]) =>
-    new Service22Impl();
+_Service22Impl__Constructor([positionalParams, namedParams]) => Service22Impl();
 
-const Service22ImplClassMirror = const ClassMirror(
+const Service22ImplClassMirror = ClassMirror(
     name: 'Service22Impl',
-    constructors: const {
-      '': const FunctionMirror(name: '', $call: _Service22Impl__Constructor)
+    constructors: {
+      '': FunctionMirror(name: '', $call: _Service22Impl__Constructor)
     },
     superclass: Service2Impl);
 

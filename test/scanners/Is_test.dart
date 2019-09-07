@@ -1,7 +1,7 @@
 library Is_test;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
-import 'package:built_mirrors_core/scanners.dart';
+import 'package:built_mirrors/built_mirrors.dart';
+import 'package:built_mirrors/scanners.dart';
 import 'package:test/test.dart';
 
 part 'Is_test.g.dart';
@@ -19,7 +19,7 @@ main() {
   _initMirrors();
   test('', () {
     // ignore: argument_type_not_assignable
-    expect(reflectType(ClassWithAnnotations).annotations.where(new Is<Annotation1>()),
+    expect(reflectType(ClassWithAnnotations).annotations.where(Is<Annotation1>()),
         [const Annotation1(), const Annotation1()]);
   });
 }

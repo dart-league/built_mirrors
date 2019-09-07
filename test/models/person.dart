@@ -1,6 +1,6 @@
 library built_mirrors.test.models.person;
 
-import 'package:built_mirrors_core/built_mirrors.dart';
+import 'package:built_mirrors/built_mirrors.dart';
 
 part 'person.g.dart';
 
