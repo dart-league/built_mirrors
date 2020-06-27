@@ -1,3 +1,7 @@
+# 0.11.1
+
+- Upgrade `build_test` to `^1.2.0`
+
 # 0.11.0
 
 - Add `analysis_options` and check for unnecessary `new` and `const` kewords

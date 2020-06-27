@@ -187,7 +187,7 @@ String _renderParameterValue(ParameterElement parameter, ElementAnnotation annot
 }
 
 String _renderValue(DartObject field) {
-  if (field.type is FunctionType) return field.type.element.displayName;
+  if (field.type is FunctionType) return field.toFunctionValue().displayName;
 
   var cr = ConstantReader(field);
   if (cr.isString) return "r'${cr.stringValue}'";
