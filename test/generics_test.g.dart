@@ -51,5 +51,7 @@ _initMirrors() {
 
   getClassMirrorFromGenericInstance = (instance) => instance is Generic1
       ? Generic1ClassMirror
-      : instance is Generic2 ? Generic2ClassMirror : null;
+      : instance is Generic2
+          ? Generic2ClassMirror
+          : null;
 }

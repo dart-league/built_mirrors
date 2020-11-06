@@ -70,7 +70,7 @@ const ${className}ClassMirror = ClassMirror(
             : '',
         methods.where((x) => !x.isStatic).isNotEmpty ? 'methods: {${methods.where((x) => !x.isStatic).map(_renderMethods).join(',')}}' : '',
         element.isAbstract ? 'isAbstract: true' : '',
-        element.supertype.name != 'Object' ? 'superclass: ${element.supertype.name}' : '',
+        element.supertype.getDisplayString(withNullability: false) != 'Object' ? 'superclass: ${element.supertype.name}' : '',
         element.interfaces.isNotEmpty ? 'superinterfaces: [${element.interfaces.map((i) => i.name).join(',')}]' : ''
       ].fold('', _combine)}
 );''';
@@ -108,8 +108,8 @@ String _renderFunction(ExecutableElement f) =>
         "${_renderNamedParameters(f.parameters)}"
         "name: '${f.name}',"
         'returnType: ${_renderType(f.returnType)}'
-        + ',' + _renderMetadata(f.metadata) +
-        ')';
+        ',${_renderMetadata(f.metadata)}'
+        ")";
 
 String _renderNamedParameters(List<ParameterElement> params) {
   var result = params.where((p) => p.isNamed)
@@ -146,7 +146,7 @@ String _getSerializedNameFromField(FieldElement f) {
   return f.metadata
       .firstWhere((a) => (a.computeConstantValue().type.element as ClassElement).name == 'SerializedName',
       orElse: () => null)
-      ?.constantValue
+      ?.computeConstantValue()
       ?.getField('name')
       ?.toStringValue() ??
       f.displayName;
@@ -164,12 +164,13 @@ String _getSerializedNameFromParameter(ParameterElement p) {
 }
 
 String _renderMetadata(List<ElementAnnotation> metadata) {
-  var annotations = metadata.where((a) => (a.computeConstantValue().type.element as ClassElement).allSupertypes.any((st) => st.name == 'Annotation'));
+  var annotations = metadata.where((a) => (a.computeConstantValue().type.element as ClassElement)
+      .allSupertypes.any((st) => st.getDisplayString(withNullability: false) == 'Annotation'));
   return annotations.isNotEmpty
       ? "annotations: [${annotations.map((a) =>
-  a.element is ConstructorElement
-      ? '${a.constantValue.type}${_renderAnnotationParameters(a)}'
-      : a.element.name).join(',')}]"
+        a.element is ConstructorElement
+            ? '${a.computeConstantValue().type.getDisplayString(withNullability: false)}${_renderAnnotationParameters(a)}'
+            : a.element.name).join(',')}]"
       : '';
 }
 
@@ -205,7 +206,7 @@ String _renderValue(DartObject field) {
   var revived = cr.revive();
   var arguments = revived.positionalArguments.map(_renderValue).toList();
   revived.namedArguments.forEach((k, v) => arguments.add('$k: ${_renderValue(v)}'));
-  return 'const ${field.type.displayName}(${arguments.join(',')})';
+  return 'const ${field.type.getDisplayString(withNullability: false)}(${arguments.join(',')})';
 }
 
 
@@ -214,8 +215,8 @@ String _renderType(DartType type) =>
         ? '[${type.name}, ${_renderTypes(type.typeArguments)}]'
         : type is TypeParameterType
           ? 'dynamic'
-          : type.name != 'void'
-            ? type.name
+          : type.getDisplayString(withNullability: false) != 'void'
+            ? type.getDisplayString(withNullability: false)
             : 'null';
 
 String _renderTypes(List<DartType> types) =>

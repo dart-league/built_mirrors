@@ -162,7 +162,8 @@ class DeclarationMirror extends Mirror {
 
   const DeclarationMirror({
     String name,
-    this.type, annotations,
+    this.type,
+    annotations,
     this.isFinal: false,
     this.isRequired: false,
     this.isNamed = false

@@ -1,4 +1,8 @@
-# 0.11.1
+# 0.13.0
+
+- Upgrade `analyzer` to `^0.40.0`
+
+# 0.12.0
 
 - Upgrade `build_test` to `^1.2.0`
 

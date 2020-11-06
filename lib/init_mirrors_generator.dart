@@ -38,7 +38,7 @@ class InitMirrorsGenerator extends Generator {
         ${_functionMirrors.join(',\n')}
         });"""
       : ''}
-  
+
   ${_getClassMirrorFromInstances.isNotEmpty
           ? 'getClassMirrorFromGenericInstance = (instance) => ${
           (_getClassMirrorFromInstances..sort((m1, m2) => m2.extensionLevel.compareTo(m1.extensionLevel)))
@@ -80,8 +80,8 @@ class InitMirrorsGenerator extends Generator {
 
   bool _isReflectable(ElementAnnotation a) {
     var acv = a.computeConstantValue();
-    return acv != null && (acv.type.name == 'Reflectable'
-        || (acv.type.element as ClassElement).allSupertypes.any((st) => st.name == 'Reflectable'));
+    return acv != null && (acv.type.getDisplayString(withNullability: false) == 'Reflectable'
+        || (acv.type.element as ClassElement).allSupertypes.any((st) => st.getDisplayString(withNullability: false) == 'Reflectable'));
   }
 }
 
