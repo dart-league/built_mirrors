@@ -22,3 +22,4 @@ doc/api/
 *.ipr
 *.iws
 .dart_tool
+/_README.xml

@@ -35,12 +35,16 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
       var className = element.name;
       var fields = _distinctByName(element.fields.toList()
         ..addAll(stFields));
-      var accessors = _distinctByName(element.accessors.toList()
-        ..addAll(stAccessors));
+      var accessors = _distinctByName([
+        ...element.accessors,
+        ...stAccessors
+      ]);
       var getters = _distinctByName(accessors.where((a) => a.kind == ElementKind.GETTER));
       var setters = _distinctByName(accessors.where((a) => a.kind == ElementKind.SETTER));
-      var methods = _distinctByName(element.methods.toList()
-        ..addAll(stMethods));
+      var methods = _distinctByName([
+        ...element.methods,
+        ...stMethods
+      ]);
 
       return '''${element.isAbstract ? '' : constructors.map((c) => '_${className}_${c
           .name}_Constructor([positionalParams, namedParams]) =>'
@@ -68,7 +72,9 @@ const ${className}ClassMirror = ClassMirror(
         setters.where((x) => !x.isStatic).isNotEmpty
             ? 'setters: [${setters.where((x) => !x.isStatic).map((s) => "'${_getSerializedNameFromAccessor(s)}'").join(',')}]'
             : '',
-        methods.where((x) => !x.isStatic).isNotEmpty ? 'methods: {${methods.where((x) => !x.isStatic).map(_renderMethods).join(',')}}' : '',
+        methods.where((x) => !x.isStatic).isNotEmpty
+            ? 'methods: {${methods.where((x) => !x.isStatic).map(_renderMethods).join(',')}}'
+            : '',
         element.isAbstract ? 'isAbstract: true' : '',
         element.supertype.getDisplayString(withNullability: false) != 'Object' ? 'superclass: ${element.supertype.name}' : '',
         element.interfaces.isNotEmpty ? 'superinterfaces: [${element.interfaces.map((i) => i.name).join(',')}]' : ''

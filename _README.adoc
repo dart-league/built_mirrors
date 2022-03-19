@@ -1,16 +1,17 @@
-# built_mirrors
+= built_mirrors
 
-[![Build Status](https://travis-ci.org/dart-league/built_mirrors.svg?branch=master)](https://travis-ci.org/dart-league/built_mirrors)
+image:https://travis-ci.org/dart-league/built_mirrors.svg?branch=master["Build Status", link="https://travis-ci.org/dart-league/built_mirrors"]
 
 This is a library that generates `ClassMirror` from classes annotated with
 `@reflectable` or `@Reflectable()`.
 
-## Getting Started
+== Getting Started
 
-1\. Create a new dart-web project.
-2\. add `built_mirrors` dependency to your `pubspec.yaml`.
+1 - Create a new dart-web project.
+2 - add `built_mirrors` dependency to your `pubspec.yaml`.
 
-```yaml
+[source,yaml]
+----
 ...
 dependencies:
   ...
@@ -22,29 +23,43 @@ dev_dependencies:
   # replace for the latest version
   built_runner: any
   ...
-```
+----
 
-3\. create a file in `bin` folder called `models.dart` and put next code on it:
+3 - create a file in `bin` folder called `models.dart` and put next code on it:
 
-{@example example/bin/models.dart}
 
-4\. edit the file `main.dart` in the folder `bin` and put next code on it:
+[source, dart]
+----
+include::example/bin/models.dart[]
+----
 
-{@example example/bin/main.dart}
+4 - edit the file `main.dart` in the folder `bin` and put next code on it:
 
-5\. run `pub run build_runner build`. Then you will see that the files `bin/models.g.dart`
+[source, dart]
+----
+include::example/bin/main.dart[]
+----
+
+5 - run `dart run build_runner build`. Then you will see that the files `bin/models.g.dart`
 and `bin/main.g.dart` have been generated and they will contain the next code:
 
-{@example example/bin/main.g.dart}
+[source, dart]
+----
+include::example/bin/main.g.dart[]
+----
 
 and:
 
-{@example example/bin/models.g.dart}
+[source, dart]
+----
+include::example/bin/models.g.dart[]
+----
 
-6\. Finally you can run the file `bin/main.dart` and if everything is ok you will see next
+6 - Finally you can run the file `bin/main.dart` and if everything is ok you will see next
 output in console:
 
-```
+[source]
+---------------------------
 p1Fields['myDynamic'].type: dynamic
 
 p1Fields['cars'].type: [List, Car]
@@ -76,4 +91,4 @@ int
 p1
 p0
 p2
-```
+---------------------------

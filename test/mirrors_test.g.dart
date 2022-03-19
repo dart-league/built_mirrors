@@ -6,9 +6,6 @@ part of built_mirrors.test.enum_test;
 // MirrorsGenerator
 // **************************************************************************
 
-const ColorClassMirror =
-    ClassMirror(name: 'Color', isEnum: true, values: Color.values);
-
 _ClassWithMethods__Constructor([positionalParams, namedParams]) =>
     ClassWithMethods();
 
@@ -96,6 +93,9 @@ const ClassWithAnnotationWithConstantClassMirror =
   AnnotationWithConstant(const SomeConstant(r'my-constant'),
       otherConstant: const SomeConstant(r'other-constant'))
 ]);
+
+const ColorClassMirror =
+    ClassMirror(name: 'Color', isEnum: true, values: Color.values);
 
 // **************************************************************************
 // InitMirrorsGenerator

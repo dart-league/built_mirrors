@@ -21,7 +21,7 @@ const $$Person_fields_myDynamic =
     DeclarationMirror(name: 'myDynamic', type: dynamic);
 const $$Person_fields_cars = DeclarationMirror(name: 'cars', type: [List, Car]);
 const $$Person_fields_myGetter =
-    DeclarationMirror(name: 'myGetter', type: String, isFinal: true);
+    DeclarationMirror(name: 'myGetter', type: String);
 const $$Person_fields_mySetter =
     DeclarationMirror(name: 'mySetter', type: String);
 
