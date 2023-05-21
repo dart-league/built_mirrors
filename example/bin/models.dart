@@ -18,11 +18,11 @@ class _MyOtherAnnotation extends Annotation {
 @reflectable
 class Person {
   Person({this.id, this.name, this.myDynamic, this.cars});
-  int id;
+  int? id;
   @MyAnnotation('hello\uabcd', val2: null)
-  String name;
+  String? name;
   var myDynamic;
-  List<Car> cars;
+  List<Car>? cars;
 
   String get myGetter => 'myGetter result';
   set mySetter(String val) => 'setting $val';
@@ -31,9 +31,9 @@ class Person {
 @reflectable
 @myOtherAnnotation
 class Car {
-  int id;
+  int? id;
   @MyAnnotation(r'\uabcd', val2: null)
-  String engine;
+  String? engine;
   Car([this.id, this.engine]);
 }
 
@@ -57,7 +57,7 @@ class ClassWithMethod {
   }
 
   @myOtherAnnotation
-  someMethodWithNamedParams({@myOtherAnnotation String someParameter}) {
+  someMethodWithNamedParams({@myOtherAnnotation String? someParameter}) {
     return 'someMethod';
   }
 }

@@ -8,7 +8,7 @@ part 'student.g.dart';
 
 @reflectable
 class Student extends Person {
-  String studentId;
+  String? studentId;
 
-  List<Course> courses;
+  List<Course>? courses;
 }

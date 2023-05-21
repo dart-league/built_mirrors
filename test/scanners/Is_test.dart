@@ -19,7 +19,7 @@ main() {
   _initMirrors();
   test('', () {
     // ignore: argument_type_not_assignable
-    expect(reflectType(ClassWithAnnotations).annotations.where(Is<Annotation1>()),
+    expect(reflectType(ClassWithAnnotations)?.annotations?.where(Is<Annotation1>()),
         [const Annotation1(), const Annotation1()]);
   });
 }

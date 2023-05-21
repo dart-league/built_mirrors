@@ -6,9 +6,9 @@ part 'course.g.dart';
 
 @reflectable
 class Course {
-  int id;
+  int? id;
 
-  String name;
+  String? name;
 
-  num credits;
+  num? credits;
 }

@@ -10,12 +10,12 @@ class NoGeneric {}
 
 @reflectable
 class Generic1<T> {
-  List<T> mList;
+  List<T>? mList;
 }
 
 @reflectable
 class Generic2<T1, T2> {
-  Map<T1, T2> mMap;
+  Map<T1, T2>? mMap;
 }
 
 main() {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of GetMethodsAnnotatedWith_test;
+part of 'GetMethodsAnnotatedWith_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

@@ -8,5 +8,5 @@ part 'employee.g.dart';
 
 @reflectable
 class Employee extends Person {
-  num salary;
+  num? salary;
 }

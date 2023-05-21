@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.test.enum_test;
+part of 'mirrors_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator
@@ -68,7 +68,7 @@ const ClassWithAnnotationWithListClassMirror =
     ClassMirror(name: 'ClassWithAnnotationWithList', constructors: {
   '': FunctionMirror(name: '', $call: _ClassWithAnnotationWithList__Constructor)
 }, annotations: [
-  AnnotationWithList(const [r'hello', r'hi'])
+  AnnotationWithList([r'hello', r'hi'])
 ]);
 
 _ClassWithAnnotationWithMap__Constructor([positionalParams, namedParams]) =>
@@ -78,7 +78,7 @@ const ClassWithAnnotationWithMapClassMirror =
     ClassMirror(name: 'ClassWithAnnotationWithMap', constructors: {
   '': FunctionMirror(name: '', $call: _ClassWithAnnotationWithMap__Constructor)
 }, annotations: [
-  AnnotationWithMap(const {r'k1': r'v1', r'k2': r'v2'})
+  AnnotationWithMap({r'k1': r'v1', r'k2': r'v2'})
 ]);
 
 _ClassWithAnnotationWithConstant__Constructor(
@@ -90,8 +90,8 @@ const ClassWithAnnotationWithConstantClassMirror =
   '': FunctionMirror(
       name: '', $call: _ClassWithAnnotationWithConstant__Constructor)
 }, annotations: [
-  AnnotationWithConstant(const SomeConstant(r'my-constant'),
-      otherConstant: const SomeConstant(r'other-constant'))
+  AnnotationWithConstant(SomeConstant(r'my-constant'),
+      otherConstant: SomeConstant(r'other-constant'))
 ]);
 
 const ColorClassMirror =

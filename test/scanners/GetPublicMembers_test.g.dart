@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of GetVarialbesAndGettersTest_test;
+part of 'GetPublicMembers_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

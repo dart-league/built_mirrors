@@ -29,7 +29,7 @@ class ClassWithMethods {
 
   methodWithAnnotatedParams(@SomeAnnotation() p1) {}
 
-  String methodWithReturnTypeAndParams({String b, int c}) => '';
+  String methodWithReturnTypeAndParams({String? b, int? c}) => '';
 }
 
 class AnnotationWithFunction extends Annotation {
@@ -72,7 +72,7 @@ class SomeConstant {
 
 class AnnotationWithConstant extends Annotation {
   final SomeConstant someConstant;
-  final SomeConstant otherConstant;
+  final SomeConstant? otherConstant;
 
   const AnnotationWithConstant(this.someConstant, {this.otherConstant});
 }
@@ -91,16 +91,16 @@ main() {
   test('enum', () {
     var colorClassMirror = reflectType(Color);
     expect(colorClassMirror, ColorClassMirror);
-    expect(colorClassMirror.values, Color.values);
-    expect(colorClassMirror.isEnum, true);
-    expect(colorClassMirror.name, 'Color');
+    expect(colorClassMirror?.values, Color.values);
+    expect(colorClassMirror?.isEnum, true);
+    expect(colorClassMirror?.name, 'Color');
     expect(colorClassMirror.toString(), 'ClassMirror on Color');
   });
 
   test('class with methods', () {
     var cm = reflectType(ClassWithMethods);
     expect(cm, ClassWithMethodsClassMirror);
-    expect(cm.methods.keys, [
+    expect(cm?.methods?.keys, [
       'methodNoReturnTypeNoParams',
       'methodNoReturnTypeWithParams',
       'methodWithAnnotation',
@@ -108,58 +108,58 @@ main() {
       'methodWithReturnTypeAndParams'
     ]);
 
-    var methodNoReturnTypeNoParamsMirror = cm.methods['methodNoReturnTypeNoParams'];
-    expect(methodNoReturnTypeNoParamsMirror.namedParameters, null);
-    expect(methodNoReturnTypeNoParamsMirror.annotations, null);
-    expect(methodNoReturnTypeNoParamsMirror.returnType, dynamic);
+    var methodNoReturnTypeNoParamsMirror = cm?.methods?['methodNoReturnTypeNoParams'];
+    expect(methodNoReturnTypeNoParamsMirror?.namedParameters, null);
+    expect(methodNoReturnTypeNoParamsMirror?.annotations, null);
+    expect(methodNoReturnTypeNoParamsMirror?.returnType, dynamic);
 
-    var methodNoReturnTypeWithParams = cm.methods['methodNoReturnTypeWithParams'];
-    expect(methodNoReturnTypeWithParams.positionalParameters[0].name, 'param1');
-    expect(methodNoReturnTypeWithParams.annotations, null);
-    expect(methodNoReturnTypeWithParams.returnType, dynamic);
+    var methodNoReturnTypeWithParams = cm?.methods?['methodNoReturnTypeWithParams'];
+    expect(methodNoReturnTypeWithParams?.positionalParameters?[0].name, 'param1');
+    expect(methodNoReturnTypeWithParams?.annotations, null);
+    expect(methodNoReturnTypeWithParams?.returnType, dynamic);
 
-    var methodWithAnnotation = cm.methods['methodWithAnnotation'];
-    expect(methodWithAnnotation.namedParameters, null);
-    expect(methodWithAnnotation.annotations[0], TypeMatcher<SomeAnnotation>());
-    expect(methodWithAnnotation.returnType, dynamic);
+    var methodWithAnnotation = cm?.methods?['methodWithAnnotation'];
+    expect(methodWithAnnotation?.namedParameters, null);
+    expect(methodWithAnnotation?.annotations?[0], TypeMatcher<SomeAnnotation>());
+    expect(methodWithAnnotation?.returnType, dynamic);
 
-    var methodWithAnnotatedParams = cm.methods['methodWithAnnotatedParams'];
-    expect(methodWithAnnotatedParams.positionalParameters[0].annotations[0], TypeMatcher<SomeAnnotation>());
-    expect(methodWithAnnotatedParams.annotations, null);
-    expect(methodWithAnnotatedParams.returnType, dynamic);
+    var methodWithAnnotatedParams = cm?.methods?['methodWithAnnotatedParams'];
+    expect(methodWithAnnotatedParams?.positionalParameters?[0].annotations?[0], TypeMatcher<SomeAnnotation>());
+    expect(methodWithAnnotatedParams?.annotations, null);
+    expect(methodWithAnnotatedParams?.returnType, dynamic);
 
-    var methodWithReturnTypeAndParams = cm.methods['methodWithReturnTypeAndParams'];
-    expect(methodWithReturnTypeAndParams.namedParameters.keys, ['b', 'c']);
-    expect(methodWithReturnTypeAndParams.annotations, null);
-    expect(methodWithReturnTypeAndParams.returnType, String);
+    var methodWithReturnTypeAndParams = cm?.methods?['methodWithReturnTypeAndParams'];
+    expect(methodWithReturnTypeAndParams?.namedParameters?.keys, ['b', 'c']);
+    expect(methodWithReturnTypeAndParams?.annotations, null);
+    expect(methodWithReturnTypeAndParams?.returnType, String);
   });
 
   test('class with annotation with function', () {
     var cm = reflectType(ClassWithAnnotationWithFunction);
-    AnnotationWithFunction annotationWithFunction = cm.annotations[0];
+    final annotationWithFunction = cm?.annotations?[0] as AnnotationWithFunction?;
     expect(annotationWithFunction, TypeMatcher<AnnotationWithFunction>());
-    expect(annotationWithFunction.function, someFunction);
+    expect(annotationWithFunction?.function, someFunction);
   });
 
   test('class with annotation with list', () {
     var cm = reflectType(ClassWithAnnotationWithList);
-    AnnotationWithList annotationWithList = cm.annotations[0];
+    final annotationWithList = cm?.annotations?[0] as AnnotationWithList?;
     expect(annotationWithList, TypeMatcher<AnnotationWithList>());
-    expect(annotationWithList.myList, const ['hello', 'hi']);
+    expect(annotationWithList?.myList, const ['hello', 'hi']);
   });
 
   test('class with annotation with map', () {
     var cm = reflectType(ClassWithAnnotationWithMap);
-    AnnotationWithMap annotationWithMap = cm.annotations[0];
+    final annotationWithMap = cm?.annotations?[0] as AnnotationWithMap?;
     expect(annotationWithMap, TypeMatcher<AnnotationWithMap>());
-    expect(annotationWithMap.myMap, const {'k1': 'v1', 'k2': 'v2'});
+    expect(annotationWithMap?.myMap, const {'k1': 'v1', 'k2': 'v2'});
   });
 
   test('class with annotation with constant', () {
     var cm = reflectType(ClassWithAnnotationWithConstant);
-    AnnotationWithConstant annotationWithConstant = cm.annotations[0];
+    final annotationWithConstant = cm?.annotations?[0] as AnnotationWithConstant?;
     expect(annotationWithConstant, TypeMatcher<AnnotationWithConstant>());
-    expect(annotationWithConstant.someConstant, const SomeConstant('my-constant'));
-    expect(annotationWithConstant.otherConstant, const SomeConstant('other-constant'));
+    expect(annotationWithConstant?.someConstant, const SomeConstant('my-constant'));
+    expect(annotationWithConstant?.otherConstant, const SomeConstant('other-constant'));
   });
 }

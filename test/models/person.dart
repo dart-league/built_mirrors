@@ -7,8 +7,8 @@ part 'person.g.dart';
 
 @reflectable
 class Person {
-  int id;
-  String firstName;
-  String className;
-  DateTime dateOfBirth;
+  int? id;
+  String? firstName;
+  String? className;
+  DateTime? dateOfBirth;
 }

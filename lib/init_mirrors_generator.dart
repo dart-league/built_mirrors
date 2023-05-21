@@ -8,19 +8,19 @@ class InitMirrorsGenerator extends Generator {
 
   const InitMirrorsGenerator();
 
-  static Set<LibraryElement> libraryElements;
+  static Set<LibraryElement> libraryElements = Set();
 
-  static Set<String> _classMirrors;
+  static Set<String> _classMirrors = Set();
 
-  static Set<String> _functionMirrors;
+  static Set<String> _functionMirrors = Set();
 
-  static List<_MirrorFromInstance> _getClassMirrorFromInstances;
+  static List<_MirrorFromInstance> _getClassMirrorFromInstances = [];
 
   @override
-  Future<String> generate(LibraryReader libraryReader, BuildStep buildStep) async {
-    libraryElements = Set();
-    _classMirrors = Set();
-    _functionMirrors = Set();
+  Future<String?> generate(LibraryReader libraryReader, BuildStep buildStep) async {
+    libraryElements.clear();
+    _classMirrors.clear();
+    _functionMirrors.clear();
     _getClassMirrorFromInstances = [];
     var element = libraryReader.element;
     if (element.entryPoint != null && element.name != '') {
@@ -64,11 +64,11 @@ class InitMirrorsGenerator extends Generator {
         if (enum_.metadata.any(_isReflectable))
           _classMirrors.add('${enum_.name}: ${enum_.name}ClassMirror');
       });
-      unit.types.forEach((type) {
-        if (type.metadata.any(_isReflectable)) {
-          _classMirrors.add('${type.name}: ${type.name}ClassMirror');
-          if (type.typeParameters.isNotEmpty)
-            _getClassMirrorFromInstances.add(_MirrorFromInstance(type.name, type.allSupertypes.length));
+      unit.classes.forEach((clazz) {
+        if (clazz.metadata.any(_isReflectable)) {
+          _classMirrors.add('${clazz.name}: ${clazz.name}ClassMirror');
+          if (clazz.typeParameters.isNotEmpty)
+            _getClassMirrorFromInstances.add(_MirrorFromInstance(clazz.name, clazz.allSupertypes.length));
         }
       });
       unit.functions.forEach((function) {
@@ -80,8 +80,8 @@ class InitMirrorsGenerator extends Generator {
 
   bool _isReflectable(ElementAnnotation a) {
     var acv = a.computeConstantValue();
-    return acv != null && (acv.type.getDisplayString(withNullability: false) == 'Reflectable'
-        || (acv.type.element as ClassElement).allSupertypes.any((st) => st.getDisplayString(withNullability: false) == 'Reflectable'));
+    return acv != null && (acv.type?.getDisplayString(withNullability: false) == 'Reflectable'
+        || (acv.type?.element as ClassElement).allSupertypes.any((st) => st.getDisplayString(withNullability: false) == 'Reflectable'));
   }
 }
 

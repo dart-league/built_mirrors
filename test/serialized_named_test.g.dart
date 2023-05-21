@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.serialized_name;
+part of 'serialized_named_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

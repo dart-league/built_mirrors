@@ -31,8 +31,8 @@ main() {
   var cm = reflectType(ObjectWithAnnotatedMethods);
 
   test('GetMethodsAnnotatedWith', () {
-    expect(GetMethodsAnnotatedWith<Annotation1>().from(o), [cm.methods['annotated1'], cm.methods['annotated2']]);
+    expect(GetMethodsAnnotatedWith<Annotation1>().from(o), [cm?.methods?['annotated1'], cm?.methods?['annotated2']]);
 
-    expect(GetMethodsAnnotatedWith<Annotation2>().from(o), [cm.methods['annotated1']]);
+    expect(GetMethodsAnnotatedWith<Annotation2>().from(o), [cm?.methods?['annotated1']]);
   });
 }

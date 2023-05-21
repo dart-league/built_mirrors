@@ -1,10 +1,12 @@
+# built\_mirrors
+
 ![Build
 Status](https://travis-ci.org/dart-league/built_mirrors.svg?branch=master)
 
 This is a library that generates `ClassMirror` from classes annotated
 with `@reflectable` or `@Reflectable()`.
 
-# Getting Started
+## Getting Started
 
 1 - Create a new dart-web project. 2 - add `built_mirrors` dependency to
 your `pubspec.yaml`.

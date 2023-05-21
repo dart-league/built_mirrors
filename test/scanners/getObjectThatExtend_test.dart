@@ -27,16 +27,16 @@ main() {
   _initMirrors();
   test('Get Object that extends 1 level', () {
 
-    var service1Cm = classMirrors.values.singleWhere((cm) => cm.name == 'Service1');
+    var service1Cm = classMirrors.values.singleWhere((cm) => cm?.name == 'Service1');
 
-    expect(getObjectThatExtend(service1Cm), TypeMatcher<Service1Impl>());
+    expect(getObjectThatExtend(service1Cm!), TypeMatcher<Service1Impl>());
   });
 
 
   test('Get Object that extends 2 levels', () {
 
-    var service2ImplCm = classMirrors.values.singleWhere((cm) => cm.name == 'Service2');
+    var service2ImplCm = classMirrors.values.singleWhere((cm) => cm?.name == 'Service2');
 
-    expect(getObjectThatExtend(service2ImplCm), TypeMatcher<Service22Impl>());
+    expect(getObjectThatExtend(service2ImplCm!), TypeMatcher<Service22Impl>());
   });
 }

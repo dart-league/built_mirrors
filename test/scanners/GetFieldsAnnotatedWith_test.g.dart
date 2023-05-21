@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of GetFieldsAnnotatedWith_test;
+part of 'GetFieldsAnnotatedWith_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

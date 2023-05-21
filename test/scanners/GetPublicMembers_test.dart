@@ -8,42 +8,42 @@ part 'GetPublicMembers_test.g.dart';
 
 @reflectable
 class ObjectWithMembers {
-  String name;
-  int age;
+  String? name;
+  int? age;
 }
 
 @reflectable
 class ExtendedObject extends ObjectWithMembers {
-  String myProp;
+  String? myProp;
 }
 
 main() {
   _initMirrors();
   group('Get public getters ->', () {
     test('test1', () {
-      expect(getPublicGettersFrom(reflectType(ObjectWithMembers)).length, 2);
+      expect(getPublicGettersFrom(reflectType(ObjectWithMembers)!)?.length, 2);
     });
 
     test('test2', () {
-      expect(getPublicGettersFrom(reflectType(ExtendedObject)).length, 3);
+      expect(getPublicGettersFrom(reflectType(ExtendedObject)!)?.length, 3);
     });
   });
   group('Get public setters ->', () {
     test('test1', () {
-      expect(getPublicSettersFrom(reflectType(ObjectWithMembers)).length, 2);
+      expect(getPublicSettersFrom(reflectType(ObjectWithMembers)!)?.length, 2);
     });
 
     test('test2', () {
-      expect(getPublicSettersFrom(reflectType(ExtendedObject)).length, 3);
+      expect(getPublicSettersFrom(reflectType(ExtendedObject)!)?.length, 3);
     });
   });
   group('Get public fields ->', () {
     test('test1', () {
-      expect(getPublicFieldsFrom(reflectType(ObjectWithMembers)).length, 2);
+      expect(getPublicFieldsFrom(reflectType(ObjectWithMembers)!)?.length, 2);
     });
 
     test('test2', () {
-      expect(getPublicFieldsFrom(reflectType(ExtendedObject)).length, 3);
+      expect(getPublicFieldsFrom(reflectType(ExtendedObject)!)?.length, 3);
     });
   });
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.example.generics_test;
+part of 'generics_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

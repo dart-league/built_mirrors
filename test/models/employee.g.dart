@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.test.models.employee;
+part of 'employee.dart';
 
 // **************************************************************************
 // MirrorsGenerator

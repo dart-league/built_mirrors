@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of getObjectThatExtend_test;
+part of 'getObjectThatExtend_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

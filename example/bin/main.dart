@@ -28,18 +28,18 @@ main() {
   var personClassMirror = reflectType(Person);
   // and then constructs a new person using a map with the
   // needed parameters for the constructor
-  var p1 = personClassMirror.constructors['']([], {'id': 1, 'name': 'person 1'});
+  var p1 = personClassMirror?.constructors?['']?.call([], {'id': 1, 'name': 'person 1'});
   // Get the list of DeclarationMirror corresponding to the fields of Person class
-  var p1Fields = personClassMirror.fields;
+  var p1Fields = personClassMirror?.fields;
 
   // prints: `p1Fields['myDynamic'].type: dynamic}\n` in the `result` element
-  print("p1Fields['myDynamic'].type: ${p1Fields['myDynamic'].type}\n");
+  print("p1Fields['myDynamic'].type: ${p1Fields?['myDynamic']?.type}\n");
   // prints: `p1Fields['cars'].type: [List, Car]}\n` in the `result` element
-  print("p1Fields['cars'].type: ${p1Fields['cars'].type}\n");
+  print("p1Fields['cars'].type: ${p1Fields?['cars']?.type}\n");
 
   // Gets the CarClassMirror and constructs a new car using the default constructor
   // passing a map containing the required parameters
-  Car car1 = reflectType(Car).constructors['']([1, 'v8']);
+  Car car1 = reflectType(Car)?.constructors?['']?.call([1, 'v8']);
   /* prints:
       car1:
         id: 1
@@ -53,25 +53,25 @@ main() {
   print('\n--------------------------');
   print('reflecting "ClassWithMethod"');
   print('--------------------------');
-  var methods = reflectType(ClassWithMethod).methods;
-  print(methods.keys); // prints: 'someFunction'
-  print(methods['someMethod'].returnType); // prints: String
-  print(methods['someMethod'].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].positionalParameters); // prints: {p1: Instance of 'DeclarationMirror'}
-  print(methods['someMethod'].positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].positionalParameters[0].type); // prints: int
+  var methods = reflectType(ClassWithMethod)?.methods;
+  print(methods?.keys); // prints: 'someFunction'
+  print(methods?['someMethod']?.returnType); // prints: String
+  print(methods?['someMethod']?.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods?['someMethod']?.positionalParameters); // prints: {p1: Instance of 'DeclarationMirror'}
+  print(methods?['someMethod']?.positionalParameters?[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods?['someMethod']?.positionalParameters?[0].type); // prints: int
 
   print('\n--------------------------');
   print('reflecting "someFunction"');
   print('--------------------------');
   var sfMirror = reflectFunction(someFunction);
-  print(sfMirror.name); // prints: '(someMethod)'
-  print(sfMirror.returnType); // prints: dynamic
-  print(sfMirror.annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.positionalParameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
-  print(sfMirror.positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.positionalParameters[0].type); // prints: String
-  print(sfMirror.positionalParameters[0].name);
-  print(sfMirror.positionalParameters[1].name);
-  print(sfMirror.positionalParameters[2].name);
+  print(sfMirror?.name); // prints: '(someMethod)'
+  print(sfMirror?.returnType); // prints: dynamic
+  print(sfMirror?.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror?.positionalParameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
+  print(sfMirror?.positionalParameters?[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror?.positionalParameters?[0].type); // prints: String
+  print(sfMirror?.positionalParameters?[0].name);
+  print(sfMirror?.positionalParameters?[1].name);
+  print(sfMirror?.positionalParameters?[2].name);
 }

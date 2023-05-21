@@ -3,10 +3,10 @@ library built_mirrors_core;
 part 'annotations.dart';
 
 /// Container map of [Type]-[ClassMirror] combination
-Map<Type, ClassMirror> _classMirrors = {};
+Map<Type, ClassMirror?> _classMirrors = {};
 
 /// returns the map of [Type]-[ClassMirror]
-Map<Type, ClassMirror> get classMirrors => _classMirrors;
+Map<Type, ClassMirror?> get classMirrors => _classMirrors;
 
 /// adds to a map containing a Map with [Type] as keys and [ClassMirrors] as values
 void initClassMirrors(Map<Type, ClassMirror> classMirrors) {
@@ -14,13 +14,13 @@ void initClassMirrors(Map<Type, ClassMirror> classMirrors) {
 }
 
 /// Returns the [ClassMirror] corresponding to the [type]
-ClassMirror reflectType(Type type) => _classMirrors[type];
+ClassMirror? reflectType(Type type) => _classMirrors[type];
 
-typedef ClassMirror GetClassMirrorFromGenericInstance(instance);
+typedef ClassMirror? GetClassMirrorFromGenericInstance(instance);
 GetClassMirrorFromGenericInstance getClassMirrorFromGenericInstance = (_) => null;
 
 /// Returns the [ClassMirror] corresponding to the runtime type of the [instance]
-ClassMirror reflect(instance) => _classMirrors.putIfAbsent(instance.runtimeType, () =>
+ClassMirror? reflect(instance) => _classMirrors.putIfAbsent(instance.runtimeType, () =>
   getClassMirrorFromGenericInstance(instance)
 );
 
@@ -36,7 +36,7 @@ void initFunctionMirrors(Map<Function, FunctionMirror> classMirrors) {
 }
 
 /// Returns the [FunctionMirror] corresponding to the [function]
-FunctionMirror reflectFunction(Function function) => _functionMirrors[function];
+FunctionMirror? reflectFunction(Function function) => _functionMirrors[function];
 
 /// Class used to make annotations listed on [ClassMirror]
 abstract class Annotation {
@@ -49,7 +49,7 @@ abstract class Mirror {
   final String name;
 
   /// annotations of the element
-  final List<Annotation> annotations;
+  final List<Annotation>? annotations;
 
   const Mirror(this.name, this.annotations);
 }
@@ -67,75 +67,75 @@ class ClassMirror extends Mirror {
   final bool isAbstract;
 
   /// If the class mirror is enum  then this will return the values of the enum
-  final List values;
+  final List? values;
 
   /// Constructors of the class
-  final Map<String, FunctionMirror> constructors;
+  final Map<String, FunctionMirror>? constructors;
 
   /// Fields of the class
-  final Map<String, DeclarationMirror> fields;
+  final Map<String, DeclarationMirror>? fields;
 
   /// getters of the class
-  final List<String> getters;
+  final List<String>? getters;
 
   /// setters of the class
-  final List<String> setters;
+  final List<String>? setters;
 
   /// methods of the class
-  final Map<String, FunctionMirror> methods;
+  final Map<String, FunctionMirror>? methods;
 
   const ClassMirror({
-    String name,
-    this.isEnum: false,
+    required String name,
+    this.isEnum = false,
     this.values,
-    List<Annotation> annotations,
+    List<Annotation>? annotations,
     this.constructors,
     this.fields,
     this.getters,
     this.setters,
     this.methods,
-    this.superclass: Object,
-    this.superinterfaces: const [],
-    this.isAbstract: false
+    this.superclass = Object,
+    this.superinterfaces = const [],
+    this.isAbstract = false
   }) : super(name, annotations);
 
   toString() => 'ClassMirror on $name';
 }
 
-typedef FunctionCall([List positionalParams, Map<String, dynamic> namedParams]);
+typedef FunctionCall([List? positionalParams, Map<String, dynamic>? namedParams]);
 
-Map<FunctionMirror, List<DeclarationMirror>> _parametersFunctionMirrorCache = {};
+Map<FunctionMirror, List<DeclarationMirror>?> _parametersFunctionMirrorCache = {};
 
 /// reflects functions declared in a Dart program.
 class FunctionMirror extends Mirror {
   /// Used only for constructors. It creates new instances with the map of parameters passed
-  final FunctionCall $call;
+  final FunctionCall? $call;
 
   /// Used only for constructors. It creates new instances with the map of parameters passed
-  call([List positionalParams, Map<String, dynamic> namedParams]) => $call(positionalParams, namedParams);
+  call([List? positionalParams, Map<String, dynamic>? namedParams]) => $call?.call(positionalParams, namedParams);
 
   /// return type of the function
   final /*Type | List<Type, Type | List<Type> | List<Type, ...>>*/ returnType;
 
   /// positional parameters of the function
-  final List<DeclarationMirror> positionalParameters;
+  final List<DeclarationMirror>? positionalParameters;
 
   /// parameters of the function
-  final Map<String, DeclarationMirror> namedParameters;
+  final Map<String, DeclarationMirror>? namedParameters;
 
-  List<DeclarationMirror> get parameters =>
+  List<DeclarationMirror>? get parameters =>
       (
           _parametersFunctionMirrorCache
             ..putIfAbsent(this, () => []..addAll(positionalParameters ?? [])..addAll(namedParameters?.values ?? []))
       )[this];
 
   const FunctionMirror({
-    String name,
+    required String name,
     this.$call,
     this.returnType,
     this.positionalParameters,
     this.namedParameters,
-    List<Annotation> annotations})
+    List<Annotation>? annotations})
       : super(name, annotations);
 
   toString() => 'FunctionMirror on $name';
@@ -161,11 +161,11 @@ class DeclarationMirror extends Mirror {
   final bool isNamed;
 
   const DeclarationMirror({
-    String name,
+    required String name,
     this.type,
     annotations,
-    this.isFinal: false,
-    this.isRequired: false,
+    this.isFinal = false,
+    this.isRequired = false,
     this.isNamed = false
   }) : super(name, annotations);
 

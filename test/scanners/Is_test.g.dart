@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of Is_test;
+part of 'Is_test.dart';
 
 // **************************************************************************
 // MirrorsGenerator

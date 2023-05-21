@@ -31,8 +31,8 @@ main() {
   var cm = reflectType(ObjectWithAnnotatedFields);
 
   test('GetMethodsAnnotatedWith', () {
-    expect(GetFieldsAnnotatedWith<Annotation1>().from(o), [cm.fields['annotated1'], cm.fields['annotated2']]);
+    expect(GetFieldsAnnotatedWith<Annotation1>().from(o), [cm?.fields?['annotated1'], cm?.fields?['annotated2']]);
 
-    expect(GetFieldsAnnotatedWith<Annotation2>().from(o), [cm.fields['annotated1']]);
+    expect(GetFieldsAnnotatedWith<Annotation2>().from(o), [cm?.fields?['annotated1']]);
   });
 }

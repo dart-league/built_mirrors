@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.test.models.course;
+part of 'course.dart';
 
 // **************************************************************************
 // MirrorsGenerator

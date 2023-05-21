@@ -49,8 +49,10 @@ class GetMethodsAnnotatedWith<T> {
   ///
   ///       //should return a list of [DeclarationMirror] of annotated1
   ///       var methodsAnnotatedWithAnnotation2 = new GetMethodsAnnotatedWith<Annotation2>().from(o);
-  Iterable<FunctionMirror> from(instance) =>
-      reflect(instance).methods.values.where((methodMirror) => methodMirror.annotations.any((a) => a is T));
+  Iterable<FunctionMirror>? from(instance) => reflect(instance)
+      ?.methods
+      ?.values
+      .where((methodMirror) => methodMirror.annotations?.any((a) => a is T) == true);
 }
 
 ///  Get List of variables annotated with [T] from the InstanceMirror [instance]. For example:
@@ -96,46 +98,49 @@ class GetFieldsAnnotatedWith<T> {
   ///       // should return a list of [VariableMirror] of annotated1
   ///       var fieldsAnnotatedWithAnnotation2 = new GetFieldsAnnotatedWith<Annotation2>().from(o);
   ///     }
-  Iterable<DeclarationMirror> from(instance) =>
-      reflect(instance).fields.values.where((methodMirror) => methodMirror.annotations.any(Is<T>()));
+  Iterable<DeclarationMirror>? from(instance) => reflect(instance)
+      ?.fields
+      ?.values
+      .where((methodMirror) => methodMirror.annotations?.any(Is<T>()) == true);
 }
 
 /// Get the list of public [MethodMirror] from [classMirror]
 Map<String, FunctionMirror> getPublicMethodsFromClass(ClassMirror classMirror) {
   var methods = <String, FunctionMirror>{};
-  classMirror.methods.forEach((key, method) {
+  classMirror.methods?.forEach((key, method) {
     if (!key.startsWith('_')) methods[key] = method;
   });
   return methods;
 }
 
 /// Get the list of public variables [DeclarationMirror] and setters from [classMirror]
-Map<String, DeclarationMirror> getPublicSettersFrom(ClassMirror classMirror) {
-  var publicSetters = <String, DeclarationMirror>{};
-  classMirror.setters.forEach((setter) {
-    if (!setter.startsWith('_')) publicSetters[setter] = classMirror.fields[setter];
-  });
-  return publicSetters;
-}
+Map<String, DeclarationMirror?>? getPublicSettersFrom(ClassMirror classMirror) =>
+    classMirror.setters?.fold(<String, DeclarationMirror?>{},
+        (publicSetters, setter) {
+      if (!setter.startsWith('_'))
+        publicSetters?[setter] = classMirror.fields?[setter];
+      return publicSetters;
+    });
 
 /// Get the list of public variables [DeclarationMirror] and setters from [classMirror]
-Map<String, DeclarationMirror> getPublicGettersFrom(ClassMirror classMirror) {
-  var publicGetters = <String, DeclarationMirror>{};
-  classMirror.getters.forEach((getter) {
-    if (!getter.startsWith('_')) publicGetters[getter] = classMirror.fields[getter];
+Map<String, DeclarationMirror?>? getPublicGettersFrom(ClassMirror classMirror) {
+  return classMirror.getters?.fold(<String, DeclarationMirror?>{},
+      (publicGetters, getter) {
+    if (!getter.startsWith('_'))
+      publicGetters?[getter] = classMirror.fields?[getter];
+    return publicGetters;
   });
-  return publicGetters;
 }
 
 /// Get the list of public variables [DeclarationMirror] from [classMirror]
-Map<String, DeclarationMirror> getPublicFieldsFrom(ClassMirror classMirror) {
-  var publicFields = <String, DeclarationMirror>{};
-  var fields = classMirror.getters.where((getter) => classMirror.setters.contains(getter));
-  fields.forEach((getter) {
-    if (!getter.startsWith('_')) publicFields[getter] = classMirror.fields[getter];
-  });
-  return publicFields;
-}
+Map<String, DeclarationMirror?>? getPublicFieldsFrom(ClassMirror classMirror) =>
+    classMirror.getters
+        ?.where((getter) => classMirror.setters?.contains(getter) == true)
+        .fold(<String, DeclarationMirror?>{}, (publicFields, getter) {
+      if (!getter.startsWith('_'))
+        publicFields?[getter] = classMirror.fields?[getter];
+      return publicFields;
+    });
 
 /// Gets the instance of the class that extends the [classMirror] from the classes annotated with `@reflectable`, for example:
 ///
@@ -153,15 +158,14 @@ Map<String, DeclarationMirror> getPublicFieldsFrom(ClassMirror classMirror) {
 ///
 /// And the Extension level of the next service is 2
 ///
-///     class SomeServiceImpl2 extens SomeServiceImpl {
+///     class SomeServiceImpl2 extends SomeServiceImpl {
 ///       String someMethod() => super.someMethod() + '2';
 ///     }
 ///
 /// So that, this method will return an instance of `SomeServiceImpl2`
 Object getObjectThatExtend(ClassMirror classMirror) {
-  ClassMirror result;
-  int counter = 0,
-      counter2 = 0;
+  ClassMirror? result;
+  int counter = 0, counter2 = 0;
   for (Type type in classMirrors.keys) {
     counter = _getExtensionLevel(classMirror, type, counter);
     if (counter > 0 && counter2 < counter) {
@@ -171,7 +175,7 @@ Object getObjectThatExtend(ClassMirror classMirror) {
     }
   }
 
-  return result.constructors[''].$call();
+  return result?.constructors?['']?.$call?.call();
 }
 
 /// Get the level value that a [subType] extends the [superClassCM], for example:
@@ -190,7 +194,7 @@ Object getObjectThatExtend(ClassMirror classMirror) {
 ///
 /// And the Extension level of the next service is 2
 ///
-///     class SomeServiceImpl2 extens SomeServiceImpl {
+///     class SomeServiceImpl2 extends SomeServiceImpl {
 ///       String someMethod() => super.someMethod() + '2';
 ///     }
 int _getExtensionLevel(ClassMirror superClassCM, Type subType, int counter) {
@@ -200,8 +204,9 @@ int _getExtensionLevel(ClassMirror superClassCM, Type subType, int counter) {
   if (subTypeCM == null) return 0;
 
   counter++;
-  if (!(subTypeCM.superinterfaces.any((si) => reflectType(si) == superClassCM)
-      || reflectType(subTypeCM.superclass) == superClassCM)) {
+  if (!(subTypeCM.superinterfaces
+          .any((si) => reflectType(si) == superClassCM) ||
+      reflectType(subTypeCM.superclass) == superClassCM)) {
     counter = _getExtensionLevel(superClassCM, subTypeCM.superclass, counter);
   }
 

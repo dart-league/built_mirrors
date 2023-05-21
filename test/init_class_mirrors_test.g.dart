@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.test.init_class_mirrors_test;
+part of 'init_class_mirrors_test.dart';
 
 // **************************************************************************
 // InitMirrorsGenerator
@@ -8,9 +8,9 @@ part of built_mirrors.test.init_class_mirrors_test;
 
 _initMirrors() {
   initClassMirrors({
-    Student: StudentClassMirror,
-    Person: PersonClassMirror,
     Course: CourseClassMirror,
-    Employee: EmployeeClassMirror
+    Employee: EmployeeClassMirror,
+    Person: PersonClassMirror,
+    Student: StudentClassMirror
   });
 }
