@@ -1,3 +1,8 @@
+# 2.0.1
+
+- Make generator skip `SerializableMap` and `Map` supertypes
+- Fix generation of generic superclass and superinterfaces in `ClassMirror` constructors
+
 # 2.0.0
 
 - Upgrade sdk to `>=3.0.0 <4.0.0`

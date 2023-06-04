@@ -1,7 +1,7 @@
 # built\_mirrors
 
 ![Build
-Status](https://travis-ci.org/dart-league/built_mirrors.svg?branch=master)
+Status](https://github.com/dart-league/built_mirrors/actions/workflows/test.yml/badge.svg?branch=master)
 
 This is a library that generates `ClassMirror` from classes annotated
 with `@reflectable` or `@Reflectable()`.
@@ -14,15 +14,15 @@ your `pubspec.yaml`.
 ``` yaml
 ...
 dependencies:
-  ...
+#  ...
   # replace for the latest version
   built_mirrors: any
-  ...
+#  ...
 dev_dependencies:
-  ...
+#  ...
   # replace for the latest version
   built_runner: any
-  ...
+#  ...
 ```
 
 3 - create a file in `bin` folder called `models.dart` and put next code
@@ -49,11 +49,11 @@ class _MyOtherAnnotation extends Annotation {
 @reflectable
 class Person {
   Person({this.id, this.name, this.myDynamic, this.cars});
-  int id;
+  int? id;
   @MyAnnotation('hello\uabcd', val2: null)
-  String name;
+  String? name;
   var myDynamic;
-  List<Car> cars;
+  List<Car>? cars;
 
   String get myGetter => 'myGetter result';
   set mySetter(String val) => 'setting $val';
@@ -62,9 +62,9 @@ class Person {
 @reflectable
 @myOtherAnnotation
 class Car {
-  int id;
+  int? id;
   @MyAnnotation(r'\uabcd', val2: null)
-  String engine;
+  String? engine;
   Car([this.id, this.engine]);
 }
 
@@ -88,7 +88,7 @@ class ClassWithMethod {
   }
 
   @myOtherAnnotation
-  someMethodWithNamedParams({@myOtherAnnotation String someParameter}) {
+  someMethodWithNamedParams({@myOtherAnnotation String? someParameter}) {
     return 'someMethod';
   }
 }
@@ -128,18 +128,18 @@ main() {
   var personClassMirror = reflectType(Person);
   // and then constructs a new person using a map with the
   // needed parameters for the constructor
-  var p1 = personClassMirror.constructors['']([], {'id': 1, 'name': 'person 1'});
+  var p1 = personClassMirror?.constructors?['']?.call([], {'id': 1, 'name': 'person 1'});
   // Get the list of DeclarationMirror corresponding to the fields of Person class
-  var p1Fields = personClassMirror.fields;
+  var p1Fields = personClassMirror?.fields;
 
   // prints: `p1Fields['myDynamic'].type: dynamic}\n` in the `result` element
-  print("p1Fields['myDynamic'].type: ${p1Fields['myDynamic'].type}\n");
+  print("p1Fields['myDynamic'].type: ${p1Fields?['myDynamic']?.type}\n");
   // prints: `p1Fields['cars'].type: [List, Car]}\n` in the `result` element
-  print("p1Fields['cars'].type: ${p1Fields['cars'].type}\n");
+  print("p1Fields['cars'].type: ${p1Fields?['cars']?.type}\n");
 
   // Gets the CarClassMirror and constructs a new car using the default constructor
   // passing a map containing the required parameters
-  Car car1 = reflectType(Car).constructors['']([1, 'v8']);
+  Car car1 = reflectType(Car)?.constructors?['']?.call([1, 'v8']);
   /* prints:
       car1:
         id: 1
@@ -153,27 +153,27 @@ main() {
   print('\n--------------------------');
   print('reflecting "ClassWithMethod"');
   print('--------------------------');
-  var methods = reflectType(ClassWithMethod).methods;
-  print(methods.keys); // prints: 'someFunction'
-  print(methods['someMethod'].returnType); // prints: String
-  print(methods['someMethod'].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].positionalParameters); // prints: {p1: Instance of 'DeclarationMirror'}
-  print(methods['someMethod'].positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(methods['someMethod'].positionalParameters[0].type); // prints: int
+  var methods = reflectType(ClassWithMethod)?.methods;
+  print(methods?.keys); // prints: 'someFunction'
+  print(methods?['someMethod']?.returnType); // prints: String
+  print(methods?['someMethod']?.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods?['someMethod']?.positionalParameters); // prints: {p1: Instance of 'DeclarationMirror'}
+  print(methods?['someMethod']?.positionalParameters?[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(methods?['someMethod']?.positionalParameters?[0].type); // prints: int
 
   print('\n--------------------------');
   print('reflecting "someFunction"');
   print('--------------------------');
   var sfMirror = reflectFunction(someFunction);
-  print(sfMirror.name); // prints: '(someMethod)'
-  print(sfMirror.returnType); // prints: dynamic
-  print(sfMirror.annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.positionalParameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
-  print(sfMirror.positionalParameters[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
-  print(sfMirror.positionalParameters[0].type); // prints: String
-  print(sfMirror.positionalParameters[0].name);
-  print(sfMirror.positionalParameters[1].name);
-  print(sfMirror.positionalParameters[2].name);
+  print(sfMirror?.name); // prints: '(someMethod)'
+  print(sfMirror?.returnType); // prints: dynamic
+  print(sfMirror?.annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror?.positionalParameters); // prints: {someParameter: Instance of 'DeclarationMirror'}
+  print(sfMirror?.positionalParameters?[0].annotations); // prints: [Instance of '_MyOtherAnnotation']
+  print(sfMirror?.positionalParameters?[0].type); // prints: String
+  print(sfMirror?.positionalParameters?[0].name);
+  print(sfMirror?.positionalParameters?[1].name);
+  print(sfMirror?.positionalParameters?[2].name);
 }
 ```
 
@@ -184,7 +184,7 @@ will contain the next code:
 ``` dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.example.main;
+part of 'main.dart';
 
 // **************************************************************************
 // MirrorsGenerator
@@ -225,7 +225,7 @@ and:
 ``` dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of built_mirrors.example.models;
+part of 'models.dart';
 
 // **************************************************************************
 // MirrorsGenerator
@@ -397,34 +397,13 @@ const ClassWithMethodClassMirror =
 6 - Finally you can run the file `bin/main.dart` and if everything is ok
 you will see next output in console:
 
-    p1Fields['myDynamic'].type: dynamic
-    
-    p1Fields['cars'].type: [List, Car]
-    
-    car1:
-        id: 1
-        engine: v8
-    
-    
-    --------------------------
-    reflecting "ClassWithMethod"
-    --------------------------
-    (someMethod, someMethodWithNamedParams)
-    dynamic
-    [Instance of '_MyOtherAnnotation']
-    [DeclarationMirror on someParameter]
-    [Instance of '_MyOtherAnnotation']
-    String
-    
-    --------------------------
-    reflecting "someFunction"
-    --------------------------
-    someFunction
-    String
-    [Instance of 'AnnotationWithFunction']
-    [DeclarationMirror on p1, DeclarationMirror on p0, DeclarationMirror on p2]
-    [Instance of '_MyOtherAnnotation']
-    int
-    p1
-    p0
-    p2
+p1Fields\['myDynamic'\].type: dynamic p1Fields\['cars'\].type: \[List,
+Car\] car1: id: 1 engine: v8 -------------------------- reflecting
+"ClassWithMethod" -------------------------- (someMethod,
+someMethodWithNamedParams) dynamic \[Instance of '\_MyOtherAnnotation'\]
+\[DeclarationMirror on someParameter\] \[Instance of
+'\_MyOtherAnnotation'\] String -------------------------- reflecting
+"someFunction" -------------------------- someFunction String \[Instance
+of 'AnnotationWithFunction'\] \[DeclarationMirror on p1,
+DeclarationMirror on p0, DeclarationMirror on p2\] \[Instance of
+'\_MyOtherAnnotation'\] int p1 p0 p2\</programlisting\>

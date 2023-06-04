@@ -29,7 +29,7 @@ class MirrorsGenerator extends GeneratorForAnnotation<Reflectable> {
 
     if (element is ClassElement) {
       var superTypes =
-          element.allSupertypes.where((st) => st.element.name != 'Object');
+          element.allSupertypes.where((st) => !{'Object', 'SerializableMap', 'Map'}.contains(st.element.name));
       var stAccessors = superTypes.expand((st) => st.accessors);
       var stMethods = superTypes.expand((st) => st.methods);
       var stFields = superTypes.expand((st) => st.element.fields);
@@ -81,10 +81,10 @@ const ${className}ClassMirror = ClassMirror(
             : '',
         element.isAbstract ? 'isAbstract: true' : '',
         element.supertype?.getDisplayString(withNullability: false) != 'Object'
-            ? 'superclass: ${element.supertype?.getDisplayString(withNullability: false)}'
+            ? 'superclass: ${element.supertype?.element.name}'
             : '',
         element.interfaces.isNotEmpty
-            ? 'superinterfaces: [${element.interfaces.map((i) => i.getDisplayString(withNullability: false)).join(',')}]'
+            ? 'superinterfaces: [${element.interfaces.map((i) => i.element.name).join(',')}]'
             : ''
       ].fold('', _combine)}
 );''';
@@ -113,10 +113,13 @@ String _renderConstructorParametersCall(ConstructorElement c) {
   var i = 0;
   return c.parameters
       .map((p) => p.isPositional
-          ? 'positionalParams[${i++}]'
-          : "${p.name}: namedParams['${p.name}']")
+          ? 'positionalParams[${i++}]${_getDefalutValueCode(p)}'
+          : "${p.name}: namedParams['${p.name}']${_getDefalutValueCode(p)}")
       .join(',');
 }
+
+String _getDefalutValueCode(ParameterElement p) =>
+    p.hasDefaultValue ? ' ?? ${p.defaultValueCode}' : '';
 
 String _renderMethods(MethodElement m) => "'${m.name}': " + _renderFunction(m);
 

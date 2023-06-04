@@ -1,6 +1,6 @@
 == built_mirrors
-
-image:https://travis-ci.org/dart-league/built_mirrors.svg?branch=master["Build Status", link="https://travis-ci.org/dart-league/built_mirrors"]
+[link=https://github.com/dart-league/built_mirrors/actions/workflows/test.yml]
+image::https://github.com/dart-league/built_mirrors/actions/workflows/test.yml/badge.svg?branch=master[Build Status]
 
 This is a library that generates `ClassMirror` from classes annotated with
 `@reflectable` or `@Reflectable()`.
@@ -60,35 +60,35 @@ output in console:
 
 [source]
 ---------------------------
-p1Fields['myDynamic'].type: dynamic
+    p1Fields['myDynamic'].type: dynamic
 
-p1Fields['cars'].type: [List, Car]
+    p1Fields['cars'].type: [List, Car]
 
-car1:
-	id: 1
-	engine: v8
+    car1:
+        id: 1
+        engine: v8
 
 
---------------------------
-reflecting "ClassWithMethod"
---------------------------
-(someMethod, someMethodWithNamedParams)
-dynamic
-[Instance of '_MyOtherAnnotation']
-[DeclarationMirror on someParameter]
-[Instance of '_MyOtherAnnotation']
-String
+    --------------------------
+    reflecting "ClassWithMethod"
+    --------------------------
+    (someMethod, someMethodWithNamedParams)
+    dynamic
+    [Instance of '_MyOtherAnnotation']
+    [DeclarationMirror on someParameter]
+    [Instance of '_MyOtherAnnotation']
+    String
 
---------------------------
-reflecting "someFunction"
---------------------------
-someFunction
-String
-[Instance of 'AnnotationWithFunction']
-[DeclarationMirror on p1, DeclarationMirror on p0, DeclarationMirror on p2]
-[Instance of '_MyOtherAnnotation']
-int
-p1
-p0
-p2
+    --------------------------
+    reflecting "someFunction"
+    --------------------------
+    someFunction
+    String
+    [Instance of 'AnnotationWithFunction']
+    [DeclarationMirror on p1, DeclarationMirror on p0, DeclarationMirror on p2]
+    [Instance of '_MyOtherAnnotation']
+    int
+    p1
+    p0
+    p2
 ---------------------------
